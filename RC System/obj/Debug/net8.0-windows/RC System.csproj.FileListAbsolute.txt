@@ -1,0 +1,17 @@
+C:\Users\dalot\Desktop\Projeto_RC\RC System\bin\Debug\net8.0-windows\RC System.exe
+C:\Users\dalot\Desktop\Projeto_RC\RC System\bin\Debug\net8.0-windows\RC System.deps.json
+C:\Users\dalot\Desktop\Projeto_RC\RC System\bin\Debug\net8.0-windows\RC System.runtimeconfig.json
+C:\Users\dalot\Desktop\Projeto_RC\RC System\bin\Debug\net8.0-windows\RC System.dll
+C:\Users\dalot\Desktop\Projeto_RC\RC System\bin\Debug\net8.0-windows\RC System.pdb
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.Form1.resources
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.csproj.GenerateResource.cache
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.AssemblyInfoInputs.cache
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.AssemblyInfo.cs
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.csproj.CoreCompileInputs.cache
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.sourcelink.json
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.dll
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\refint\RC System.dll
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.pdb
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.genruntimeconfig.cache
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\ref\RC System.dll
