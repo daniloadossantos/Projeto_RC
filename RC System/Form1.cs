@@ -80,7 +80,7 @@ namespace RC_System
 
             for (int i = 0; i <= horarioFim.Hours; i++)
             {
-                listHoras.Items.Add(horarioInicio.ToString().Substring(0,5).PadLeft(10));
+                listHoras.Items.Add(horarioInicio.ToString().Substring(0, 5).PadLeft(10));
                 horarioInicio += incremento;
             }
 
@@ -94,6 +94,26 @@ namespace RC_System
         private void mesCalendario_DateChanged(object sender, DateRangeEventArgs e)
         {
             MontarHorarios();
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDataSelecionada_Click(object sender, EventArgs e)
+        {
 
         }
     }
