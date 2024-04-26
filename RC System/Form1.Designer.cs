@@ -109,6 +109,7 @@
             // 
             btnConsulta.AutoSize = true;
             btnConsulta.BackColor = Color.SkyBlue;
+            btnConsulta.Cursor = Cursors.Hand;
             btnConsulta.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnConsulta.Location = new Point(147, 21);
             btnConsulta.Name = "btnConsulta";
@@ -121,6 +122,7 @@
             // 
             btnNovo.AutoSize = true;
             btnNovo.BackColor = Color.PaleGreen;
+            btnNovo.Cursor = Cursors.Hand;
             btnNovo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNovo.Location = new Point(313, 21);
             btnNovo.Name = "btnNovo";
@@ -134,6 +136,7 @@
             // 
             btnAlterar.AutoSize = true;
             btnAlterar.BackColor = Color.Coral;
+            btnAlterar.Cursor = Cursors.Hand;
             btnAlterar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAlterar.Location = new Point(481, 21);
             btnAlterar.Name = "btnAlterar";
@@ -146,6 +149,7 @@
             // 
             btnExcluir.AutoSize = true;
             btnExcluir.BackColor = Color.IndianRed;
+            btnExcluir.Cursor = Cursors.Hand;
             btnExcluir.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExcluir.ImageKey = "(nenhum)";
             btnExcluir.Location = new Point(653, 21);
@@ -221,7 +225,7 @@
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(984, 681);
+            ClientSize = new Size(1100, 681);
             Controls.Add(btnSair);
             Controls.Add(dataGridView1);
             Controls.Add(btnExcluir);
@@ -232,9 +236,13 @@
             Controls.Add(btnFormServicos);
             Controls.Add(btnFormAgendamentos);
             Controls.Add(btnFormClientes);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            IsMdiContainer = true;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RC System";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

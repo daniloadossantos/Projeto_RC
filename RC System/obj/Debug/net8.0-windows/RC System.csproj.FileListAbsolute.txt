@@ -16,3 +16,5 @@ C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.p
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC System.genruntimeconfig.cache
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\ref\RC System.dll
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.Properties.Resources.resources
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.FormCadastrarCliente.resources
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.FormAlterarCliente.resources

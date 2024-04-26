@@ -14,7 +14,8 @@ namespace RC_System
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-
+            FormCadastrarCliente open = new FormCadastrarCliente();
+            open.Show();
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
@@ -23,6 +24,11 @@ namespace RC_System
         }
 
         private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
