@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RC Ar-condicionado</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style-login.css">
     <link rel="shortcut icon" href="./img/winter32.png" type="image/png">
 </head>
 <body>
@@ -14,16 +14,19 @@
               <h1>RC Ar-condicionado</h1>
           </header>
           <main>
-              <a href="clientes.html">cliente</a>
-              <a href="agendamento.html">agendamentos</a>
-              <a href="orcamento.html">orçamento</a>
-              <div id="login-page" class="page">
-                  <h2>Login</h2>
-                  <form id="login-form">
+              <div class="form-login" id="login-page">
+                <h2>Login</h2>
+                <form>
+                  <div>
+                    <label for="username">Código funcionário</label>
                       <input type="text" id="username" placeholder="Usuário" required>
+                  </div>
+                    <div>
+                      <label for="password">Senha</label>
                       <input type="password" id="password" placeholder="Senha" required>
-                      <button type="submit">Entrar</button>
-                  </form>
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
               </div>
               <!-- Outras páginas (Clientes, Agendamentos, Orçamentos) seriam carregadas dinamicamente aqui -->
           </main>

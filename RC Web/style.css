@@ -8,9 +8,16 @@ body {
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    /*padding: 20px;
     background-color: #fff; /* fundo branco */
-    border-radius: 5px; /* adiciona borda arredondada */
+    /*border-radius: 5px; /* adiciona borda arredondada */
+}
+.box-login{
+  display: flex;
+  height: 600px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 header {
@@ -18,6 +25,7 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    
 }
 
 main {
@@ -39,6 +47,7 @@ form {
     flex-direction: column;
     max-width: 300px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 input[type="text"],
