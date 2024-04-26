@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\formalterarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\formagendamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:formagendamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\formalterarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:formalterarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|c:\\users\\dalot\\desktop\\projeto_rc\\rc system\\formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{57A0B4A4-3672-4614-A72F-70B05E0BEAA1}|RC System.csproj|solutionrelative:formcadastrarcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,38 +51,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "FormCadastrarCliente.cs",
-              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs",
-              "RelativeDocumentMoniker": "FormCadastrarCliente.cs",
-              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs",
-              "RelativeToolTip": "FormCadastrarCliente.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAlwCkAAAAAAAAA",
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form1.Designer.cs",
+              "RelativeToolTip": "Form1.Designer.cs",
+              "ViewState": "AQIAAAsBAAAAAAAAAAD4vxcBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-26T03:49:37.884Z",
+              "WhenOpened": "2024-04-26T15:26:39.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAtwFUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T14:49:44.212Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FormAlterarCliente.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAlterarCliente.cs",
-              "RelativeDocumentMoniker": "FormAlterarCliente.cs",
-              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAlterarCliente.cs [Projeto]",
-              "RelativeToolTip": "FormAlterarCliente.cs [Projeto]",
+              "Title": "FormAgendamento.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAgendamento.cs",
+              "RelativeDocumentMoniker": "FormAgendamento.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAgendamento.cs [Projeto]",
+              "RelativeToolTip": "FormAgendamento.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-26T03:30:33.256Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FormCadastrarCliente.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs",
-              "RelativeDocumentMoniker": "FormCadastrarCliente.cs",
-              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs [Projeto]",
-              "RelativeToolTip": "FormCadastrarCliente.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-26T02:32:28.615Z",
+              "WhenOpened": "2024-04-26T14:34:09.304Z",
               "EditorCaption": " [Projeto]"
             },
             {
@@ -83,6 +96,42 @@
               "RelativeToolTip": "Form1.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-26T01:30:30.671Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form2.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\Form2.cs [Projeto]",
+              "RelativeToolTip": "Form2.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T13:58:56.212Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormAlterarCliente.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAlterarCliente.cs",
+              "RelativeDocumentMoniker": "FormAlterarCliente.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormAlterarCliente.cs [Projeto]",
+              "RelativeToolTip": "FormAlterarCliente.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T03:30:33.256Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FormCadastrarCliente.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs",
+              "RelativeDocumentMoniker": "FormCadastrarCliente.cs",
+              "ToolTip": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\FormCadastrarCliente.cs [Projeto]",
+              "RelativeToolTip": "FormCadastrarCliente.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T02:32:28.615Z",
               "EditorCaption": " [Projeto]"
             }
           ]

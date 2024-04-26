@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace RC_System
 {
-    public partial class FormCadastrarCliente : Form
+    public partial class FormCadastroCliente : Form
     {
-        public FormCadastrarCliente()
+        public FormCadastroCliente()
         {
             InitializeComponent();
         }

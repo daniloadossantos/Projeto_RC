@@ -1,6 +1,6 @@
 ﻿namespace RC_System
 {
-    partial class FormCadastrarCliente
+    partial class FormCadastroCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastrarCliente));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCadastroCliente));
             lblNome = new Label();
             lblCpf = new Label();
             lblEmail = new Label();
@@ -53,8 +53,6 @@
             lblCidade = new Label();
             textBox5 = new TextBox();
             lblUf = new Label();
-            label1 = new Label();
-            label2 = new Label();
             SuspendLayout();
             // 
             // lblNome
@@ -172,9 +170,9 @@
             btnCadastrar.Cursor = Cursors.Hand;
             btnCadastrar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCadastrar.ForeColor = SystemColors.ActiveCaptionText;
-            btnCadastrar.Location = new Point(147, 372);
+            btnCadastrar.Location = new Point(137, 363);
             btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(95, 34);
+            btnCadastrar.Size = new Size(105, 43);
             btnCadastrar.TabIndex = 7;
             btnCadastrar.Text = "&Salvar";
             btnCadastrar.UseVisualStyleBackColor = false;
@@ -184,9 +182,9 @@
             // 
             btnLimpar.BackColor = Color.IndianRed;
             btnLimpar.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLimpar.Location = new Point(297, 372);
+            btnLimpar.Location = new Point(297, 363);
             btnLimpar.Name = "btnLimpar";
-            btnLimpar.Size = new Size(95, 34);
+            btnLimpar.Size = new Size(105, 43);
             btnLimpar.TabIndex = 8;
             btnLimpar.Text = "&Limpar";
             btnLimpar.UseVisualStyleBackColor = false;
@@ -282,38 +280,13 @@
             lblUf.TabIndex = 17;
             lblUf.Text = "UF";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 68F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(557, 185);
-            label1.Name = "label1";
-            label1.Size = new Size(165, 120);
-            label1.TabIndex = 19;
-            label1.Text = "RC";
-            label1.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(546, 305);
-            label2.Name = "label2";
-            label2.Size = new Size(178, 30);
-            label2.TabIndex = 20;
-            label2.Text = "Ar-condicionado";
-            label2.TextAlign = ContentAlignment.TopCenter;
-            label2.Click += label2_Click;
-            // 
-            // FormCadastrarCliente
+            // FormCadastroCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(734, 421);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            ClientSize = new Size(545, 421);
             Controls.Add(textBox5);
             Controls.Add(lblUf);
             Controls.Add(textBox4);
@@ -342,10 +315,10 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "FormCadastrarCliente";
+            Name = "FormCadastroCliente";
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cadastrar cliente";
+            Text = "Cadastro cliente";
             Load += FormCadastrarCliente_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -377,7 +350,5 @@
         private Label lblCidade;
         private TextBox textBox5;
         private Label lblUf;
-        private Label label1;
-        private Label label2;
     }
 }

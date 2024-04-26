@@ -37,7 +37,7 @@
             btnNovo = new Button();
             btnAlterar = new Button();
             btnExcluir = new Button();
-            dataGridView1 = new DataGridView();
+            listaClientes = new DataGridView();
             IDCliente = new DataGridViewTextBoxColumn();
             Nome = new DataGridViewTextBoxColumn();
             Endereço = new DataGridViewTextBoxColumn();
@@ -45,7 +45,17 @@
             Telefone = new DataGridViewTextBoxColumn();
             Email = new DataGridViewTextBoxColumn();
             btnSair = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel1 = new Panel();
+            tabControlAgendamento = new TabControl();
+            tabPage1 = new TabPage();
+            listHoras = new ListBox();
+            mesCalendario = new MonthCalendar();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            ((System.ComponentModel.ISupportInitialize)listaClientes).BeginInit();
+            panel1.SuspendLayout();
+            tabControlAgendamento.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // btnFormClientes
@@ -61,6 +71,7 @@
             btnFormClientes.TabIndex = 0;
             btnFormClientes.Text = "&Clientes";
             btnFormClientes.UseVisualStyleBackColor = false;
+            btnFormClientes.Click += btnFormClientes_Click;
             // 
             // btnFormAgendamentos
             // 
@@ -75,6 +86,7 @@
             btnFormAgendamentos.TabIndex = 1;
             btnFormAgendamentos.Text = "&Agendamentos";
             btnFormAgendamentos.UseVisualStyleBackColor = false;
+            btnFormAgendamentos.Click += btnFormAgendamentos_Click;
             // 
             // btnFormServicos
             // 
@@ -144,6 +156,7 @@
             btnAlterar.TabIndex = 6;
             btnAlterar.Text = "&Alterar";
             btnAlterar.UseVisualStyleBackColor = false;
+            btnAlterar.Click += btnAlterar_Click;
             // 
             // btnExcluir
             // 
@@ -158,15 +171,18 @@
             btnExcluir.TabIndex = 7;
             btnExcluir.Text = "&Excluir";
             btnExcluir.UseVisualStyleBackColor = false;
+            btnExcluir.Click += btnExcluir_Click;
             // 
-            // dataGridView1
+            // listaClientes
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { IDCliente, Nome, Endereço, CPF, Telefone, Email });
-            dataGridView1.Location = new Point(147, 80);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(701, 578);
-            dataGridView1.TabIndex = 8;
+            listaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            listaClientes.Columns.AddRange(new DataGridViewColumn[] { IDCliente, Nome, Endereço, CPF, Telefone, Email });
+            listaClientes.Location = new Point(0, 0);
+            listaClientes.Name = "listaClientes";
+            listaClientes.Size = new Size(701, 578);
+            listaClientes.TabIndex = 8;
+            listaClientes.Visible = false;
+            listaClientes.CellContentClick += listaClientes_CellContentClick;
             // 
             // IDCliente
             // 
@@ -218,6 +234,84 @@
             btnSair.Text = "&Sair";
             btnSair.UseVisualStyleBackColor = false;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(listaClientes);
+            panel1.Location = new Point(147, 80);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(701, 578);
+            panel1.TabIndex = 11;
+            // 
+            // tabControlAgendamento
+            // 
+            tabControlAgendamento.Controls.Add(tabPage1);
+            tabControlAgendamento.Controls.Add(tabPage2);
+            tabControlAgendamento.Controls.Add(tabPage3);
+            tabControlAgendamento.Location = new Point(147, 80);
+            tabControlAgendamento.Name = "tabControlAgendamento";
+            tabControlAgendamento.SelectedIndex = 0;
+            tabControlAgendamento.Size = new Size(882, 578);
+            tabControlAgendamento.TabIndex = 13;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(listHoras);
+            tabPage1.Controls.Add(mesCalendario);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(874, 550);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Em andamento";
+            tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
+            // 
+            // listHoras
+            // 
+            listHoras.Cursor = Cursors.Hand;
+            listHoras.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            listHoras.FormattingEnabled = true;
+            listHoras.ItemHeight = 21;
+            listHoras.Location = new Point(28, 218);
+            listHoras.MultiColumn = true;
+            listHoras.Name = "listHoras";
+            listHoras.Size = new Size(227, 298);
+            listHoras.TabIndex = 1;
+            listHoras.SelectedIndexChanged += listHoras_SelectedIndexChanged;
+            // 
+            // mesCalendario
+            // 
+            mesCalendario.BackColor = SystemColors.Window;
+            mesCalendario.Cursor = Cursors.Hand;
+            mesCalendario.FirstDayOfWeek = Day.Monday;
+            mesCalendario.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            mesCalendario.Location = new Point(28, 44);
+            mesCalendario.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            mesCalendario.MinDate = new DateTime(2023, 1, 1, 0, 0, 0, 0);
+            mesCalendario.Name = "mesCalendario";
+            mesCalendario.TabIndex = 0;
+            mesCalendario.DateChanged += mesCalendario_DateChanged;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(874, 550);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Concluído";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(874, 550);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Cancelado";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -226,8 +320,9 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1100, 681);
+            Controls.Add(tabControlAgendamento);
+            Controls.Add(panel1);
             Controls.Add(btnSair);
-            Controls.Add(dataGridView1);
             Controls.Add(btnExcluir);
             Controls.Add(btnAlterar);
             Controls.Add(btnNovo);
@@ -243,7 +338,10 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RC System";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)listaClientes).EndInit();
+            panel1.ResumeLayout(false);
+            tabControlAgendamento.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -258,7 +356,7 @@
         private Button btnNovo;
         private Button btnAlterar;
         private Button btnExcluir;
-        private DataGridView dataGridView1;
+        private DataGridView listaClientes;
         private Button btnSair;
         private DataGridViewTextBoxColumn IDCliente;
         private DataGridViewTextBoxColumn Nome;
@@ -266,5 +364,13 @@
         private DataGridViewTextBoxColumn CPF;
         private DataGridViewTextBoxColumn Telefone;
         private DataGridViewTextBoxColumn Email;
+        private Panel panel1;
+        private TabControl tabControlAgendamento;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private DateTimePicker dateTimePicker1;
+        private MonthCalendar mesCalendario;
+        private TabPage tabPage3;
+        private ListBox listHoras;
     }
 }

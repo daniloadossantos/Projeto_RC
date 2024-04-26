@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RC System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13c8454dda868044df5886b6509b9fcfd2b7a57f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4dc4bc25572731d7f8eb213d61df03459851b1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("RC System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RC System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
