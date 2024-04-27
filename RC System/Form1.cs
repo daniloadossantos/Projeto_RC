@@ -1,3 +1,5 @@
+using System.DirectoryServices.ActiveDirectory;
+
 namespace RC_System
 {
     public partial class Form1 : Form
@@ -5,11 +7,7 @@ namespace RC_System
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            pnlClientes.Visible = true;
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -32,8 +30,12 @@ namespace RC_System
 
         private void btnFormClientes_Click(object sender, EventArgs e)
         {
-            listaClientes.Show();
-
+            pnlAgendamentos.Visible = false;
+            pnlDetalhesAgendamento.Visible = false;
+            pnlServicos.Visible = false;
+            pnlTecnico.Visible = false;
+            pnlCriarTecnico.Visible = false;
+            pnlClientes.Visible = true;
         }
 
         private void listaClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,12 +46,31 @@ namespace RC_System
         private void btnFormAgendamentos_Click(object sender, EventArgs e)
         {
 
+            pnlServicos.Visible = false;
+            pnlTecnico.Visible = false;
+            pnlCriarTecnico.Visible = false;
+            pnlClientes.Visible = true;
+            pnlAgendamentos.Visible = true;
+            pnlDetalhesAgendamento.Visible = true;
+
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            FormCadastroCliente open = new FormCadastroCliente();
-            open.Show();
+            if (pnlClientes.Visible == true)
+            {
+                FormCadastroCliente open = new FormCadastroCliente();
+                open.Show();
+            }
+
+            if (pnlServicos.Visible == true)
+            {
+
+                AlterarServico change = new AlterarServico();
+                change.Show();
+            }
+
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -113,6 +134,80 @@ namespace RC_System
         }
 
         private void lblDataSelecionada_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControlAgendamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnFormServicos_Click(object sender, EventArgs e)
+        {
+            pnlTecnico.Visible = false;
+            pnlCriarTecnico.Visible = false;
+            pnlClientes.Visible = false;
+            pnlAgendamentos.Visible = false;
+            pnlDetalhesAgendamento.Visible = false;
+            pnlServicos.Visible = true;
+
+
+        }
+
+        private void btnFormTecnicos_Click(object sender, EventArgs e)
+        {
+            pnlClientes.Visible = false;
+            pnlAgendamentos.Visible = false;
+            pnlDetalhesAgendamento.Visible = false; 
+            pnlServicos.Visible = false;
+            pnlTecnico.Visible = true;
+            pnlCriarTecnico.Visible = true;
+
+        }
+
+
+        private void pnlServicos_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabDetalhesServico_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridTecnicos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pnlTecnico_Paint(object sender, PaintEventArgs e)
         {
 
         }

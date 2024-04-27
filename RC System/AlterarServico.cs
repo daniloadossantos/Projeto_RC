@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace RC_System
 {
-    public partial class FormAlterarCliente : Form
+    public partial class AlterarServico : Form
     {
-        public FormAlterarCliente()
+        public AlterarServico()
         {
             InitializeComponent();
         }
 
-        private void txtSobrenome_TextChanged(object sender, EventArgs e)
+        private void lblCpf_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AlterarServico_Load(object sender, EventArgs e)
         {
 
         }

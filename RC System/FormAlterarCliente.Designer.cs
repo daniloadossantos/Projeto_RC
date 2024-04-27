@@ -103,6 +103,7 @@
             txtSobrenome.Name = "txtSobrenome";
             txtSobrenome.Size = new Size(216, 23);
             txtSobrenome.TabIndex = 11;
+            txtSobrenome.TextChanged += txtSobrenome_TextChanged;
             // 
             // txtNome
             // 

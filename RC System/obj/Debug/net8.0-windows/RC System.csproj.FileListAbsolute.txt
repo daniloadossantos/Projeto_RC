@@ -20,3 +20,4 @@ C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.F
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.FormCadastroCliente.resources
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.FormExcluir.resources
 C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.FormAgendamento.resources
+C:\Users\dalot\Desktop\Projeto_RC\RC System\obj\Debug\net8.0-windows\RC_System.AlterarServico.resources
