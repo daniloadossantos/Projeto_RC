@@ -8,6 +8,7 @@ a{
   position: absolute;
   right: 25px;
 }
+
 span{
   font-size: 10px;
   color: #615ea4;
@@ -19,7 +20,7 @@ span{
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #bab6e8 url(./img/escritorio_transparente.jpg) center;
+  background: #bab6e8 url(../img/escritorio_transparente.jpg) center;
   background-size: cover;
 }
 .logo{
