@@ -4,31 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes - RC Ar-condicionado</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./clientes.css">
-
+    <!--<link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./clientes.css">-->
+  <link rel="shortcut icon" href="img/winter32.png" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
+    <div class="grid">
+      <div class="container">
         <header>
-            <h1>Clientes</h1>
-            <button id="logout">Sair</button>
+          <h1>Bem-vindo, <span class="nome_func">nome</span>!</h1>
+          <div class="btn_perfil"></div>
         </header>
         <main>
-            <table id="clientes-table">
+          <nav class="menu_lateral">
+            <ul>
+              <li><a href="#">Clientes</a></li>
+              <li><a href="#">Serviços</a></li>
+              <li><a href="#">Agendamentos</a></li>
+              <li><a href="#">Técnicos</a></li>
+            </ul>
+          </nav>
+          <div class="btn_crud">
+            <ul>
+              <li class="btn_consulta">Consulta</li>
+              <li class="btn_novo">Novo</li>
+              <li class="btn_altera">Alterar</li>
+              <li class="btn_exclui">Excluir</li>
+            </ul>
+          </div>
+          <section id="clientes_tabela">
+            <div class="campo_consulta">
+              <input type="text" name="consulta" placeholder="Digite o nome ou ID">
+              <button type="submit">Pesquisar</button>
+              <button type="submit">atualizar</button>
+            </div>
+            <div class="tabela_clientes">
+              <table>
                 <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Endereço</th>
-                    </tr>
+                  <tr>
+                    <th>ID - Cliente</th>
+                    <th>Nome</th>
+                    <th>Endereço</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                </tr>
                 </thead>
-                <tbody id="clientes-list">
-                    <!-- Os clientes serão carregados dinamicamente aqui -->
+                <tbody>
+                  <tr>
+                    <td>11345</td>
+                    <td>José</td>
+                    <td>Rua Vinte e Um, São Paulo - SP</td>
+                    <td>123456789-11</td>
+                    <td>11 912345678</td>
+                    <td>email@email.com</td>
+                  </tr>
+                  <tr>
+                    <td>11345</td>
+                    <td>José</td>
+                    <td>Rua Vinte e Um, São Paulo - SP</td>
+                    <td>123456789-11</td>
+                    <td>11 912345678</td>
+                    <td>email@email.com</td>
+                  </tr>
+                  <tr>
+                    <td>11345</td>
+                    <td>José</td>
+                    <td>Rua Vinte e Um, São Paulo - SP</td>
+                    <td>123456789-11</td>
+                    <td>11 912345678</td>
+                    <td>email@email.com</td>
+                  </tr>
+                  <tr>
+                    <td>11345</td>
+                    <td>José</td>
+                    <td>Rua Vinte e Um, São Paulo - SP</td>
+                    <td>123456789-11</td>
+                    <td>11 912345678</td>
+                    <td>email@email.com</td>
+                  </tr>
+                  <tr>
+                    <td>11345</td>
+                    <td>José</td>
+                    <td>Rua Vinte e Um, São Paulo - SP</td>
+                    <td>123456789-11</td>
+                    <td>11 912345678</td>
+                    <td>email@email.com</td>
+                  </tr>
                 </tbody>
-            </table>
+              </table>
+            </div>
+          </section>
         </main>
+          <!--<header>
+              <h1>Clientes</h1>
+              <button id="logout">Sair</button>
+          </header>
+          <main>
+              <table id="clientes-table">
+                  <thead>
+                      <tr>
+                          <th>Nome</th>
+                          <th>Telefone</th>
+                          <th>Endereço</th>
+                      </tr>
+                  </thead>
+                  <tbody id="clientes-list">
+                      <!-- Os clientes serão carregados dinamicamente aqui
+                  </tbody>
+              </table>
+          </main>-->
+      </div>
     </div>
+    <footer>
+      <p>Todos os direitos reservados. 2024</p>
+    </footer>
     <script src="clientes.js"></script>
 </body>
 </html>

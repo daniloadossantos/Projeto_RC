@@ -5,7 +5,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 a{
-  text-decoration: none;
   position: absolute;
   right: 25px;
 }
@@ -15,12 +14,12 @@ span{
 }
 .container{
   width: 100vw;
-  height: 96vh;
+  height: 95vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background: #fff url(./img/escritorio_transparente.jpg) center;
+  background: #bab6e8 url(./img/escritorio_transparente.jpg) center;
   background-size: cover;
 }
 .logo{
@@ -85,6 +84,6 @@ span{
 footer{
   background-color: #bab6e8;
   text-align: center;
-  padding: 6px 0;
+  padding: 6px 0 12px 0px;
   font-weight: bold;
 }

@@ -1,5 +1,5 @@
 /* Estilos para a tabela */
-table {
+/*table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -16,7 +16,7 @@ th {
 }
 
 /* Estilo para o botão de sair */
-#logout {
+/*#logout {
     background-color: #1a1a1a;
     color: #fff;
     border: none;
@@ -27,4 +27,10 @@ th {
 
 #logout:hover {
     background-color: #333;
+}*/
+footer{
+  background-color: #bab6e8;
+  text-align: center;
+  padding: 6px 0 12px 0px;
+  font-weight: bold;
 }
