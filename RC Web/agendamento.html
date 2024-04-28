@@ -1,36 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento - RC Ar-condicionado</title>
-    <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./agendamento.css">
-
+    <title>Clientes - RC Ar-condicionado</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/agendamento.css">
+    <link rel="shortcut icon" href="img/winter32.png" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Agendamento</h1>
-            <button id="logout">Sair</button>
+  <div>
+    <section class="grid grid-template-row">
+      <div class="item nav">
+        <header class="header-nav">
+          <h1>Bem-vindo, <span class="nome_func">nome</span>!</h1>
+          <div class="btn_perfil"></div>
         </header>
-        <main>
-            <h2>Novo Agendamento</h2>
-            <form id="agendamento-form">
-                <label for="cliente">Cliente:</label>
-                <input type="text" id="cliente" placeholder="Pesquisar cliente" required>
-                <ul id="lista-clientes"></ul>
-                <label for="data">Data:</label>
-                <input type="date" id="data" required>
-                <label for="horario">Horário:</label>
-                <input type="time" id="horario" required>
-                <label for="tecnico">Técnico:</label>
-                <input type="text" id="tecnico" placeholder="Pesquisar técnico" required>
-                <ul id="lista-tecnicos"></ul>
-                <button type="submit">Agendar</button>
-            </form>
-        </main>
+      </div>
+      <div class="item sidenav menu_lateral">
+        <a href="#"><img src="img/cliente.png" alt="Clientes">
+          <span>Clientes</span>
+        </a>
+        <a href="#"><img src="img/ferramenta-chave.png" alt="Serviços">
+          <span>Serviços</span>
+        </a>
+        <a href="#"><img src="img/calendario.png" alt="Agendamento">
+          <span>Agend.</span></a>
+        <a href="#"><img src="img/tecnicos.png" alt="Técnicos">
+          <span>Técnicos</span></a>
+  </div>
+      <div class="item btn">
+             <button class="btn_crud btn_consulta">🔎 Consulta</button>
+             <button class=" btn_crud btn_novo">➕ Novo</button>
+             <button class="btn_crud btn_altera">✏️ Alterar</button>
+             <button class="btn_crud btn_exclui">❌ Excluir</button>
+      </div>
+      <div class="item pesquisa">
+        <div class="campo_consulta">
+          <input type="text" name="consulta" placeholder="Digite o nome ou ID">
+          <button type="submit">Pesquisar</button>
+          <button type="submit">🔄</button>
+        </div>
+      </div>
+      <div class="item agendamento">
+        <form id="agendamento-form">
+          <label for="cliente">Cliente:</label>
+          <input type="text" id="cliente" placeholder="Pesquisar cliente" required>
+          <ul id="lista-clientes"></ul>
+          <label for="data">Data:</label>
+          <input type="date" id="data" required>
+          <label for="horario">Horário:</label>
+          <input type="time" id="horario" required>
+          <label for="tecnico">Técnico:</label>
+          <input type="text" id="tecnico" placeholder="Pesquisar técnico" required>
+          <ul id="lista-tecnicos"></ul>
+          <button type="submit">Agendar</button>
+      </form>
+      </div>
+    </section>
     </div>
-    <script src="agendamentos.js"></script>
+    <footer>
+      <p>Todos os direitos reservados. 2024</p>
+      <a href="clientes.html">clientes</a>
+      <a href="orcamento.html">orcamento</a>
+      <a href="agendamento.html">agendamento</a>
+      <a href="login.html">login</a>
+    </footer>
 </body>
 </html>

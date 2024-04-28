@@ -1,8 +1,13 @@
 /* Estilos para o formulário de agendamento */
-#agendamento-form {
+.agendamento{
+  grid-column-start: 2;
+  background-color: #e2e1ef;
+}
+
+/*#agendamento-form {
     max-width: 400px;
     margin: 20px auto;
-    background-color: #555; /* fundo mais escuro */
+    background-color: #555; /* fundo mais escuro 
     padding: 20px;
     border-radius: 5px;
 }
@@ -20,19 +25,19 @@ button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    width: 100%; /* Define a largura dos campos para preencher a largura do formulário */
-    background-color: #666; /* fundo mais escuro */
+    width: 100%; /* Define a largura dos campos para preencher a largura do formulário 
+    background-color: #666; /* fundo mais escuro 
     color: #fff;
 }
 
 button {
-    background-color: #007bff; /* azul */
+    background-color: #007bff; /* azul 
     color: #fff;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3; /* azul mais escuro */
+    background-color: #0056b3; /* azul mais escuro 
 }
 
 ul {
@@ -44,11 +49,11 @@ ul {
 li {
     cursor: pointer;
     padding: 10px;
-    background-color: #444; /* fundo da lista de resultados */
+    background-color: #444; /* fundo da lista de resultados 
     border-radius: 5px;
     margin-bottom: 5px;
 }
 
 li:hover {
-    background-color: #333; /* fundo mais escuro ao passar o mouse */
-}
+    background-color: #333; /* fundo mais escuro ao passar o mouse 
+}*/
