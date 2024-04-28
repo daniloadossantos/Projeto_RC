@@ -1,16 +1,26 @@
-const openFormularioCliente = document.querySelector('#open-cadastro-form');
-const closeFormularioCliente = document.querySelector('#close-cadastro-form');
-const formularioCliente = document.querySelector('#cadastro-form-cliente');
-const fade = document.querySelector('#fade');
+let openFormularioCliente = document.querySelector('#open-cadastro-form');
+let openAlterarCliente = document.querySelector('#open-alterar-form')
+let closeFormularioCliente = document.querySelector('#close-cadastro-form');
+let closeAlterarCliente = document.querySelector('#close-alterar-form');
+let formularioCliente = document.querySelector('#cadastro-form-cliente');
+let formularioAlterarCliente = document.querySelector('#alterar-form-cliente');
+let fade = document.querySelector('#fade');
 
 const toggleForm = () => {
   [formularioCliente, fade].forEach((el) => {
     el.classList.toggle('hide')})
 };
 
+const toggleForm1 = () => {
+  [formularioAlterarCliente, fade].forEach((el) => {
+  el.classList.toggle('hide')})
+};
 
 [openFormularioCliente, closeFormularioCliente, fade].forEach ((el) => {
   el.addEventListener("click", () => toggleForm());
+});
+[openAlterarCliente, closeAlterarCliente, fade].forEach ((el) => {
+  el.addEventListener("click", () => toggleForm1());
 });
 
 

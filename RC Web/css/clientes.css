@@ -13,10 +13,12 @@
 }
 /* modal formulário cliente */
 #fade,
-#cadastro-form-cliente{
+#cadastro-form-cliente,
+#alterar-form-cliente{
   transition: 0.5s;
   opacity: 1;
-  pointer-events: all;
+  visibility: visible;
+  pointer-events: visibleStroke;
 }
 
 #fade{
@@ -25,11 +27,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.6);
   z-index: 5;
   transition: .5;
 }
-#cadastro-form-cliente{
+#cadastro-form-cliente,
+#alterar-form-cliente{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -85,11 +88,13 @@ margin: .2rem;
 }
 /* classe para esconder o formulário */
 #fade.hide,
-#cadastro-form-cliente.hide{
+#cadastro-form-cliente.hide,
+#alterar-form-cliente.hide{
   opacity: 0;
   pointer-events: none;
 }
-#cadastro-form-cliente.hide{
+#cadastro-form-cliente.hide,
+#alterar-form-cliente.hide{
   top: 0;
 }
 
