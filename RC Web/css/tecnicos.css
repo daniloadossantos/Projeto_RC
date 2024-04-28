@@ -1,0 +1,12 @@
+.tabela{
+  grid-column-start: 2;
+  background-color: #e2e1ef;
+}
+.tabela table {
+  width: 100%;
+  padding: 10px 0px ; 
+}
+
+.tabela tbody tr:nth-child(even){
+  background-color: #bab6e8;
+}

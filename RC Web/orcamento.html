@@ -1,40 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orçamento - RC Ar-condicionado</title>
-    <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./orcamento.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/orcamento.css">
+    <link rel="shortcut icon" href="img/winter32.png" type="image/x-icon">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <img src="logo.png" alt="RC Ar-condicionado Logo" class="logo">
-            <button id="logout">Sair</button>
+  <div>
+    <section class="grid grid-template-row">
+      <div class="item nav">
+        <header class="header-nav">
+          <h1>Bem-vindo, <span class="nome_func">nome</span>!</h1>
+          <div class="btn_perfil"><img src="img/profile.png" alt=""></div>
         </header>
-        <main>
-            <h2>Novo Orçamento</h2>
-            <form id="orcamento-form">
-                <label for="cliente">Nome do Cliente:</label>
-                <input type="text" id="cliente" required>
-                <label for="tipo-servico">Tipo de Serviço:</label>
-                <select id="tipo-servico" required>
-                    <option value="">Selecione o tipo de serviço</option>
-                    <option value="Instalação">Instalação</option>
-                    <option value="Manutenção">Manutenção</option>
-                    <option value="Reparo">Reparo</option>
-                    <option value="Limpeza">Limpeza</option>
-                    <option value="Outro">Outro</option>
-                </select>
-                <label for="descricao">Descrição do Serviço:</label>
-                <textarea id="descricao" rows="4" required></textarea>
-                <label for="preco">Preço:</label>
-                <input type="money" id="preco" required>
-                <button type="submit">Gerar Orçamento</button>
-            </form>
-        </main>
+      </div>
+      <div class="item sidenav menu_lateral">
+        <a href="clientes.html"><img src="img/cliente.png" alt="Clientes">
+          <span>Clientes</span>
+        </a>
+        <a href="#"><img src="img/ferramenta-chave.png" alt="Serviços">
+          <span>Serviços</span>
+        </a>
+        <a href="agendamento.html"><img src="img/calendario.png" alt="Agendamento">
+          <span>Agend.</span></a>
+        <a href="tecnicos.html"><img src="img/tecnicos.png" alt="Técnicos">
+          <span>Técnicos</span></a>
+  </div>
+      <div class="item btn">
+             <button class="btn_crud btn_consulta">🔎 Consulta</button>
+             <button class=" btn_crud btn_novo">➕ Novo</button>
+             <button class="btn_crud btn_altera">✏️ Alterar</button>
+             <button class="btn_crud btn_exclui">❌ Excluir</button>
+      </div>
+      <div class="item pesquisa">
+        <div class="campo_consulta">
+          <input type="text" name="consulta" placeholder="Digite o nome ou ID">
+          <button type="submit">Pesquisar</button>
+          <button type="submit">🔄</button>
+        </div>
+      </div>
+      <div class="item orcamento">
+        <form id="orcamento-form">
+          <label for="cliente">Nome do Cliente:</label>
+          <input type="text" id="cliente" required>
+          <label for="tipo-servico">Tipo de Serviço:</label>
+          <select id="tipo-servico" required>
+              <option value="">Selecione o tipo de serviço</option>
+              <option value="Instalação">Instalação</option>
+              <option value="Manutenção">Manutenção</option>
+              <option value="Reparo">Reparo</option>
+              <option value="Limpeza">Limpeza</option>
+              <option value="Outro">Outro</option>
+          </select>
+          <label for="descricao">Descrição do Serviço:</label>
+          <textarea id="descricao" rows="4" required></textarea>
+          <label for="preco">Preço:</label>
+          <input type="money" id="preco" required>
+          <button type="submit">Gerar Orçamento</button>
+        </form>
+      </div>
+    </section>
     </div>
-    <script src="orcamento.js"></script>
+    <footer>
+      <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
+    </footer>
 </body>
+<script src="js/orcamento.js"></script>
 </html>
+

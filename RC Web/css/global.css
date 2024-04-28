@@ -3,6 +3,7 @@
 }
 a{
   text-decoration: none;
+  color: #615ea4;
 }
 li{
   list-style: none;
@@ -33,12 +34,17 @@ li{
   align-items: center;
   padding-top: 10px;
 }
-.btn_perfil{
+.btn_perfil img{
   width: 50px;
   height: 50px;
   border-radius: 30px;
-  background-color: aliceblue;
+  box-shadow: 2px 2px 5px  #0000006c;
 }
+.btn_perfil img:hover{
+  box-shadow: none;
+  cursor: pointer;
+}
+
 .sidenav{
   grid-row-start: 1;
   grid-row-end: 5;

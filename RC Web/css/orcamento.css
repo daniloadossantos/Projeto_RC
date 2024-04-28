@@ -1,5 +1,5 @@
 /* Estilos para a página de orçamento */
-#agendamento-form{
+.orcamento{
   grid-column-start: 2;
   background-color: #e2e1ef;
 }
