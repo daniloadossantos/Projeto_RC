@@ -1,4 +1,21 @@
-document.addEventListener('DOMContentLoaded', function () {
+const openFormularioCliente = document.querySelector('#open-cadastro-form');
+const closeFormularioCliente = document.querySelector('#close-cadastro-form');
+const formularioCliente = document.querySelector('#cadastro-form-cliente');
+const fade = document.querySelector('#fade');
+
+const toggleForm = () => {
+  [formularioCliente, fade].forEach((el) => {
+    el.classList.toggle('hide')})
+};
+
+
+[openFormularioCliente, closeFormularioCliente, fade].forEach ((el) => {
+  el.addEventListener("click", () => toggleForm());
+});
+
+
+
+/*document.addEventListener('DOMContentLoaded', function () {
     // Simulação de dados de clientes (substitua com os dados reais)
     const clientes = [
         { nome: 'Cliente 1', telefone: '(XX) XXXX-XXXX', endereco: 'Endereço 1' },
@@ -32,4 +49,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Renderiza os clientes ao carregar a página
     renderClientes();
-});
+});*/
