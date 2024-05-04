@@ -31,7 +31,7 @@
   </div>
       <div class="item btn">
              <button class="btn_crud btn_consulta">🔎 Consulta</button>
-             <button id="open-cadastro-form" class=" btn_crud btn_novo">➕ Novo</button>
+             <button id="open-cadastro-form" class="btn_crud btn_novo">➕ Novo</button>
              <button id="open-alterar-form" class="btn_crud btn_altera">✏️ Alterar</button>
              <button class="btn_crud btn_exclui">❌ Excluir</button>
       </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="item tabela">
         <div class="tabela_clientes">
-          <table>
+          <table id="tableClient">
             <thead>
               <tr>
                 <th>ID - Cliente</th>
@@ -56,110 +56,7 @@
             </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
+            
             </tbody>
           </table>
         </div>
@@ -169,80 +66,46 @@
     <footer>
       <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
     </footer>
-    <div id="fade" class="hide"></div>
-      <div id="cadastro-form-cliente" class="hide">
+
+    <div id="fade"></div>
+      <div id="cadastro-form-cliente">
       <div class="cadastro-form-header">
         <h2>Cadastro de cliente</h2>
         <button id="close-cadastro-form">❌</button>
       </div>
       <div class="cadastro-form-body">
-        <form>
+        <form id="form-client">
           <div class="input-group">
             <div class="input-box">
               <label for="nome_cliente">Nome*</label>
-              <input type="text" name="nome_cliente" placeholder="Digite o nome" required>
+              <input type="text" class="input-field" id="nome_cliente" name="nome_cliente" placeholder="Digite o nome" required>
             </div>
             <div class="input-box">
               <label for="sobrenome_cliente">Sobrenome*</label>
-              <input type="text" name="sobrenome_cliente" placeholder="Digite o sobrenome" required>
+              <input type="text" class="input-field" id="sobrenome_cliente" name="sobrenome_cliente" placeholder="Digite o sobrenome" required>
+            </div>
+            <div class="input-box">
+              <label for="endereco">Endereço*</label>
+              <input type="text" class="input-field" id="endereco" name="endereco_cliente" placeholder="Digite o endereco" required>
             </div>
             <div class="input-box">
               <label for="cpf_cliente">CPF*</label>
-              <input type="text" name="cpf_cliente" id="cpf_cliente" placeholder="123456789-11">
+              <input type="text" class="input-field" name="cpf_cliente" id="cpf_cliente" placeholder="123456789-11" required>
             </div>
             <div class=" input-box">
               <label for="telefone_cliente">Telefone</label>
-              <input type="tel" name="telefone_cliente" id="telefone_cliente" placeholder="(XX) XXXXXX-XXXX ">
-              <input type="tel" name="telefone_cliente2" id="telefone_cliente" placeholder="(XX) XXXXXX-XXXX ">
-            </div>
-          <div class="input-box">
+              <input type="tel" class="input-field" name="telefone_cliente" id="telefone_cliente" placeholder="(XX) XXXXXX-XXXX " required>
+            </div> 
+            <div class="input-box">
             <label for="email_cliente">Email*</label>
-            <input type="email" name="email_cliente" id="email_cliente" placeholder="email@email.com">
+            <input type="email" class="input-field" id="email_cliente" name="email_cliente"  placeholder="email@email.com" required>
           </div>
           </div>
           <p>* preenchimento obrigatório</p>
           <div class="form-button">
-            <button>Cadastrar</button>
-            <button>Limpar Tudo</button>
-          </div>
-        </form>
-      </div>
-      </div>
-
-      <div id="alterar-form-cliente" class="hide">
-      <div class="cadastro-form-header">
-        <h2>Alteração de cadastro</h2>
-        <button id="close-alterar-form">❌</button>
-      </div>
-      <div class="cadastro-form-body">
-        <form>
-          <div class="input-group">
-            <div class="input-box">
-              <label for="nome_cliente">Nome*</label>
-              <input type="text" name="nome_cliente" placeholder="Digite o nome" required>
-            </div>
-            <div class="input-box">
-              <label for="sobrenome_cliente">Sobrenome*</label>
-              <input type="text" name="sobrenome_cliente" placeholder="Digite o sobrenome" required>
-            </div>
-            <div class="input-box">
-              <label for="cpf_cliente">CPF*</label>
-              <input type="text" name="cpf_cliente" id="cpf_cliente" placeholder="123456789-11">
-            </div>
-            <div class=" input-box">
-              <label for="telefone_cliente">Telefone</label>
-              <input type="tel" name="telefone_cliente" id="telefone_cliente" placeholder="(XX) XXXXXX-XXXX ">
-              <input type="tel" name="telefone_cliente2" id="telefone_cliente" placeholder="(XX) XXXXXX-XXXX ">
-            </div>
-          <div class="input-box">
-            <label for="email_cliente">Email*</label>
-            <input type="email" name="email_cliente" id="email_cliente" placeholder="email@email.com">
-          </div>
-          </div>
-          <p>* preenchimento obrigatório</p>
-          <div class="form-button">
-            <button>Alterar</button>
-            <button>Limpar Tudo</button>
+            <button id="salvar">Cadastrar</button>
+            <button id="limpar">Limpar Tudo</button>
+            <button id="cancelar">Cancelar</button>
           </div>
         </form>
       </div>

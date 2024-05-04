@@ -1,29 +1,89 @@
-let openFormularioCliente = document.querySelector('#open-cadastro-form');
-let openAlterarCliente = document.querySelector('#open-alterar-form')
-let closeFormularioCliente = document.querySelector('#close-cadastro-form');
-let closeAlterarCliente = document.querySelector('#close-alterar-form');
-let formularioCliente = document.querySelector('#cadastro-form-cliente');
-let formularioAlterarCliente = document.querySelector('#alterar-form-cliente');
-let fade = document.querySelector('#fade');
+//Abrir e fechar formulário
+const openFormClient = () => {
+  document.getElementById('cadastro-form-cliente')
+  .classList.add('active');
+}
 
-const toggleForm = () => {
-  [formularioCliente, fade].forEach((el) => {
-    el.classList.toggle('hide')})
-};
+const closeFormClient = () => {
+  document.getElementById('cadastro-form-cliente')
+  .classList.remove('active');
+}
 
-const toggleForm1 = () => {
-  [formularioAlterarCliente, fade].forEach((el) => {
-  el.classList.toggle('hide')})
-};
+const btnNew = document.getElementById('open-cadastro-form');
+  btnNew.addEventListener('click', openFormClient);
 
-[openFormularioCliente, closeFormularioCliente, fade].forEach ((el) => {
-  el.addEventListener("click", () => toggleForm());
-});
-[openAlterarCliente, closeAlterarCliente, fade].forEach ((el) => {
-  el.addEventListener("click", () => toggleForm1());
-});
+const btnClose = document.getElementById('close-cadastro-form');
+  btnClose.addEventListener('click', closeFormClient);
+
+//Funções CRUD
+const tempClient = {
+  nome: "Lucas",
+  sobrenome: "Santos",
+  endereco: "Rua do Chá",
+  cpf: "123456789-11",
+  telefone1: "(11) 912345678",
+  email: "lucassantos@gmail.com"
+}  
+
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
+const setLocalStorage = (dbClient) => localStorage.setItem('db_client', JSON.stringify(dbClient))
 
 
+//Create
+const createClient = (client) => {
+  const dbClient = getLocalStorage()
+  dbClient.push(client)
+  setLocalStorage(dbClient)
+}
+//Read
+const readClient = () => getLocalStorage()
+
+//Update
+const updateClient = (index, client) => {
+  const dbClient = readClient()
+  dbClient[index] = client
+  setLocalStorage(dbClient)
+}
+
+//Delete
+const deleteClient = (index) => {
+  const dbClient = readClient()
+  dbClient.splice(index,1)
+  setLocalStorage(dbClient)
+}
+
+//Interação com o Layout
+
+const isValidFields = () => {
+  return document.getElementById('form-client').reportValidity()
+}
+
+const clearFields = () => {
+  const fields = document.querySelectorAll('.input-field')
+  fields.forEach(field => field.value = "")
+}
+
+const saveClient = () => {
+  if(isValidFields()){ 
+  const client = {
+    nome: document.getElementById('nome_cliente').value,
+    sobrenome: document.getElementById('sobrenome_cliente').value,
+    endereco: document.getElementById('endereco').value,
+    cpf: document.getElementById('cpf-cliente').value,
+    telefone: document.getElementById('telefone-cliente1').value,
+    email: document.getElementById('email-cliente').value
+  }
+  createClient(client)
+  clearFields()
+  closeFormClient()
+  }
+}
+
+document.getElementById('salvar')
+  .addEventListener('click', saveClient)
+
+document.getElementById('cancelar')
+  .addEventListener('click', closeFormClient)
 
 /*document.addEventListener('DOMContentLoaded', function () {
     // Simulação de dados de clientes (substitua com os dados reais)
