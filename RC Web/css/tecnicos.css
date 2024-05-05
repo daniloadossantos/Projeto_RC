@@ -2,12 +2,108 @@
 .tabela{
   grid-column-start: 2;
   background-color: #e2e1ef;
+  width: 100%;
+  border-collapse: collapse;
 }
 .tabela table {
   width: 100%;
   padding: 10px 0px ; 
 }
 
-.tabela tbody tr:nth-child(even){
+.tabela_tecnicos{
+  max-height: 400px;
+  overflow: auto;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+
+/*.tabela tbody tr:nth-child(even){
   background-color: #bab6e8;
+}*/
+
+.cabecalho_tabela_tecnico{
+  background-color: #bab6e8;
+  line-height: 2em;
+}
+
+.cabecalho_tabela_tecnico :first-child{
+  width:20px;
+}
+
+.cabecalho_tabela_tecnico :nth-child(3){
+  width:260px;
+}
+
+.cabecalho_tabela_tecnico :nth-child(2), .cabecalho_tabela_tecnico :nth-child(4), .cabecalho_tabela_tecnico :nth-child(5),.cabecalho_tabela_tecnico :nth-child(6){
+  width:140px;
+}
+
+
+/* modal formulário tecnico */
+
+#cadastro-form-tecnico.active{
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+#cadastro-form-tecnico{
+  opacity: 0;
+  z-index: -1;
+  top: -100%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #615ea4;
+  width: 800px;
+  max-width: 90%;
+  height: 450px;
+  border-radius: .5rem;
+  padding: 1rem;
+  color: #dbd8fc;
+}
+#cadastro-form-tecnico p{
+  margin-left: 20px;
+}
+.cadastro-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body form{
+height: 330px;
+}
+.input-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body input{
+width: 320px;
+padding: 0.5rem 1rem;
+margin: .2rem;
+}
+
+.form-button{
+  display: flex;
+  gap: 40px;
+  margin: 30px 0px 20px 20px;
+}
+.form-button button{
+  width: 120px;
+  height: 40px;
 }

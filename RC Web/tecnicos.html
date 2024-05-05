@@ -6,6 +6,7 @@
     <title>Técnicos - RC Ar-condicionado</title>
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/tecnicos.css">
+
     <link rel="shortcut icon" href="img/winter32.png" type="image/x-icon">
 </head>
 <body>
@@ -29,106 +30,86 @@
         <a href="#"><img src="img/tecnicos.png" alt="Técnicos">
           <span>Técnicos</span></a>
   </div>
-      <div class="item btn">
-             <button class="btn_crud btn_consulta">🔎 Consulta</button>
-             <button class=" btn_crud btn_novo">➕ Novo</button>
-             <button class="btn_crud btn_altera">✏️ Alterar</button>
-             <button class="btn_crud btn_exclui">❌ Excluir</button>
-      </div>
       <div class="item pesquisa">
-        <div class="campo_consulta">
+        <div class="item btn">
+          <button id="open-cadastro-form" class=" btn_crud btn_novo" title="Novo cadastro"></button>
+      </div>
+        
+      <div class="campo_consulta">
           <input type="text" name="consulta" placeholder="Digite o nome ou ID">
           <button type="submit">Pesquisar</button>
-          <button type="submit">🔄</button>
+          <button class="btn_refresh" type="submit">🔄</button>
+
         </div>
       </div>
       <div class="item tabela">
         <div class="tabela_tecnicos">
-          <table>
+          <table id="tb_tecnico">
             <thead>
-              <tr>
-                <th>ID - Cliente</th>
+              <tr class="cabecalho_tabela_tecnico">
+                <th></th>
+                <th>ID-Técnico</th>
                 <th>Nome</th>
-                <th>Endereço</th>
                 <th>CPF</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <th width="70px"></th>
             </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
-              <tr>
-                <td>11345</td>
-                <td>José</td>
-                <td>Rua Vinte e Um, São Paulo - SP</td>
-                <td>123456789-11</td>
-                <td>11 912345678</td>
-                <td>email@email.com</td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
     </div>
+
+<div id="fade"></div>
+      <div id="cadastro-form-tecnico" >
+      <div class="cadastro-form-header">
+        <h2>Cadastro de técnico</h2>
+        <button id="close-cadastro-form" class="close-form-tecnico">❌</button>
+      </div>
+      <div class="cadastro-form-body">
+        <form id = "form">
+          <div class="input-group">
+            <div class="input-box">
+              <label for="nome">Nome*</label>
+              <input type="text" id="nome" data-index="new" class="form-field" placeholder="Digite o nome" required>
+            </div>
+            <div class="input-box">
+              <label for="sobrenome">Sobrenome*</label>
+              <input type="text" id="sobrenome" class="form-field"  placeholder="Digite o sobrenome" required>
+            </div>
+            <div class="input-box">
+              <label for="cpf">CPF*</label>
+              <input type="text" id="cpf" class="form-field" placeholder="Apenas números" maxlength="11" required>
+            </div>
+            <div class=" input-box">
+              <label for="tel1">Telefone</label>
+              <input type="tel" id="tel1" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="12">
+              <input type="tel" id="tel2" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="12">
+            </div>
+          <div class="input-box">
+            <label for="email">Email*</label>
+            <input type="email" id="email" class="form-field" placeholder="email@email.com" required>
+          </div>
+          </div>
+          <p>* preenchimento obrigatório</p>
+          <div class="form-button">
+            <button id="cadastrarTecnico">Salvar</button>
+            <button id="limparForm">Limpar Tudo</button>
+          </div>
+        </form>
+      </div>
+      </div>
+
+
+
     <footer>
-      <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
+      <p>&copy Todos os direitos reservados - 2024 <a href="index.html">login</a></p>
     </footer>
-    <script src="./js/tecnicos.js"></script>
+    <script src="./js/tecnico/tecnicos.js"></script>
+
 </body>
 </html>

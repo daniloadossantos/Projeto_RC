@@ -1,1 +1,0 @@
-const tecnicos = document.getElementById('tecnico');
