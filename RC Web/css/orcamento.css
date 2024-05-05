@@ -1,8 +1,14 @@
 /* Estilos para a página de orçamento */
-.orcamento{
-  grid-column-start: 2;
-  background-color: #e2e1ef;
+.orcamento {
+    grid-column-start: 2;
+    background-color: #e2e1ef;
 }
+
+.btn_novo{
+    background-color: #05b31c;
+    width: 60px;
+}
+
 /* 
 #orcamento-form {
     background-color: #555; /* fundo mais escuro 
