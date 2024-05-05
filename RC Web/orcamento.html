@@ -44,26 +44,41 @@
           <button type="submit">🔄</button>
         </div>
       </div>
-      <div class="item orcamento">
-        <form id="orcamento-form">
-          <label for="cliente">Nome do Cliente:</label>
-          <input type="text" id="cliente" required>
-          <label for="tipo-servico">Tipo de Serviço:</label>
-          <select id="tipo-servico" required>
-            <option value="">Selecione o tipo de serviço</option>
-            <option value="Instalação">Instalação</option>
-            <option value="Manutenção">Manutenção</option>
-            <option value="Reparo">Reparo</option>
-            <option value="Limpeza">Limpeza</option>
-            <option value="Outro">Outro</option>
-          </select>
-          <label for="descricao">Descrição do Serviço:</label>
-          <textarea id="descricao" rows="4" required></textarea>
-          <label for="preco">Preço:</label>
-          <input type="money" id="preco" required>
-          <button type="submit">Gerar Orçamento</button>
-        </form>
+      <div class="item_orcamento">
+        <table id="orcamento-form">
+          <tbody>
+            <tr>
+              <td><label for="cliente">Nome do Cliente:</label></td>
+              <td><input type="text" id="cliente" required></td>
+            </tr>
+            <tr>
+              <td><label for="tipo-servico">Tipo de Serviço:</label></td>
+              <td>
+                <select id="tipo-servico" required>
+                  <option value="">Selecione o tipo de serviço</option>
+                  <option value="Instalação">Instalação</option>
+                  <option value="Manutenção">Manutenção</option>
+                  <option value="Reparo">Reparo</option>
+                  <option value="Limpeza">Limpeza</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="descricao">Descrição do Serviço:</label></td>
+              <td><textarea id="descricao" rows="4" required></textarea></td>
+            </tr>
+            <tr>
+              <td><label for="preco">Preço:</label></td>
+              <td><input type="money" id="preco" required></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit">Gerar Orçamento</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      
     </section>
   </div>
   <footer>
