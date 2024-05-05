@@ -1,13 +1,5 @@
 //Tabela
-/*const minhaCheckbox = document.querySelector('input.checkbox-item');
-const conteudoTds = document.querySelectorAll('td .btn_acoes');
 
-  minhaCheckbox.addEventListener('change', () => {
-    conteudoTds.forEach(td => {
-        td.style.display = minhaCheckbox.checked ? 'inline-flex' : 'none';
-    });
-  })
-*/
 
 //Abrir formulario 
 const openForm = () => {
@@ -171,6 +163,24 @@ const isValidFields = () => {
 }
 
 //Interação com formulario
+const refreshTable = () => {
+  ordenarNomes()
+  updateTable()
+}
+
+const ordenarNomes = () => {
+  const dbRcarcondicionado = readTecnico()
+  dbRcarcondicionado.sort(function(a,b) {
+    if (a.nome < b.nome) {
+      return -1;
+    } else if (a.nome > b.nome) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+    setLocalStorage(dbRcarcondicionado);
+}
 
 const clearFields = () => {
   const fields = document.querySelectorAll('.form-field')
@@ -197,12 +207,14 @@ const saveTecnico = () => {
     const index = document.getElementById('nome').dataset.index
     if (index == 'new'){
       createTecnico(tecnico)
+      ordenarNomes()
       updateTable()
       clearFields()
       closeForm()
 
     } else{
       updateTecnico(index, tecnico)
+      ordenarNomes()
       updateTable()
       closeForm()
     
@@ -229,13 +241,6 @@ const clearTable = () => {
   const rows = document.querySelectorAll('#tb_tecnico>tbody tr')
   rows.forEach(row => row.parentNode.removeChild(row))
 }
-
-const updateTable = () => {
-  const dbRcarcondicionado = readTecnico()
-  clearTable()
-  dbRcarcondicionado.forEach(createRow)
-}
-
 
 const fillFields = (tecnico) => {
   document.getElementById('nome').value = tecnico.nome
@@ -274,8 +279,50 @@ const editDelete = (event) => {
   }
 }
 
+const isAnyCheckboxSelected = () => {
+  const checkboxes = document.querySelectorAll('.checkbox-item');
+  for (const checkbox of checkboxes) {
+    if (checkbox.checked) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const toggleActionButtonsVisibility = () => {
+  const actionButtons = document.querySelectorAll('.btn_acoes');
+  for (const button of actionButtons) {
+    button.style.display = isAnyCheckboxSelected() ? 'inline-flex' : 'none';
+  }
+};
+
+const updateTable = () => {
+  const dbRcarcondicionado = readTecnico();
+  clearTable();
+  dbRcarcondicionado.forEach(createRow);
+  ordenarNomes();
+
+  const checkboxes = document.querySelectorAll('.checkbox-item');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('click', toggleActionButtonsVisibility);
+  });
+
+  toggleActionButtonsVisibility();
+};
+
+
 
 updateTable();
+
+const searchByName = () => {
+  const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
+  const dbRcarcondicionado = readTecnico();
+  const filteredList = dbRcarcondicionado.filter(tecnico => {
+    return tecnico.nome.toLowerCase().includes(searchTerm);
+  });
+  clearTable(); 
+  filteredList.forEach(createRow); 
+};
 
 //Eventos
 document.getElementById('cadastrarTecnico')
@@ -289,4 +336,11 @@ document.getElementById('close-cadastro-form')
 
 document.getElementById('open-cadastro-form')
   .addEventListener('click', openForm)
+  
+document.getElementById('btn_refresh')
+  .addEventListener('click', refreshTable)
 
+document.getElementById('btn_search').addEventListener('click', (event) => {
+  event.preventDefault();
+  searchByName(); 
+});

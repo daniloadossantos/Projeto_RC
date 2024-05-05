@@ -50,6 +50,7 @@ th, td {
   position: fixed;
   top: 50%;
   left: 50%;
+  visibility: visible;
 }
 
 #cadastro-form-tecnico{
@@ -59,17 +60,20 @@ th, td {
   left: -100%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background-color: #615ea4;
+  background-color: #34333d;
   width: 800px;
   max-width: 90%;
   height: 450px;
   border-radius: .5rem;
-  padding: 1rem;
-  color: #dbd8fc;
+  padding: 2.5%;
+  color: #ffffff;
+  visibility: hidden;
 }
+
 #cadastro-form-tecnico p{
   margin-left: 20px;
 }
+
 .cadastro-form-header{
   display: flex;
   justify-content: space-between;
@@ -106,4 +110,26 @@ margin: .2rem;
 .form-button button{
   width: 120px;
   height: 40px;
+}
+
+#cadastrarTecnico{
+  background-color: #05b31c;
+  color:#FFF;
+}
+
+#cadastrarTecnico:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#05b31c;
+}
+
+#limparForm{
+  background-color: #bab6e8;
+  color:#FFF;
+}
+
+#limparForm:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#bab6e8;
 }
