@@ -166,6 +166,8 @@ const isValidFields = () => {
 const refreshTable = () => {
   ordenarNomes()
   updateTable()
+  const input = document.querySelector('.campo_pesquisa')
+  input.value = ""
 }
 
 const ordenarNomes = () => {

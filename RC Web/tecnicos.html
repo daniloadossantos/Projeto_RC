@@ -22,24 +22,19 @@
         </header>
       </div>
       <div class="item sidenav menu_lateral">
-        <a href="clientes.html"><img src="img/cliente.png" alt="Clientes">
-          <span>Clientes</span>
-        </a>
-        <a href="orcamento.html"><img src="img/ferramenta-chave.png" alt="Serviços">
-          <span>Serviços</span>
-        </a>
-        <a href="agendamento.html"><img src="img/calendario.png" alt="Agendamento">
-          <span>Agend.</span></a>
-        <a href="#"><img src="img/tecnicos.png" alt="Técnicos">
-          <span>Técnicos</span></a>
-  </div>
+        <div class="menu_clientes"> <a href="clientes.html" title="Clientes"><img src="/img/users-svgrepo-com.svg" alt="Clientes"></a></div>
+        <div class="menu_servicos"> <a href="orcamento.html" title="Serviços"><img src="/img/tools-svgrepo-com.svg" alt="Serviços"></a></div>
+        <div class="menu_agendamentos"> <a href="agendamento.html" title="Agendamentos"><img src="/img/calendar-svgrepo-com.svg" alt="Agendamentos"></a></div>
+        <div class="menu_tecnicos"> <a href="tecnicos.html" title="Técnicos"><img src="/img/construction-worker-svgrepo-com.svg" alt="Técnicos"></a></div>
+      </div>
+
       <div class="item pesquisa">
         <div class="item btn">
             <button id="open-cadastro-form" class=" btn_crud btn_novo" title="Novo cadastro"></button>
         </div>
           
         <div class="campo_consulta">
-            <input type="text" name="consulta" placeholder="Digite o nome">
+            <input class="campo_pesquisa" type="text" name="consulta" placeholder="Digite o nome">
             <button id="btn_search" type="submit">Pesquisar</button>
             <button id="btn_refresh" type="submit"></button>
         </div>
