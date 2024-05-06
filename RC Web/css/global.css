@@ -120,7 +120,7 @@ li{
 .pesquisa input{
   height: 25px;
   width: 180px;
-  background-image: url('/img/lupa.svg');
+  background-image: url('../img/lupa.svg');
   background-repeat: no-repeat;
   background-position: calc(100% - 10px) center;
   border-radius: 5px;
@@ -136,7 +136,7 @@ li{
 #open-cadastro-form{
   width:60px;
   background-color: #05b31c;
-  background-image: url('/img/plus-large-svgrepo-com.svg');
+  background-image: url('../img/plus-large-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -144,7 +144,7 @@ li{
 #open-cadastro-form:active{
   background-color: #ffffff;
   transform: scale(0.95);
-  background-image: url('/img/plus-large-acionado.svg');
+  background-image: url('../img/plus-large-acionado.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -153,7 +153,7 @@ li{
   width:50px;
   height:35px;
   background-color: #f11111;
-  background-image: url('/img/close-svgrepo-com.svg');
+  background-image: url('../img/close-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -161,7 +161,7 @@ li{
 #close-cadastro-form:active{
   background-color: #ffffff;
   transform: scale(0.95);
-  background-image: url('/img/close-acionado.svg');
+  background-image: url('../img/close-acionado.svg');
 }
 
 .btn_acoes{
@@ -177,7 +177,7 @@ li{
   background-color: rgb(237, 206, 69);
   width:60px;
   height:27px;
-  background-image: url('/img/pencil-svgrepo-com.svg');
+  background-image: url('../img/pencil-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -186,7 +186,7 @@ li{
   background-color: rgb(241, 17, 17);
   width:60px;
   height:27px;
-  background-image: url('/img/garbage-svgrepo-com.svg');
+  background-image: url('../img/garbage-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -215,13 +215,13 @@ li{
 
 #btn_refresh{
   width:60px;
-  background-image: url('/img/refresh-svgrepo-com.svg');
+  background-image: url('../img/refresh-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
 #btn_refresh:active{
-  background-image: url('/img/refresh-acionado.svg');
+  background-image: url('../img/refresh-acionado.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
