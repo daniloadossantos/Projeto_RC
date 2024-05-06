@@ -1,6 +1,5 @@
 const openForm = () => {
 	document.getElementById('cadastro-form-servico').classList.add('active');
-	document.getElementById('tipo-servico').value = '';
 	modal.classList.add('active');
 	modal.classList.remove('hidden');
 }
@@ -20,16 +19,11 @@ function gerarNumeroUnico() {
     return numero.toString().padStart(4, '0');
 }
 
+//Formatar o campo de preço
 const precoInput = document.getElementById('preco');
-
 precoInput.addEventListener('input', function(event) {
-    // Remove caracteres não numéricos do valor
     const valor = event.target.value.replace(/\D/g, '');
-    
-    // Formata o valor para o formato BRL (Real Brasileiro)
     const valorFormatado = (Number(valor) / 100).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-    
-    // Atualiza o valor do campo com a formatação
     event.target.value = valorFormatado;
 });
 
@@ -199,11 +193,18 @@ const isAnyCheckboxSelected = () => {
 };
 
 const toggleActionButtonsVisibility = () => {
-	const actionButtons = document.querySelectorAll('.btn_acoes');
-	for (const button of actionButtons) {
-		button.style.display = isAnyCheckboxSelected() ? 'inline-flex' : 'none';
-	}
+    const checkboxes = document.querySelectorAll('.checkbox-item');
+    for (const checkbox of checkboxes) {
+        const row = checkbox.closest('tr');
+        const actionButtons = row.querySelector('.btn_acoes');
+        if (checkbox.checked) {
+            actionButtons.style.display = 'inline-flex';
+        } else {
+            actionButtons.style.display = 'none';
+        }
+    }
 };
+
 
 const updateTable = () => {
 	const dbRcarcondicionado = readServico();
@@ -245,3 +246,35 @@ document.getElementById('btn_search').addEventListener('click', (event) => {
 	event.preventDefault();
 	searchByName(); 
 });
+
+//Permitir que apenas 1 check fique selecionado por vez
+const checkboxes = document.querySelectorAll('.checkbox-item');
+const actionButtons = document.querySelectorAll('.btn_acoes');
+checkboxes.forEach((checkbox, index) => {
+    checkbox.addEventListener('change', () => {
+        // Se o checkbox for desmarcado, oculta os botões de ação
+        if (!checkbox.checked) {
+            const row = checkbox.closest('tr');
+            const actionButtonsRow = row.querySelector('.btn_acoes');
+            actionButtonsRow.style.display = 'none';
+        } else {
+            // Desmarca todas as outras checkboxes
+            checkboxes.forEach(otherCheckbox => {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
+                }
+            });
+
+            // Oculta todos os botões de ação
+            actionButtons.forEach(buttons => {
+                buttons.style.display = 'none';
+            });
+
+            // Exibe os botões de ação apenas para a linha atualmente selecionada
+            const row = checkbox.closest('tr');
+            const actionButtonsRow = row.querySelector('.btn_acoes');
+            actionButtonsRow.style.display = 'inline-flex';
+        }
+    });
+});
+

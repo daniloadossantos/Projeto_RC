@@ -218,7 +218,7 @@ margin: .2rem;
     transform: translate(-50%, -50%) scale(0.5);
     transform-origin: center;
     opacity: 0;
-    animation: growModal 1s forwards ease;
+    animation: growModal .3s forwards ease;
     box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
     border: 7.5px solid #201a2e; 
 	border-style: double; /* a dashed tbm é legal*/
