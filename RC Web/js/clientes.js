@@ -129,36 +129,21 @@ function formatarTelefone(telefone) {
     }
 }
 
-//AutoComplete CEP
+// AutoComplete CEP
 
-const cepInput = document.querySelector("#cep")
-const ruaInput = document.querySelector("#rua")
-const cidadeInput = document.querySelector("#cidade")
-const bairroInput = document.querySelector("#bairro")
-const estadoInput = document.querySelector("#estado")
-const formInputs = document.querySelectorAll(".cep-form-field");
-
-
-//Validar CEP
-cepInput.addEventListener("keypress", (event) => {
-  const onlyNumbers = /[0-9]|\./;
-  const key = String.fromCharCode(event.keyCode);
-
-  console.log(key);
-
-  console.log(onlyNumbers.test(key));
-
-  if (!onlyNumbers.test(key)) {
-    event.preventDefault();
-    return;
-  }
-});
+const cepInput = document.querySelector("#cep");
+const ruaInput = document.querySelector("#rua");
+const cidadeInput = document.querySelector("#cidade");
+const bairroInput = document.querySelector("#bairro");
+const estadoInput = document.querySelector("#estado");
+const numeroInput = document.querySelector("#numero");
+const complementoInput = document.querySelector("#complemento");
 
 // Evento para pegar o CEP
 cepInput.addEventListener("keyup", (event) => {
   const inputValue = event.target.value;
 
-  //Checar o tamanho do CEP
+  // Checar o tamanho do CEP
   if (inputValue.length === 8) {
     getAddress(inputValue);
   }
@@ -170,47 +155,53 @@ const getAddress = async (cep) => {
 
   const apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
 
-  const response = await fetch(apiUrl);
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-  const data = await response.json();
-
-  console.log(data);
-  console.log(formInputs);
-  console.log(data.erro);
-
-  // Mostrar erro e informar na tela
-  if (data.erro === "true") {
-    if (!ruaInput.hasAttribute("disabled")) {
-      toggleDisabled();
+    // Verificar se o CEP é válido
+    if (!data.erro) {
+      fillAddressFields(data);
+      toggleAddressFields(true); // Habilitar campos relacionados ao endereço
+    } else {
+      alert("CEP não encontrado. Por favor, verifique o CEP digitado.");
     }
-
-    clearCepForm();
-    return ("CEP Inválido, tente novamente.");
-  }
-
-  // Ativar o atributo disable se input estiver vazio
-  if (ruaInput.value === "") {
-    toggleDisabled();
-  }
-
-  ruaInput.value = data.logradouro;
-  cidadeInput.value = data.localidade;
-  bairroInput.value = data.bairro;
-  estadoInput.value = data.uf;
-
-};
-// Adicionar ou remover o atributo disable
-const toggleDisabled = () => {
-  if (estadoInput.hasAttribute("disabled")) {
-    formInputs.forEach((input) => {
-      input.removeAttribute("disabled");
-    });
-  } else {
-    formInputs.forEach((input) => {
-      input.setAttribute("disabled", "disabled");
-    });
+  } catch (error) {
+    console.error("Ocorreu um erro ao buscar o endereço:", error);
   }
 };
+
+// Preencher os campos relacionados ao endereço com os dados do CEP
+const fillAddressFields = (data) => {
+  ruaInput.value = data.logradouro || "";
+  cidadeInput.value = data.localidade || "";
+  bairroInput.value = data.bairro || "";
+  estadoInput.value = data.uf || "";
+};
+
+// Alternar a habilitação dos campos relacionados ao endereço
+const toggleAddressFields = (enabled) => {
+  const addressFields = document.querySelectorAll(".cep-form-field");
+  addressFields.forEach((field) => {
+    if(field.id == "cep" || field.id == "numero" || field.id == "complemento"){  // se n for cep, num ou comp vai ser desabilitado
+		field.disabled = !enabled;
+	}
+	else{
+	field.disabled = enabled;
+	}
+  });
+};
+
+// Evento para pegar o CEP
+numeroInput.addEventListener("keyup", (event) => {
+  const inputValue = event.target.value;
+
+  // Checar o tamanho do número
+  if (inputValue.length > 0) {
+    toggleAddressFields(true);
+  }
+});
+
 
 //CRUD cliente
 
