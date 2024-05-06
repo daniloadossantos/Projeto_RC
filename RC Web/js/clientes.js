@@ -129,6 +129,88 @@ function formatarTelefone(telefone) {
     }
 }
 
+//AutoComplete CEP
+
+const cepInput = document.querySelector("#cep")
+const ruaInput = document.querySelector("#rua")
+const cidadeInput = document.querySelector("#cidade")
+const bairroInput = document.querySelector("#bairro")
+const estadoInput = document.querySelector("#estado")
+const formInputs = document.querySelectorAll(".cep-form-field");
+
+
+//Validar CEP
+cepInput.addEventListener("keypress", (event) => {
+  const onlyNumbers = /[0-9]|\./;
+  const key = String.fromCharCode(event.keyCode);
+
+  console.log(key);
+
+  console.log(onlyNumbers.test(key));
+
+  if (!onlyNumbers.test(key)) {
+    event.preventDefault();
+    return;
+  }
+});
+
+// Evento para pegar o CEP
+cepInput.addEventListener("keyup", (event) => {
+  const inputValue = event.target.value;
+
+  //Checar o tamanho do CEP
+  if (inputValue.length === 8) {
+    getAddress(inputValue);
+  }
+});
+
+// Pegar o endereço na API
+const getAddress = async (cep) => {
+  cepInput.blur();
+
+  const apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
+
+  const response = await fetch(apiUrl);
+
+  const data = await response.json();
+
+  console.log(data);
+  console.log(formInputs);
+  console.log(data.erro);
+
+  // Mostrar erro e informar na tela
+  if (data.erro === "true") {
+    if (!ruaInput.hasAttribute("disabled")) {
+      toggleDisabled();
+    }
+
+    clearCepForm();
+    return ("CEP Inválido, tente novamente.");
+  }
+
+  // Ativar o atributo disable se input estiver vazio
+  if (ruaInput.value === "") {
+    toggleDisabled();
+  }
+
+  ruaInput.value = data.logradouro;
+  cidadeInput.value = data.localidade;
+  bairroInput.value = data.bairro;
+  estadoInput.value = data.uf;
+
+};
+// Adicionar ou remover o atributo disable
+const toggleDisabled = () => {
+  if (estadoInput.hasAttribute("disabled")) {
+    formInputs.forEach((input) => {
+      input.removeAttribute("disabled");
+    });
+  } else {
+    formInputs.forEach((input) => {
+      input.setAttribute("disabled", "disabled");
+    });
+  }
+};
 
 //CRUD cliente
 
@@ -183,6 +265,10 @@ const ordenarNomes = () => {
 
 const clearFields = () => {
   const fields = document.querySelectorAll('.form-field')
+  fields.forEach(field => field.value = "")
+}
+const clearCepForm = () => {
+  const fields = document.querySelectorAll('.cep-form-field')
   fields.forEach(field => field.value = "")
 }
 
@@ -341,6 +427,9 @@ document.getElementById('btn_refresh')
 
 document.getElementById('limparForm')
   .addEventListener('click', clearFields)
+  
+document.getElementById('limparForm')
+  .addEventListener('click', clearCepForm)
 
 document.getElementById('btn_search').addEventListener('click', (event) => {
   event.preventDefault();

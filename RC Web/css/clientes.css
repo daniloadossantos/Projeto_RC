@@ -20,13 +20,14 @@ th, td {
   padding: 3px;
 }
 
-/*.tabela tbody tr:nth-child(even){
-  background-color: #bab6e8;
-}*/
-
 .cabecalho_tabela_cliente{
   background-color: #b0b6c3;
   line-height: 2em;
+}
+.pesquisa{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
 }
 
 .cabecalho_tabela_cliente :first-child{
@@ -83,7 +84,8 @@ th, td {
   margin-bottom: 1rem;
 }
 .cadastro-form-body form{
-height: 330px;
+  overflow-y: auto;
+  height: 330px;
 }
 .input-group{
   display: flex;
@@ -96,7 +98,8 @@ height: 330px;
   flex-direction: column;
   margin-bottom: 1rem;
 }
-.cadastro-form-body input{
+.cadastro-form-body input,
+.form-select{
 width: 320px;
 padding: 0.5rem 1rem;
 margin: .2rem;
@@ -105,11 +108,26 @@ margin: .2rem;
 .form-button{
   display: flex;
   gap: 40px;
-  margin: 30px 0px 20px 20px;
+  margin: 10px 0px 20px 20px;
 }
 .form-button button{
   width: 120px;
   height: 40px;
+}
+.espaco_form{
+  width: 100%;
+  height: 20px;
+  background-color:#b0b6c3;
+  margin: 20px 0px;
+  padding: 10px 0;
+  color: #34333dad;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.form-select{
+  width: 356px;
 }
 
 #cadastrarCliente{
