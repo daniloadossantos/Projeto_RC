@@ -150,12 +150,14 @@ li{
 }
 
 #close-cadastro-form{
-  width:50px;
+  width:40px;
   height:35px;
   background-color: #f11111;
   background-image: url('../img/close-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
+  border: none;
+  border-radius: 7px;
 }
 
 #close-cadastro-form:active{
