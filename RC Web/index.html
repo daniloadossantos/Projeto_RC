@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RC Ar-condicionado</title>
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <p>RC System</p>
+      <img src="./img/rc.svg" alt="">
     </div>
     <main>
       <div class="box-login">
@@ -27,7 +28,7 @@
               <a href="#"><span>Esqueci minha senha</span></a>
               <input type="password" name="senha" id="email" placeholder="Digite sua senha" required>
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit" onclick="logar(); return false">Entrar</button>
           </form>
         </div>
       </div>
@@ -37,7 +38,6 @@
     </footer>
 
   <script src="./js/script.js"></script>
-  <script src="./js/tecnico/tecnicos.js"></script>
 
 </body>
 </html>

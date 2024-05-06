@@ -57,3 +57,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Exibir os agendamentos do dia ao carregar a página
     exibirAgendamentosDoDia();
 });
+
+// Função teste de login
+function logar(){
+    var login = document.getElementById('nome').value;
+    var senha = document.getElementById('email').value;
+
+    if(login == "Teste" && senha == "Teste"){
+        alert('Sucesso');
+        location.href = "./clientes.html";
+    }
+    else{
+        alert('Usuario ou senha incorreta');
+    }
+}
