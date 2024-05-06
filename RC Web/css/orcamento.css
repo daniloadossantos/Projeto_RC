@@ -1,53 +1,236 @@
-/* Estilos para a página de orçamento */
-.orcamento {
-    grid-column-start: 2;
-    background-color: #e2e1ef;
+/* Estilos para a página de orçamentos*/
+.btn_altera,
+.btn_exclui{
+	width: 30px;
+	height: 30px;
 }
 
-.btn_novo{
-    background-color: #05b31c;
-    width: 60px;
+.btn_acoes{
+	width: 65px;
 }
 
-/*ARRUMAR O ESTILO DAS TD/TR*/
-
-/* 
-#orcamento-form {
-    background-color: #555; /* fundo mais escuro 
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    padding: 2%;
-    width: 900px;
-} 
-
-label {
-    display: block;
-    margin-bottom: 5px;
+button#open-cadastro-form.btn_novo{
+    width: 45px;
+	height: 40px;
+}
+.btn{
+    margin-left: auto;
+	margin-right: 2.5%;
 }
 
-input[type="text"],
-select,
-textarea,
-input[type="number"],
-button {
-    margin-bottom: 10px;
-    padding: 10px;
+#btn_refresh{
+	width: 30px;
+}
+
+.campo_pesquisa {
+    padding: 0.5rem 1rem;
+    margin: .2rem;
+    width: 320px;
+    border: 2px solid #202b3f;
+    border-radius: 4px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #495057;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#btn_search,
+#btn_refresh {
+    background-color: #2f2257;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    width: 100%; /* Define a largura dos campos para preencher a largura do formulário 
-    background-color: #666;  fundo mais escuro 
-    color: #fff;
-}
-
-button {
-    background-color: #007bff; /* azul 
-    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3; /* azul mais escuro 
+#btn_search:hover {
+    background-color: #0a0f17;
 }
-*/
+
+#btn_refresh {
+    background-color: #bab6e8;
+	width: 40px;
+}
+
+#btn_refresh:hover {
+    background-color: #8f8ae8;
+}
+
+.tabela{
+  grid-column-start: 2;
+  background-color: #e2e1ef;
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela table {
+  width: 100%;
+  padding: 10px 0px ; 
+}
+
+.tabela_servicos{
+  max-height: 400px;
+  overflow: auto;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+
+.cabecalho_tabela_servicos{
+  background-color: #b0b6c3;
+  line-height: 2em;
+}
+
+.cabecalho_tabela_servicos :first-child{
+  width:20px;
+}
+
+.cabecalho_tabela_servicos :nth-child(3){
+  width:260px;
+}
+
+.cabecalho_tabela_servicos :nth-child(2), .cabecalho_tabela_servicos :nth-child(4), .cabecalho_tabela_servicos :nth-child(5),.cabecalho_tabela_servicos :nth-child(6){
+  width:140px;
+}
+
+
+/* modal formulário de serviços */
+.input-box select {
+    width: 356px; 
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    box-sizing: border-box;
+	color: gray;
+	height: 36px;
+	border-radius: 0;
+	margin: 3.2px;
+	font-size: 13px;
+}
+
+#cadastro-form-servico.active{
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  visibility: visible;
+}
+
+#cadastro-form-servico{
+  opacity: 0;
+  z-index: -1;
+  top: -100%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #34333d;
+  width: 800px;
+  max-width: 90%;
+  height: 350px;
+  border-radius: .5rem;
+  padding: 2.5%;
+  color: #ffffff;
+  visibility: hidden;
+}
+
+#cadastro-form-servico p{
+  margin-left: 20px;
+}
+
+.cadastro-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body form{
+height: 330px;
+}
+.input-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body input{
+width: 320px;
+padding: 0.5rem 1rem;
+margin: .2rem;
+}
+
+.form-button{
+  display: flex;
+  gap: 40px;
+  margin: 30px 0px 20px 20px;
+}
+.form-button button{
+  width: 120px;
+  height: 40px;
+}
+
+#cadastrarServico{
+  background-color: #05b31c;
+  color:#FFF;
+  border: none;
+  border-radius: 7px;
+}
+
+#cadastrarServico:active{
+  background-color: #acfcbf;
+  transform: scale(0.95);
+  color:#000;
+  font-weight: bold;
+}
+
+#limparForm{
+  background-color: #a49df2;
+  color:#FFF;
+  border: none;
+  border-radius: 7px;
+}
+
+#limparForm:active{
+  background-color: #c1d9c7;
+  transform: scale(0.95);
+  color:#000;
+  font-weight: bold;
+}
+
+/*Animação e destaque do modal*/
+#cadastro-form-servico.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transform-origin: center;
+    opacity: 0;
+    animation: growModal 1s forwards ease;
+    box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
+    border: 7.5px solid #201a2e; 
+	border-style: double; /* a dashed tbm é legal*/
+}
+
+@keyframes growModal {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
