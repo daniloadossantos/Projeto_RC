@@ -312,18 +312,19 @@ const updateTable = () => {
   toggleActionButtonsVisibility();
 };
 
-
-
 updateTable();
 
 const searchByName = () => {
-  const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
-  const dbRcarcondicionado = readTecnico();
-  const filteredList = dbRcarcondicionado.filter(tecnico => {
+  const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase();
+  if (searchTerm !== ""){
+    const dbRcarcondicionado = readTecnico();
+    const filteredList = dbRcarcondicionado.filter(tecnico => {
     return tecnico.nome.toLowerCase().includes(searchTerm);
   });
-  clearTable(); 
-  filteredList.forEach(createRow); 
+   
+    clearTable(); 
+    filteredList.forEach(createRow);
+  } else return;
 };
 
 //Eventos

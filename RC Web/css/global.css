@@ -110,6 +110,16 @@ li{
   box-shadow: 2px 2px 5px #bab6e8;
   cursor: pointer;
 }
+
+.grid-template-row th:last-child {
+  background-image: url('/img/tool-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width:20px;
+}
+
+
+
 /* menu pesquisa */
 .pesquisa{
   display: flex;
@@ -118,7 +128,7 @@ li{
   align-items: center;
 }
 .pesquisa input{
-  height: 25px;
+  height: 26px;
   width: 180px;
   background-image: url('../img/lupa.svg');
   background-repeat: no-repeat;
@@ -131,6 +141,39 @@ li{
   display: flex;
   align-items: center;
   gap: 2%;
+  padding: 0.5rem 1rem;
+  margin: .2rem;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #495057;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  font-size: 0.75em;    
+}
+
+#btn_search,
+#btn_refresh {
+    background-color: #2f2257;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 2px 2px 5px #615ea4;
+}
+
+#btn_search:hover {
+  box-shadow: 2px 2px 5px #bab6e8;
+  background-color: #8f8ae8;
+}
+
+#btn_refresh {
+  background-color: #bab6e8;
+	width: 40px;
+}
+
+#btn_refresh:hover {
+    background-color: #8f8ae8;
 }
 
 #open-cadastro-form{
@@ -166,6 +209,16 @@ li{
   background-image: url('../img/close-acionado.svg');
 }
 
+.btn{
+  margin-left: auto;
+	margin-right: 2.5%;
+}
+
+button#open-cadastro-form.btn_novo{
+    width: 45px;
+	height: 40px;
+}
+
 .btn_acoes{
   display: inline-flex;
   align-items: center;
@@ -173,12 +226,17 @@ li{
   background-color: #00000000;
   box-shadow: none;
   padding:0;
+  width: 65px;
+}
+
+.btn_altera,
+.btn_exclui{
+	width: 30px;
+	height: 30px;
 }
 
 .btn_altera {
   background-color: rgb(237, 206, 69);
-  width:60px;
-  height:27px;
   background-image: url('../img/pencil-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -186,8 +244,6 @@ li{
 
 .btn_exclui {
   background-color: rgb(241, 17, 17);
-  width:60px;
-  height:27px;
   background-image: url('../img/garbage-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -216,7 +272,7 @@ li{
 }
 
 #btn_refresh{
-  width:60px;
+  width:40px;
   background-image: url('../img/refresh-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;

@@ -222,13 +222,15 @@ const updateTable = () => {
 updateTable();
 
 const searchByName = () => {
-	const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
-	const dbRcarcondicionado = readServico();
-	const filteredList = dbRcarcondicionado.filter(servico => {
-		return servico.nome.toLowerCase().includes(searchTerm);
-	});
-	clearTable(); 
-	filteredList.forEach(createRow); 
+  const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase();
+  if (searchTerm !== ""){
+    const dbRcarcondicionado = readTecnico();
+    const filteredList = dbRcarcondicionado.filter(tecnico => {
+    return tecnico.nome.toLowerCase().includes(searchTerm);
+  });
+    clearTable(); 
+    filteredList.forEach(createRow);
+  } else return;
 };
 
 //Eventos

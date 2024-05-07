@@ -1,63 +1,15 @@
 /* Estilos para a página de orçamentos*/
-.btn_altera,
-.btn_exclui{
-	width: 30px;
-	height: 30px;
-}
-
-.btn_acoes{
-	width: 65px;
-}
-
-button#open-cadastro-form.btn_novo{
-    width: 45px;
-	height: 40px;
-}
-.btn{
-    margin-left: auto;
-	margin-right: 2.5%;
-}
-
-#btn_refresh{
-	width: 30px;
-}
-
-.campo_pesquisa {
+/*.campo_pesquisa {
     padding: 0.5rem 1rem;
     margin: .2rem;
-    width: 320px;
     border: 2px solid #202b3f;
-    border-radius: 4px;
     font-size: 15px;
     line-height: 1.5;
     color: #495057;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+}*/
 
-#btn_search,
-#btn_refresh {
-    background-color: #2f2257;
-    color: #fff;
-    border: none;
-    padding: 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
 
-#btn_search:hover {
-    background-color: #0a0f17;
-}
-
-#btn_refresh {
-    background-color: #bab6e8;
-	width: 40px;
-}
-
-#btn_refresh:hover {
-    background-color: #8f8ae8;
-}
 
 .tabela{
   grid-column-start: 2;
