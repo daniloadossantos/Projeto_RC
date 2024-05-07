@@ -112,7 +112,7 @@ li{
 }
 
 .grid-template-row th:last-child {
-  background-image: url('/img/tool-svgrepo-com.svg');
+  background-image: url('../img/tool-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-position: center;
   width:20px;
