@@ -28,27 +28,27 @@ precoInput.addEventListener('input', function(event) {
 });
 
 //CRUD serviço
-const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcarcondicionado')) ?? []
-const setLocalStorage = (dbRcarcondicionado) => localStorage.setItem("db_rcarcondicionado", JSON.stringify(dbRcarcondicionado))
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_local')) ?? []
+const setLocalStorage = (dbLocal) => localStorage.setItem("db_local", JSON.stringify(dbLocal))
 
 const createServico = (servico) => {
-	const dbRcarcondicionado = getLocalStorage()
-	dbRcarcondicionado.push (servico)
-	setLocalStorage(dbRcarcondicionado);
+	const dbLocal = getLocalStorage()
+	dbLocal.push (servico)
+	setLocalStorage(dbLocal);
 }
 
 const readServico = () => getLocalStorage()
 
 const updateServico = (index, servico) => {
-	const dbRcarcondicionado = readServico()
-	dbRcarcondicionado[index] = servico
-	setLocalStorage(dbRcarcondicionado)
+	const dbLocal = readServico()
+	dbLocal[index] = servico
+	setLocalStorage(dbLocal)
 }
 
 const deleteServico = (index) => {
-	const dbRcarcondicionado = readServico()
-	dbRcarcondicionado.splice(index,1)
-	setLocalStorage(dbRcarcondicionado)
+	const dbLocal = readServico()
+	dbLocal.splice(index,1)
+	setLocalStorage(dbLocal)
 }
 
 const isValidFields = () => {
@@ -64,8 +64,8 @@ const refreshTable = () => {
 }
 
 const ordenarNomes = () => {
-	const dbRcarcondicionado = readServico()
-	dbRcarcondicionado.sort(function(a,b) {
+	const dbLocal = readServico()
+	dbLocal.sort(function(a,b) {
 	if(a.nome < b.nome) {
 	  return -1;
 	}
@@ -76,7 +76,7 @@ const ordenarNomes = () => {
 	  return 0;
 	}
 	});
-	setLocalStorage(dbRcarcondicionado);
+	setLocalStorage(dbLocal);
 }
 
 const clearFields = () => {
@@ -207,9 +207,9 @@ const toggleActionButtonsVisibility = () => {
 
 
 const updateTable = () => {
-	const dbRcarcondicionado = readServico();
+	const dbLocal = readServico();
 	clearTable();
-	dbRcarcondicionado.forEach(createRow);
+	dbLocal.forEach(createRow);
 	ordenarNomes();
 
 	const checkboxes = document.querySelectorAll('.checkbox-item');
@@ -224,8 +224,8 @@ updateTable();
 const searchByName = () => {
   const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase();
   if (searchTerm !== ""){
-    const dbRcarcondicionado = readTecnico();
-    const filteredList = dbRcarcondicionado.filter(tecnico => {
+    const dbLocal = readTecnico();
+    const filteredList = dbLocal.filter(tecnico => {
     return tecnico.nome.toLowerCase().includes(searchTerm);
   });
     clearTable(); 
