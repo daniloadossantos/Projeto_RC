@@ -20,7 +20,21 @@
   background-color: #f0f0f0;
 }
 
+.popup {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1;
+  color:#34333d;
+}
 
+#lista-clientes,
+#lista-tecnicos {
+  max-height: 200px; /* Defina a altura máxima da lista conforme necessário */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando a lista for maior do que a altura máxima */
+}
 
 /*TABELA*/
 .tabela{
@@ -98,7 +112,7 @@ th, td {
   visibility: hidden;
 }
 
-#ccadastro-form-agendamento p{
+#cadastro-form-agendamento p{
   margin-left: 20px;
 }
 
@@ -110,9 +124,25 @@ th, td {
   border-bottom: 1px solid #fff;
   margin-bottom: 1rem;
 }
-.cadastro-form-body form{
-height: 330px;
+
+.cadastro-form-body {
+  box-sizing: content-box;
 }
+
+#form {
+    display: flex;
+    gap: 5%;
+    height: 350px;
+
+}
+
+.left-side-form {
+    display: flex;
+    flex-direction: column;
+    width:90%;
+}
+
+
 .input-group{
   display: flex;
   flex-wrap: wrap;

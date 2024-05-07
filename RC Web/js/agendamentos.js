@@ -1,9 +1,31 @@
+const getLocalStorageTecnico = () => JSON.parse(localStorage.getItem('db_rcarcondicionado')) ?? []
+const setLocalStorageTecnico = (dbRcarcondicionado) => localStorage.setItem("db_rcarcondicionado", JSON.stringify(dbRcarcondicionado))
+
+const getLocalStorageCliente = () => JSON.parse(localStorage.getItem('db_RcClient')) ?? []
+const setLocalStorageCliente = (dbRcarcondicionado) => localStorage.setItem("db_RcClient", JSON.stringify(db_RcClient))
+
+const getLocalStorageServico = () => JSON.parse(localStorage.getItem('db_rcServico')) ?? []
+const setLocalStorageServico = (dbRcarcondicionado) => localStorage.setItem("db_rcServico", JSON.stringify(db_rcServico))
+
+
+const readTecnico = () => getLocalStorageTecnico()
+const readCliente = () => getLocalStorageCliente()
+const readServico = () => getLocalStorageServico()
+
+const db_RcClient = readCliente();
+const db_rcarcondicionado = readTecnico()
+const db_rcServico = readServico()
+
+
+
+
 //Abrir formulario 
 const openForm = () => {
   document.getElementById('cadastro-form-agendamento')
   .classList.add('active');
-  preencherSelectorMesAno();
-  criarGradeDias(new Date().getMonth(), new Date().getFullYear()); 
+  preencherGradeDias(new Date().getMonth(), new Date().getFullYear());
+  preencherListaClientes();
+  preencherListaTecnicos(); 
 }
 
 const closeForm = () => {
@@ -15,99 +37,6 @@ const closeForm = () => {
 function gerarNumeroUnico() {
   let numero = Math.floor(Math.random()*1000);
   return numero.toString().padStart(4, '0');
-}
-
-function validarCPF(cpf) {
-    // Remove caracteres não numéricos
-    cpf = cpf.replace(/\D/g,'');
-
-    if (!cpf || typeof cpf !== 'string' || cpf.length !== 11) return { valido: false, numero: cpf }; // Verifica se o CPF tem 11 dígitos
-
-    // Verifica se todos os caracteres são iguais
-    if (/^(\d)\1{10}$/.test(cpf)) return { valido: false, numero: cpf };
-
-    // Calcula o primeiro dígito verificador
-    let soma = 0;
-    for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
-    let resto = soma % 11;
-    let digitoVerificador1 = resto < 2 ? 0 : 11 - resto;
-
-    // Verifica o primeiro dígito verificador
-    if (parseInt(cpf.charAt(9)) !== digitoVerificador1) return { valido: false, numero: cpf };
-
-    // Calcula o segundo dígito verificador
-    soma = 0;
-    for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
-    resto = soma % 11;
-    let digitoVerificador2 = resto < 2 ? 0 : 11 - resto;
-
-    // Verifica o segundo dígito verificador
-    if (parseInt(cpf.charAt(10)) !== digitoVerificador2) return { valido: false, numero: cpf };
-
-    // Retorna o CPF formatado
-    let cpfFormatado = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-    return cpfFormatado;
-}
-
-function validarCNPJ(cnpj) {
-    // Remove caracteres não numéricos
-    cnpj = cnpj.replace(/\D/g,'');
-
-    if (!cnpj || typeof cnpj !== 'string' || cnpj.length !== 14) return { valido: false, numero: cnpj }; // Verifica se o CNPJ tem 14 dígitos
-
-    // Verifica se todos os caracteres são iguais
-    if (/^(\d)\1{13}$/.test(cnpj)) return { valido: false, numero: cnpj };
-
-    // Calcula o primeiro dígito verificador
-    let tamanho = cnpj.length - 2;
-    let numeros = cnpj.substring(0, tamanho);
-    let digitos = cnpj.substring(tamanho);
-    let soma = 0;
-    let pos = tamanho - 7;
-    for (let i = tamanho; i >= 1; i--) {
-        soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
-        if (pos < 2) pos = 9;
-    }
-    let digitoVerificador1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-    // Verifica o primeiro dígito verificador
-    if (parseInt(digitos.charAt(0)) !== digitoVerificador1) return { valido: false, numero: cnpj };
-
-    // Calcula o segundo dígito verificador
-    tamanho = tamanho + 1;
-    numeros = cnpj.substring(0, tamanho);
-    soma = 0;
-    pos = tamanho - 7;
-    for (let i = tamanho; i >= 1; i--) {
-        soma += parseInt(numeros.charAt(tamanho - i)) * pos--;
-        if (pos < 2) pos = 9;
-    }
-    let digitoVerificador2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
-
-    // Verifica o segundo dígito verificador
-    if (parseInt(digitos.charAt(1)) !== digitoVerificador2) return { valido: false, numero: cnpj };
-
-    // Retorna o CNPJ formatado
-    let cnpjFormatado = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-    return cnpjFormatado;
-}
-
-function validarDocumento(numeroString) {
-    // Remove caracteres não numéricos e converte para número
-    let numero = parseInt(numeroString.replace(/\D/g,''));
-
-    // Verifica o número de dígitos
-    if (isNaN(numero) || numeroString.length !== 11 && numeroString.length !== 14) {
-        // Se o número não puder ser convertido para um número válido ou não tiver o tamanho adequado, retorna falso
-        return alert("Número de documento inválido.");
-        
-    } else if (numeroString.length === 11) {
-        // Se tiver 11 dígitos, chama a função para validar CPF
-        return validarCPF(numero.toString());
-    } else {
-        // Se tiver 14 dígitos, chama a função para validar CNPJ
-        return validarCNPJ(numero.toString());
-    }
 }
 
 function formatarTelefone(telefone) {
@@ -198,12 +127,77 @@ const anoAtual = new Date().getFullYear();
 preencherGradeDias(mesAtual, anoAtual);
 
 
+//PESQUISA CLIENTES E TECNICOS
+function criarItemCliente(cliente) {
+  const itemCliente = document.createElement('li');
+  itemCliente.textContent = cliente.nome + " " + cliente.sobrenome;
+  itemCliente.addEventListener('click', () => {
+    document.getElementById('cliente').value = cliente.nome;
+  });
+  return itemCliente;
+}
+
+function preencherListaClientes() {
+  const clientes = readCliente();
+  const listaClientes = document.getElementById('lista-clientes');
+  listaClientes.innerHTML = '';
+
+  clientes.forEach(cliente => {
+    const itemCliente = criarItemCliente(cliente);
+    listaClientes.appendChild(itemCliente);
+  });
+}
+
+function criarItemTecnico(tecnico) {
+  const itemTecnico = document.createElement('li');
+  itemTecnico.textContent = tecnico.nome + " " + tecnico.sobrenome;
+  itemTecnico.addEventListener('click', () => {
+    document.getElementById('tecnico').value = tecnico.nome;
+  });
+  return itemTecnico;
+}
+
+function preencherListaTecnicos() {
+  const tecnicos = readTecnico();
+  const listaTecnicos = document.getElementById('lista-tecnicos');
+  listaTecnicos.innerHTML = '';
+
+  tecnicos.forEach(tecnico => {
+    const itemTecnico = criarItemTecnico(tecnico);
+    listaTecnicos.appendChild(itemTecnico);
+  });
+}
+
+//Pesquisa Cliente e Técnico
+function pesquisarCliente(termo) {
+  if (termo.trim() === '') {
+    // Se o campo estiver vazio, exibe todas as opções de cliente
+    preencherListaClientes();
+  } else {
+    // Caso contrário, realiza a pesquisa na base de dados com o termo fornecido
+    const resultados = db_RcClient.filter(cliente => cliente.nome.toLowerCase().includes(termo.toLowerCase()));
+    preencherListaClientes(resultados);
+  }
+}
+
+function pesquisarTecnico(termo) {
+  if (termo.trim() === '') {
+    // Se o campo estiver vazio, exibe todas as opções de técnico
+    preencherListaTecnicos();
+  } else {
+    // Caso contrário, realiza a pesquisa na base de dados com o termo fornecido
+    const resultados = db_rcarcondicionado.filter(tecnico => tecnico.nome.toLowerCase().includes(termo.toLowerCase()));
+    preencherListaTecnicos(resultados);
+  }
+}
+
 
 
 //CRUD tecnico
+
+
+
 /*
-const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcarcondicionado')) ?? []
-const setLocalStorage = (dbRcarcondicionado) => localStorage.setItem("db_rcarcondicionado", JSON.stringify(dbRcarcondicionado))
 
 const createTecnico = (tecnico) => {
   const dbRcarcondicionado = getLocalStorage()
