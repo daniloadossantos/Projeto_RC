@@ -173,6 +173,7 @@ const getAddress = async (cep) => {
 
 // Preencher os campos relacionados ao endereço com os dados do CEP
 const fillAddressFields = (data) => {
+  cepInput.value = data.cep || "";
   ruaInput.value = data.logradouro || "";
   cidadeInput.value = data.localidade || "";
   bairroInput.value = data.bairro || "";
@@ -278,7 +279,14 @@ const saveCliente = () => {
       cpf: validarDocumento(document.getElementById('cpf').value),
       telefone1: formatarTelefone( document.getElementById('tel1').value),
       telefone2: formatarTelefone(document.getElementById('tel2').value),
-      email: document.getElementById('email').value.trim()
+      email: document.getElementById('email').value.trim(),
+      rua: document.getElementById('rua').value,
+      cep: document.getElementById('cep').value,
+      numero: document.getElementById('numero').value,
+      bairro: document.getElementById('bairro').value,
+      cidade: document.getElementById('cidade').value,
+      estado: document.getElementById('estado').value,
+      complemento: document.getElementById('complemento').value
     }
     const index = document.getElementById('nome').dataset.index
     if (index == 'new'){
@@ -286,6 +294,7 @@ const saveCliente = () => {
       ordenarNomes()
       updateTable()
       clearFields()
+      clearCepForm()
       closeForm()
 
     } else{
@@ -304,9 +313,10 @@ const createRow = (cliente, index) => {
     <td><input type="checkbox" id="id-${index}" class="checkbox-item" /></td>  
     <td>${cliente.numId}</td>
     <td>${cliente.nome} ${cliente.sobrenome}</td>
+    <td>${cliente.email}</td>
     <td>${cliente.cpf}</td>
     <td>${cliente.telefone1}<br>${cliente.telefone2}</td>
-    <td>${cliente.email}</td>
+    <td>${cliente.rua}, ${cliente.numero} ${cliente.bairro}, ${cliente.cidade}-${cliente.estado} ${cliente.complemento} ${cliente.cep}</td>
     <td><div class="btn_crud btn_acoes" ><button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
     <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
   `
@@ -325,6 +335,13 @@ const fillFields = (cliente) => {
   document.getElementById('tel1').value = cliente.telefone1
   document.getElementById('tel2').value = cliente.telefone2
   document.getElementById('email').value = cliente.email
+  document.getElementById('cep').value = cliente.cep
+  document.getElementById('rua').value = cliente.rua
+  document.getElementById('numero').value = cliente.numero
+  document.getElementById('bairro').value = cliente.bairro
+  document.getElementById('cidade').value = cliente.cidade
+  document.getElementById('estado').value = cliente.estado
+  document.getElementById('complemento').value = cliente.complemento
   document.getElementById('nome').dataset.index = cliente.index
   openForm()
 }
