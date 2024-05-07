@@ -33,6 +33,8 @@
             <button id="btn_search" type="submit">Pesquisar</button>
             <button id="btn_refresh" type="submit"></button>
         </div>
+
+        <div class="titulo_tabela"><h2>Agendamentos</h2></div>
         <div class="item btn">
             <button id="open-cadastro-form" class=" btn_crud btn_novo" title="Novo cadastro"></button>
         </div>
@@ -43,10 +45,10 @@
           <table id="tb_agendamento">
             <thead>
               <tr class="cabecalho_tabela_agendamento">
-                <th></th>
-                <th>ID-Agendamento</th>
+                <th>🗹</th>
+                <th>ID</th>
                 <th>Cliente</th>
-                <th>Data de agendamento</th>
+                <th>Data</th>
                 <th>Endereço</th>
                 <th>Técnico responsável</th>
                 <th></th>
@@ -60,29 +62,54 @@
     </section>
     </div>
 
-      <div class="item agendamento">
-        <form id="agendamento-form">
-          <label for="cliente">Cliente:</label>
-          <input type="text" id="cliente" placeholder="Pesquisar cliente" required>
-          <ul id="lista-clientes"></ul>
-          <label for="data">Data:</label>
-          <input type="date" id="data" required>
-          <label for="horario">Horário:</label>
-          <input type="time" id="horario" required>
-          <label for="tecnico">Técnico:</label>
-          <input type="text" id="tecnico" placeholder="Pesquisar técnico" required>
-          <ul id="lista-tecnicos"></ul>
-          
-          <div id="mes-e-ano">
-            <!-- Aqui será inserido o seletor de meses e anos -->
+    <div id="cadastro-form-agendamento" >
+      <div class="cadastro-form-header">
+        <h2>Cadastro de novo agendamento</h2>
+        <button id="close-cadastro-form" class="close-form-agendamento"></button>
+      </div>
+      <div class="cadastro-form-body">    
+        
+        <form id="form">
+          <div class="sides-form">
+
+              <div class="left-side-form">
+                  <label for="cliente">Cliente:</label>
+                  <input type="text" id="cliente" placeholder="Pesquisar cliente" required>
+                  <ul id="lista-clientes"></ul>
+                  <label for="tecnico">Técnico:</label>
+                  <input type="text" id="tecnico" placeholder="Pesquisar técnico" required>
+                  <ul id="lista-tecnicos"></ul>
+              </div>
+              
+              <div class="right-side-form">
+                          
+              <div id="seletor-ano">
+                  <label for="ano">Ano:</label>
+                  <select id="ano"></select>
+              </div>
+              
+                <div id="seletor-mes">
+                <label for="mes">Mês:</label>
+                <select id="mes"></select>
+              </div>
+              <div id="grade-dias" class="calendario">
+                <!-- Aqui será inserida a grade de dias -->
+              </div>
+
+              </div>
+
+
           </div>
-          <div id="grade-dias">
-            <!-- Aqui será inserida a grade de dias -->
-          </div>
           
-          <button type="submit">Agendar</button>
+
+          <div class="form-button">
+            <button id="cadastrarAgendamento" type="submit">Agendar</button>
+            <button id="limparForm">Limpar</button>
+          </div>
+
       </form>
       </div>
+        </div>
     </section>
     </div>
     <footer>

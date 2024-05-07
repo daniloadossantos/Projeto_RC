@@ -118,8 +118,6 @@ li{
   width:20px;
 }
 
-
-
 /* menu pesquisa */
 .pesquisa{
   display: flex;
@@ -217,6 +215,10 @@ li{
 button#open-cadastro-form.btn_novo{
     width: 45px;
 	height: 40px;
+}
+
+.titulo_tabela{
+  margin: 0 auto;
 }
 
 .btn_acoes{

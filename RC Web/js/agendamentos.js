@@ -1,11 +1,13 @@
 //Abrir formulario 
 const openForm = () => {
-  document.getElementById('agendamento-form')
+  document.getElementById('cadastro-form-agendamento')
   .classList.add('active');
+  preencherSelectorMesAno();
+  criarGradeDias(new Date().getMonth(), new Date().getFullYear()); 
 }
 
 const closeForm = () => {
-  document.getElementById('agendamento-form')
+  document.getElementById('cadastro-form-agendamento')
   .classList.remove('active');
 }
 
@@ -15,8 +17,6 @@ function gerarNumeroUnico() {
   return numero.toString().padStart(4, '0');
 }
 
-
-// Função para validar CPF e formatar
 function validarCPF(cpf) {
     // Remove caracteres não numéricos
     cpf = cpf.replace(/\D/g,'');
@@ -49,7 +49,6 @@ function validarCPF(cpf) {
     return cpfFormatado;
 }
 
-// Função para validar CNPJ e formatar
 function validarCNPJ(cnpj) {
     // Remove caracteres não numéricos
     cnpj = cnpj.replace(/\D/g,'');
@@ -93,7 +92,6 @@ function validarCNPJ(cnpj) {
     return cnpjFormatado;
 }
 
-// Função para validar CPF ou CNPJ e formatar
 function validarDocumento(numeroString) {
     // Remove caracteres não numéricos e converte para número
     let numero = parseInt(numeroString.replace(/\D/g,''));
@@ -129,10 +127,17 @@ function formatarTelefone(telefone) {
     }
 }
 
-function criarGradeDias(mes, ano) {
+function preencherGradeDias(mes, ano) {
   const diasNoMes = new Date(ano, mes + 1, 0).getDate();
+  const primeiroDiaSemana = new Date(ano, mes, 1).getDay();
   const gradeDias = document.getElementById('grade-dias');
   gradeDias.innerHTML = '';
+
+  for (let i = 0; i < primeiroDiaSemana; i++) {
+    const diaVazio = document.createElement('div');
+    diaVazio.textContent = '';
+    gradeDias.appendChild(diaVazio);
+  }
 
   for (let i = 1; i <= diasNoMes; i++) {
     const dia = document.createElement('div');
@@ -141,39 +146,62 @@ function criarGradeDias(mes, ano) {
   }
 }
 
-// Função para preencher o seletor de meses e anos
-function preencherSelectorMesAno() {
-  const selectorMesAno = document.getElementById('mes-e-ano');
-
+function preencherSeletorMes() {
+  const seletorMes = document.getElementById('mes');
   const meses = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
   ];
 
-  const dataAtual = new Date();
-  const anoAtual = dataAtual.getFullYear();
-
-  const select = document.createElement('select');
-  select.addEventListener('change', () => {
-    const mesSelecionado = select.selectedIndex;
-    criarGradeDias(mesSelecionado, anoAtual);
-  });
-
-  for (let i = 0; i < meses.length; i++) {
+  meses.forEach((mes, index) => {
     const option = document.createElement('option');
-    option.textContent = meses[i];
-    select.appendChild(option);
-  }
-
-  selectorMesAno.appendChild(select);
+    option.value = index;
+    option.textContent = mes;
+    seletorMes.appendChild(option);
+  });
 }
 
-// Chamar a função para preencher o seletor de meses e anos
-preencherSelectorMesAno();
+function preencherSeletorAno() {
+  const seletorAno = document.getElementById('ano');
+  const anoAtual = new Date().getFullYear();
+  const anos = [];
+
+  for (let i = anoAtual - 10; i <= anoAtual + 10; i++) {
+    anos.push(i);
+  }
+
+  anos.forEach(ano => {
+    const option = document.createElement('option');
+    option.value = ano;
+    option.textContent = ano;
+    seletorAno.appendChild(option);
+  });
+}
+
+document.getElementById('mes').addEventListener('change', () => {
+  const mesSelecionado = parseInt(document.getElementById('mes').value);
+  const anoSelecionado = parseInt(document.getElementById('ano').value);
+  preencherGradeDias(mesSelecionado, anoSelecionado);
+});
+
+document.getElementById('ano').addEventListener('change', () => {
+  const mesSelecionado = parseInt(document.getElementById('mes').value);
+  const anoSelecionado = parseInt(document.getElementById('ano').value);
+  preencherGradeDias(mesSelecionado, anoSelecionado);
+});
+
+preencherSeletorMes();
+preencherSeletorAno();
+
+const mesAtual = new Date().getMonth();
+const anoAtual = new Date().getFullYear();
+preencherGradeDias(mesAtual, anoAtual);
+
+
 
 
 //CRUD tecnico
-
+/*
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcarcondicionado')) ?? []
 const setLocalStorage = (dbRcarcondicionado) => localStorage.setItem("db_rcarcondicionado", JSON.stringify(dbRcarcondicionado))
 
@@ -365,19 +393,20 @@ const searchByName = () => {
     filteredList.forEach(createRow);
   } else return;
 };
+*/
 
 //Eventos
-document.getElementById('cadastrarTecnico')
-  .addEventListener('click', saveTecnico)
-
-document.querySelector('#tb_tecnico>tbody')
-  .addEventListener('click', editDelete)
-
 document.getElementById('close-cadastro-form')
   .addEventListener('click', closeForm)
 
 document.getElementById('open-cadastro-form')
   .addEventListener('click', openForm)
+
+/*document.getElementById('cadastrarAgendamento')
+  .addEventListener('click', saveAgendamento)
+
+document.querySelector('#tb_tecnico>tbody')
+  .addEventListener('click', editDelete)
   
 document.getElementById('btn_refresh')
   .addEventListener('click', refreshTable)
@@ -386,6 +415,6 @@ document.getElementById('btn_search').addEventListener('click', (event) => {
   event.preventDefault();
   searchByName(); 
 });
-
+*/
 
 

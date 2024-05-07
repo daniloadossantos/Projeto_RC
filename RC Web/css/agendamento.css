@@ -1,59 +1,163 @@
-/* Estilos para o formulário de agendamento */
-.agendamento{
+/*FORMULÁRIO*/
+.sides-form{
+    display: flex;
+}
+
+.calendario {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendario div {
+  flex: 0 0 calc(100% / 7);
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendario div:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+/*TABELA*/
+.tabela{
   grid-column-start: 2;
   background-color: #e2e1ef;
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela table {
+  width: 100%;
+  padding: 10px 0px ; 
 }
 
-#agendamento-form {
-    max-width: 400px;
-    margin: 20px auto;
-    background-color: #555;  
-    padding: 20px;
-    border-radius: 5px;
+.tabela_tecnicos{
+  max-height: 400px;
+  overflow: auto;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+th, td {
+  border: 1px solid #ccc;
+  padding: 3px;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="time"],
-button {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 100%; 
-    background-color: #666; 
-    color: #fff;
+/*.tabela tbody tr:nth-child(even){
+  background-color: #bab6e8;
+}*/
+
+.cabecalho_tabela_agendamento{
+  background-color: #b0b6c3;
+  line-height: 2em;
 }
 
-button {
-    background-color: #007bff; 
-    color: #fff;
-    cursor: pointer;
+.cabecalho_tabela_agendamento :first-child{
+  width:20px;
 }
 
-button:hover {
-    background-color: #0056b3; 
+.cabecalho_tabela_agendamento :nth-child(2){
+  width:70px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+.cabecalho_tabela_agendamento :nth-child(4){
+  width:120px;
 }
 
-li {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #444; 
-    border-radius: 5px;
-    margin-bottom: 5px;
+.cabecalho_tabela_agendamento :nth-child(6){
+  width:180px;
 }
 
-li:hover {
-    background-color: #333;
+
+/* modal formulário */
+
+#cadastro-form-agendamento.active{
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  visibility: visible;
+}
+
+#cadastro-form-agendamento{
+  opacity: 0;
+  z-index: -1;
+  top: -100%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #34333d;
+  width: 800px;
+  max-width: 90%;
+  height: 450px;
+  border-radius: .5rem;
+  padding: 2.5%;
+  color: #ffffff;
+  visibility: hidden;
+}
+
+#ccadastro-form-agendamento p{
+  margin-left: 20px;
+}
+
+.cadastro-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body form{
+height: 330px;
+}
+.input-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.cadastro-form-body input{
+width: 320px;
+padding: 0.5rem 1rem;
+margin: .2rem;
+}
+
+.form-button{
+  display: flex;
+  gap: 40px;
+  margin: 30px 0px 20px 20px;
+}
+.form-button button{
+  width: 120px;
+  height: 40px;
+}
+
+#cadastrarAgendamento{
+  background-color: #05b31c;
+  color:#FFF;
+}
+
+#cadastrarAgendamento:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#05b31c;
+}
+
+#limparForm{
+  background-color: #bab6e8;
+  color:#FFF;
+}
+
+#limparForm:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#bab6e8;
 }

@@ -33,14 +33,9 @@ th, td {
   width:20px;
 }
 
-.cabecalho_tabela_tecnico :nth-child(3){
-  width:260px;
+.cabecalho_tabela_tecnico :nth-child(2){
+  width:70px;
 }
-
-.cabecalho_tabela_tecnico :nth-child(2), .cabecalho_tabela_tecnico :nth-child(4), .cabecalho_tabela_tecnico :nth-child(5),.cabecalho_tabela_tecnico :nth-child(6){
-  width:140px;
-}
-
 
 /* modal formulário tecnico */
 
