@@ -9,20 +9,19 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }*/
 
-
-
-.tabela{
+.tabela {
   grid-column-start: 2;
   background-color: #e2e1ef;
   width: 100%;
   border-collapse: collapse;
 }
+
 .tabela table {
   width: 100%;
-  padding: 10px 0px ; 
+  padding: 10px 0px;
 }
 
-.tabela_servicos{
+.tabela_servicos {
   max-height: 400px;
   overflow: auto;
 }
@@ -32,41 +31,42 @@ th, td {
   padding: 3px;
 }
 
-.cabecalho_tabela_servicos{
+.cabecalho_tabela_servicos {
   background-color: #b0b6c3;
   line-height: 2em;
 }
 
-.cabecalho_tabela_servicos :first-child{
-  width:20px;
+.cabecalho_tabela_servicos :first-child {
+  width: 20px;
 }
 
-.cabecalho_tabela_servicos :nth-child(3){
-  width:260px;
+.cabecalho_tabela_servicos :nth-child(3) {
+  width: 260px;
 }
 
-.cabecalho_tabela_servicos :nth-child(2), .cabecalho_tabela_servicos :nth-child(4), .cabecalho_tabela_servicos :nth-child(5),.cabecalho_tabela_servicos :nth-child(6){
-  width:140px;
+.cabecalho_tabela_servicos :nth-child(2),
+.cabecalho_tabela_servicos :nth-child(4),
+.cabecalho_tabela_servicos :nth-child(5),
+.cabecalho_tabela_servicos :nth-child(6) {
+  width: 140px;
 }
-
 
 /* modal formulário de serviços */
 .input-box select {
-    width: 356px; 
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    line-height: 1.5;
-    box-sizing: border-box;
-	color: gray;
-	height: 36px;
-	border-radius: 0;
-	margin: 3.2px;
-	font-size: 13px;
+  width: 356px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  color: gray;
+  height: 36px;
+  margin: 3.2px;
+  font-size: 13px;
 }
 
-#cadastro-form-servico.active{
+#cadastro-form-servico.active {
   opacity: 1;
   z-index: 1;
   position: fixed;
@@ -75,7 +75,7 @@ th, td {
   visibility: visible;
 }
 
-#cadastro-form-servico{
+#cadastro-form-servico {
   opacity: 0;
   z-index: -1;
   top: -100%;
@@ -83,20 +83,20 @@ th, td {
   transform: translate(-50%, -50%);
   z-index: 10;
   background-color: #34333d;
-  width: 800px;
-  max-width: 90%;
-  height: 425px;
+  width: 90%;
+  max-width: 800px;
+  height: auto;
   border-radius: .5rem;
   padding: 2.5%;
   color: #ffffff;
   visibility: hidden;
 }
 
-#cadastro-form-servico p{
+#cadastro-form-servico p {
   margin-left: 20px;
 }
 
-.cadastro-form-header{
+.cadastro-form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,24 +104,28 @@ th, td {
   border-bottom: 1px solid #fff;
   margin-bottom: 1rem;
 }
-.cadastro-form-body form{
-height: 330px;
+
+.cadastro-form-body form {
+  height: auto;
 }
+
 .input-group{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 1rem;
 }
+
 .input-box{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
-.cadastro-form-body input{
-width: 320px;
-padding: 0.5rem 1rem;
-margin: .2rem;
+
+.cadastro-form-body input {
+  width: 320px;
+  padding: 0.5rem 1rem;
+  margin: .2rem;
 }
 
 .form-button{
@@ -129,6 +133,7 @@ margin: .2rem;
   gap: 40px;
   margin: 30px 0px 20px 20px;
 }
+
 .form-button button{
   width: 120px;
   height: 40px;
@@ -162,27 +167,48 @@ margin: .2rem;
   font-weight: bold;
 }
 
-/*Animação e destaque do modal*/
+/* Animação e destaque do modal */
 #cadastro-form-servico.active {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
-    transform-origin: center;
-    opacity: 0;
-    animation: growModal .3s forwards ease;
-    box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
-    border: 7.5px solid #201a2e; 
-	border-style: double; /* a dashed tbm é legal*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transform-origin: center;
+  opacity: 0;
+  animation: growModal .3s forwards ease;
+  box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
+  border: 7.5px solid #201a2e;
+  border-style: double; /* a dashed tbm é legal */
 }
 
 @keyframes growModal {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+  from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #cadastro-form-servico {
+      width: 90%;
+      max-width: 90%;
+      height: auto;
+  }
+
+  .input-group {
+    justify-content: center;
+  }
+
+  .cadastro-form-body input {
+    width: 600px;
+  }
+
+  .cadastro-form-body select {
+    width: 637px;
+  }
+
 }
