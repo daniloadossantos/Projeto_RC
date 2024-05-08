@@ -27,20 +27,41 @@ th, td {
 .pesquisa{
   display: flex;
   justify-content: space-between;
-  padding: 0px 20px;
+  padding: 0px 5px;
 }
 
+.radio_pessoa_filter{
+  display: flex;
+  align-items: center;
+}
+.radio_pessoa_filter label{
+  width: 90px;
+}
+#pessoaFisicaFilter,
+#pessoaJuridicaFilter{
+  width: 15px;
+  margin: 0;
+}
+
+.hidden{
+  opacity: 0;
+  z-index: -5;
+}
 .cabecalho_tabela_cliente :first-child{
   width:20px;
 }
 
 .cabecalho_tabela_cliente :nth-child(3){
-  width:260px;
+  width:220px;
 }
 
-.cabecalho_tabela_cliente :nth-child(2), .cabecalho_tabela_cliente :nth-child(4), .cabecalho_tabela_cliente :nth-child(5),.cabecalho_tabela_cliente :nth-child(6){
+.cabecalho_tabela_cliente :nth-child(2){
+  width: 60px;
+}
+.cabecalho_tabela_cliente :nth-child(4), .cabecalho_tabela_cliente :nth-child(5),.cabecalho_tabela_cliente :nth-child(6){
   width:140px;
 }
+
 
 
 /* modal formulário cliente */
@@ -83,6 +104,23 @@ th, td {
   border-bottom: 1px solid #fff;
   margin-bottom: 1rem;
 }
+
+.radio_pessoa{
+display: block;
+width: 100%;
+padding-bottom: 20px;
+}
+.radio_pessoa label{
+  width: 150px;
+  margin-right: 30px;
+}
+#pessoaFisica,
+#pessoaJuridica{
+  width: 15px;
+  height: 15px;
+  margin: 0px 5px;
+}
+
 .cadastro-form-body form{
   overflow-y: auto;
   height: 330px;
@@ -98,6 +136,11 @@ th, td {
   flex-direction: column;
   margin-bottom: 1rem;
 }
+.cep-form-field:disabled{
+  background-color: #e6e8ec;
+  color: #34333d;
+}
+
 .cadastro-form-body input,
 .form-select{
 width: 320px;

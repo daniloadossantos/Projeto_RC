@@ -7,6 +7,8 @@ const openForm = () => {
 const closeForm = () => {
   document.getElementById('cadastro-form-cliente')
   .classList.remove('active');
+  clearFields()
+  clearCepForm()
 }
 
 //FUNÇÕES
@@ -95,14 +97,14 @@ function validarCNPJ(cnpj) {
 
 // Função para validar CPF ou CNPJ e formatar
 function validarDocumento(numeroString) {
-    // Remove caracteres não numéricos e converte para número
-    let numero = parseInt(numeroString.replace(/\D/g,''));
+    
 
     // Verifica o número de dígitos
     if (isNaN(numero) || numeroString.length !== 11 && numeroString.length !== 14) {
         // Se o número não puder ser convertido para um número válido ou não tiver o tamanho adequado, retorna falso
         return alert("Número de documento inválido.");
-        
+        // Remove caracteres não numéricos e converte para número
+    let numero = parseInt(numeroString.replace(/\D/g,''));
     } else if (numeroString.length === 11) {
         // Se tiver 11 dígitos, chama a função para validar CPF
         return validarCPF(numero.toString());
@@ -275,7 +277,7 @@ const saveCliente = () => {
     const cliente = {
       numId: gerarNumeroUnico(),
       nome: document.getElementById('nome').value.trim(),
-      sobrenome: document.getElementById('sobrenome').value.trim(),
+      nome_repres: document.getElementById('nome_repres').value.trim(),
       cpf: validarDocumento(document.getElementById('cpf').value),
       telefone1: formatarTelefone( document.getElementById('tel1').value),
       telefone2: formatarTelefone(document.getElementById('tel2').value),
@@ -312,12 +314,14 @@ const createRow = (cliente, index) => {
   newRow.innerHTML = `
     <td><input type="checkbox" id="id-${index}" class="checkbox-item" /></td>  
     <td>${cliente.numId}</td>
-    <td>${cliente.nome} ${cliente.sobrenome}</td>
+    <td>${cliente.nome}</td>
     <td>${cliente.email}</td>
     <td>${cliente.cpf}</td>
     <td>${cliente.telefone1}<br>${cliente.telefone2}</td>
     <td>${cliente.rua}, ${cliente.numero} ${cliente.bairro}, ${cliente.cidade}-${cliente.estado} ${cliente.complemento} ${cliente.cep}</td>
-    <td><div class="btn_crud btn_acoes" ><button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
+    <td><div class="btn_crud btn_acoes" >
+    <button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
+    <button id="agenda-${index}" class="btn_crud btn_agenda" type="button"</button>
     <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
   `
   document.querySelector('#tb_cliente>tbody').appendChild(newRow)
@@ -330,7 +334,6 @@ const clearTable = () => {
 
 const fillFields = (cliente) => {
   document.getElementById('nome').value = cliente.nome
-  document.getElementById('sobrenome').value = cliente.sobrenome
   document.getElementById('cpf').value = cliente.cpf
   document.getElementById('tel1').value = cliente.telefone1
   document.getElementById('tel2').value = cliente.telefone2
@@ -351,7 +354,11 @@ const editCliente = (index) => {
   cliente.index = index
   fillFields(cliente)
   openForm()
-
+}
+const agendaCliente = (index) => {
+  const cliente = readCliente()[index]
+  window.location.href = "http://127.0.0.1:5500/RC%20Web/agendamento.html"
+  
 }
 
 const editDelete = (event) => {
@@ -360,6 +367,8 @@ const editDelete = (event) => {
     
     if (action == 'edit'){
       editCliente(index)
+    } else if(action == 'agenda'){
+      agendaCliente(index)
     } else {
       const cliente = readCliente()[index]  
       const response = confirm (`Deseja realmente excluir o registro de ${cliente.nome}`)
@@ -402,20 +411,47 @@ const updateTable = () => {
 
   toggleActionButtonsVisibility();
 };
-
-
-
 updateTable();
+
 
 const searchByName = () => {
   const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
   const dbRcarcondicionado = readCliente();
+
+
   const filteredList = dbRcarcondicionado.filter(cliente => {
     return cliente.nome.toLowerCase().includes(searchTerm);
   });
   clearTable(); 
   filteredList.forEach(createRow); 
 };
+
+//alterar label de formulário para pessoa jurídica
+const radioPj = document.getElementById('pessoaJuridica')
+const radioPf = document.getElementById('pessoaFisica')
+const labelNome = document.getElementById('nome_label')
+const labelCPF = document.getElementById('cpf_label')
+const labelRepres = document.getElementById('nome_repres_label')
+const inputRepres = document.getElementById('nome_repres')
+const telLabel2 = document.getElementById('tel2_label')
+
+
+
+radioPj.addEventListener('click', () => {
+    labelNome.innerText = 'Razao Social*'
+    labelCPF.innerText = 'CNPJ*'
+    labelRepres.classList.remove('hidden')
+    inputRepres.classList.remove('hidden')
+    telLabel2.innerText = 'Telefone Representante'
+})
+
+radioPf.addEventListener('click', () => {
+    labelNome.innerText = 'Nome Completo*'
+    labelCPF.innerText = 'CPF*'
+    labelRepres.classList.add('hidden')
+    inputRepres.classList.add('hidden')
+    telLabel2.innerText = 'Telefone Pessoal'
+})
 
 //Eventos
 document.getElementById('cadastrarCliente')

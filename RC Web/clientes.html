@@ -31,6 +31,12 @@
       <div class="item pesquisa">
         <div class="campo_consulta">
             <input class="campo_pesquisa" type="text" name="consulta" placeholder="Digite o nome">
+            <div class="radio_pessoa_filter">
+              <input  type="checkbox" value="pf" id="pessoaFisicaFilter" name="tipo_pessoa">
+              <label for="pessoaFisica">Pessoa Física</label>
+              <input  type="checkbox" value="pj" id="pessoaJuridicaFilter" name="tipo_pessoa">
+              <label for="pessoaJuridica">Pessoa Jurídica</label>
+            </div>
             <button id="btn_search" type="submit">Pesquisar</button>
             <button id="btn_refresh" type="submit"></button>
         </div>
@@ -46,10 +52,10 @@
             <thead>
               <tr class="cabecalho_tabela_cliente">
                 <th>🗹</th>
-                <th>ID-Cliente</th>
-                <th>Nome</th>
+                <th>ID</th>
+                <th>Nome/Razão Social</th>
                 <th>Email</th>
-                <th>CPF</th>
+                <th>CPF/CNPJ</th>
                 <th>Telefone</th>
                 <th>Endereço</th>
                 <th></th>
@@ -72,18 +78,24 @@
       <div class="cadastro-form-body">
         <form id = "form">
           <div class="input-group">
-            <div class="espaco_form"><p>Dados Pessoais</p></div>
+            <div class="espaco_form"><p>Dados Cadastrais</p></div>
+            <div class="radio_pessoa">
+              <input  type="radio" value="pf" id="pessoaFisica" name="tipo_pessoa" checked>
+              <label for="pessoaFisica">Pessoa Física</label>
+              <input  type="radio" value="pj" id="pessoaJuridica" name="tipo_pessoa">
+              <label for="pessoaJuridica">Pessoa Jurídica</label>
+            </div>
             <div class="input-box">
-              <label for="nome">Nome*</label>
+              <label id="nome_label" for="nome">Nome Completo*</label>
               <input type="text" id="nome" data-index="new" class="form-field" placeholder="Digite o nome" required>
             </div>
             <div class="input-box">
-              <label for="sobrenome">Sobrenome*</label>
-              <input type="text" id="sobrenome" class="form-field"  placeholder="Digite o sobrenome" required>
+              <label id="nome_repres_label" class="hidden" for="nome_repres">Representante</label>
+              <input type="text" id="nome_repres"  class="form-field hidden" placeholder="Digite o nome do representate" >
             </div>
             <div class="input-box">
-              <label for="cpf">CPF*</label>
-              <input type="text" id="cpf" class="form-field" placeholder="Apenas números" maxlength="11" required>
+              <label id="cpf_label" for="cpf">CPF*</label>
+              <input type="text" id="cpf" class="form-field" placeholder="Apenas números" minlength="11" maxlength="14" required>
             </div>
             <div class="input-box">
               <label for="email">Email</label>
@@ -92,11 +104,11 @@
           
             <div class=" input-box">
               <label for="tel1">Telefone comercial*</label>
-              <input type="tel" id="tel1" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="12" required>
+              <input type="tel" id="tel1" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="11" required>
             </div>
             <div class=" input-box">
-              <label for="tel1">Telefone pessoal</label>
-              <input type="tel" id="tel2" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="12">
+              <label for="tel1" id="tel2_label">Telefone pessoal</label>
+              <input type="tel" id="tel2" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="11">
             </div>
             <div class="espaco_form"><p>Endereço</p></div>
             <div class="input-box">
@@ -172,7 +184,7 @@
     <footer>
       <p>&copy Todos os direitos reservados - 2024 <a href="index.html">login</a></p>
     </footer>
-    <script src="./js/clientes.js"></script>
+    <script type="module" src="./js/clientes.js"></script>
 
 </body>
 </html>
