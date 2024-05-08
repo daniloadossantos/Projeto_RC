@@ -129,7 +129,7 @@ function preencherSeletorMes() {
 
   for (let mes = 0; mes < 12; mes++) {
     const option = document.createElement('option');
-    option.value = mes;
+    option.value = mes + 1;
     option.textContent = meses[mes];
     seletorMes.appendChild(option);
   }
@@ -185,11 +185,20 @@ const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcAgenda')) ??
 const setLocalStorage = (dbAgenda) => localStorage.setItem("db_rcAgenda", JSON.stringify(dbAgenda))
 
 const createAgendamento = (agendamento) => {
+  const dbCliente = getLocalStorageCliente();
+  if (dbCliente.length > 0){
+    const numId = dbCliente[0].numId;
+    agendamento.numIdCliente = numId;
+  
   const dbAgenda = getLocalStorage();
   dbAgenda.push(agendamento);
   setLocalStorage(dbAgenda);
-  console.log("agendado")
+    console.log("Agendamento criado com sucesso.");
+  } else {
+    console.log("Não há clientes cadastrados.");
+  } 
 }
+
 
 const readAgenda = () => getLocalStorage()
 
@@ -216,6 +225,17 @@ const clearFields = () => {
 
 const saveAgendamento = () => {
   if (isValidFields()) {
+    const numIdCliente = document.getElementById('nomeClienteSelecionado').value;
+    console.log('numIdCliente:', numIdCliente); // Verifica se o valor é correto
+
+    const clienteSelecionado = db_RcClient.find(cliente => {
+  console.log('Cliente atual:', cliente); // Verifica cada cliente no array
+  return cliente.numId === numIdCliente;
+});
+
+    if (clienteSelecionado){
+    console.log('Cliente encontrado:', clienteSelecionado);
+
     const agendamento = {
       numId: gerarNumeroUnico(),
       nomeTecnico: document.getElementById('nomeTecnicoSelecionado').value,
@@ -224,29 +244,36 @@ const saveAgendamento = () => {
       mes:document.getElementById('mes').value,
       ano:document.getElementById('ano').value,
       horario: document.getElementById('horario').value,
-      // Adicione os outros campos do agendamento aqui, conforme necessário
+      numIdCliente:clienteSelecionado.numId,
     }
-    const index = document.getElementById('numId').dataset.index;
-    if (index === 'new') {
-      createAgendamento(agendamento);
-      ordenarNomes();
 
+const index = document.getElementById('nomeClienteSelecionado').dataset.index;
+      console.log('index:', index); // Verifica se o índice está correto
+
+      if (index === 'new') {
+        createAgendamento(agendamento);
+        ordenarNomes();
+      } else {
+        updateAgendamento(index, agendamento);
+      }
+
+      clearFields();
+      closeForm();
+      updateTable();
     } else {
-      updateAgendamento(index, agendamento);
+      console.error('Cliente não encontrado.');
     }
-    clearFields();
-    closeForm();
-    updateTable();
   }
 }
 
 const createRow = (agendamento, index) => {
   const newRow = document.createElement('tr')
   newRow.innerHTML = `
-    <td><input type="checkbox" id="id-${index}" class="checkbox-item" /></td>  
+    <td><input type="checkbox" id="id-${index}" class="checkbox-item"  /></td>  
     <td>${agendamento.numId}</td>
     <td>${agendamento.nomeCliente}</td>
     <td id="data">${agendamento.dia}/${agendamento.mes}/${agendamento.ano}</td>
+    <td></td>
     <td>${agendamento.nomeTecnico}</td>
     <td><div class="btn_crud btn_acoes" ><button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
     <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
@@ -267,7 +294,7 @@ const fillFields = (agendamento) => {
   document.getElementById('ano').value = agendamento.ano;
   document.getElementById('horario').value = agendamento.horario;
   // Preencha os outros campos do formulário aqui, conforme necessário
-  document.getElementById('numId').dataset.index = agendamento.index;
+  
 }
 
 const editAgendamento = (index) => {
