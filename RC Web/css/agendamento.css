@@ -62,12 +62,12 @@ th, td {
   width:70px;
 }
 
-.cabecalho_tabela_agendamento :nth-child(4){
+.cabecalho_tabela_agendamento :nth-child(4),.cabecalho_tabela_agendamento :nth-child(7){
   width:120px;
 }
 
-.cabecalho_tabela_agendamento :nth-child(6){
-  width:180px;
+.cabecalho_tabela_agendamento :nth-child(3), .cabecalho_tabela_agendamento :nth-child(6){
+  width:230px;
 }
 
 

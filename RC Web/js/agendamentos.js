@@ -245,6 +245,7 @@ const saveAgendamento = () => {
       ano:document.getElementById('ano').value,
       horario: document.getElementById('horario').value,
       numIdCliente:clienteSelecionado.numId,
+      status:'',
     }
 
 const index = document.getElementById('nomeClienteSelecionado').dataset.index;
@@ -275,6 +276,8 @@ const createRow = (agendamento, index) => {
     <td id="data">${agendamento.dia}/${agendamento.mes}/${agendamento.ano}</td>
     <td></td>
     <td>${agendamento.nomeTecnico}</td>
+    <td></td>
+
     <td><div class="btn_crud btn_acoes" ><button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
     <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
   `

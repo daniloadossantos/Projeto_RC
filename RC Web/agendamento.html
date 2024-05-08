@@ -60,6 +60,7 @@
                 <th>Data</th>
                 <th>Endereço</th>
                 <th>Técnico responsável</th>
+                <th>Status</th>
                 <th></th>
               </tr>
             </thead>
@@ -79,66 +80,65 @@
     <div class="cadastro-form-body">
 
       <form id="form">
-          <div class="left-side-form">
+        <div class="left-side-form">
 
-            <div class="search-container">
+          <div class="search-container">
+            <div class="input-box">
+              <label for="nomeCliente">Nome do Cliente*</label>
+              <select id="nome" data-index="new" class="form-field" name="nomeCliente" onclick="popularClientes()">
+                <option value="">Selecione o cliente</option>
+              </select>
               <div class="input-box">
-                <label for="nomeCliente">Nome do Cliente*</label>
-                <select id="nome" data-index="new" class="form-field" name="nomeCliente" onclick="popularClientes()"
-                  >
-                  <option value="">Selecione o cliente</option>
-                </select>
-                <div class="input-box">
-                  <label for="nomeClienteSelecionado">Técnico Selecionado:</label>
-                  <input type="text" id="nomeClienteSelecionado" data-index="new" readonly>
-                </div>
+                <label for="nomeClienteSelecionado">Técnico Selecionado:</label>
+                <input type="text" id="nomeClienteSelecionado" data-index="new" readonly>
               </div>
+            </div>
 
+            <div class="input-box">
+              <label for="nomeTecnico">Nome do Técnico*</label>
+              <select id="nomeTecnico" name="nomeTecnico" onclick="popularTecnicos()">
+                <option value="">Selecione o técnico</option>
+              </select>
               <div class="input-box">
-                <label for="nomeTecnico">Nome do Técnico*</label>
-                <select id="nomeTecnico" name="nomeTecnico" onclick="popularTecnicos()" >
-                  <option value="">Selecione o técnico</option>
-                </select>
-                <div class="input-box">
-                  <label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>
-                  <input type="text" id="nomeTecnicoSelecionado" readonly>
-                </div>
-              </div>
-          </div>
-          </div>
-          <div class="right-side-form">
-
-            <div class="seletor-mes-ano">
-
-              <div id="seletor-ano">
-                <label for="ano">Ano:</label>
-                <select id="ano"></select>
-              </div>
-
-              <div id="seletor-mes">
-                <label for="mes">Mês:</label>
-                <select id="mes"></select>
+                <label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>
+                <input type="text" id="nomeTecnicoSelecionado" readonly>
               </div>
             </div>
-
-            <div class="select-container">
-              <label for="dia">Dia:</label>
-              <select id="dia"></select>
-            </div>
-
-            <div class="select-container">
-              <label for="horario">Horário:</label>
-              <select id="horario"></select>
-            </div>
-
-
-
-            <div class="form-button">
-              <button id="cadastrarAgendamento" type="submit">Agendar</button>
-              <button id="limparForm">Limpar</button>
-            </div>
-
           </div>
+        </div>
+        <div class="right-side-form">
+
+          <div class="seletor-mes-ano">
+
+            <div id="seletor-ano">
+              <label for="ano">Ano:</label>
+              <select id="ano"></select>
+            </div>
+
+            <div id="seletor-mes">
+              <label for="mes">Mês:</label>
+              <select id="mes"></select>
+            </div>
+          </div>
+
+          <div class="select-container">
+            <label for="dia">Dia:</label>
+            <select id="dia"></select>
+          </div>
+
+          <div class="select-container">
+            <label for="horario">Horário:</label>
+            <select id="horario"></select>
+          </div>
+
+
+
+          <div class="form-button">
+            <button id="cadastrarAgendamento" type="submit">Agendar</button>
+            <button id="limparForm">Limpar</button>
+          </div>
+
+        </div>
       </form>
     </div>
   </div>
