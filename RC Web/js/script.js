@@ -63,7 +63,11 @@ function logar(){
     var login = document.getElementById('nome').value;
     var senha = document.getElementById('email').value;
 
-    if(login == "Teste" && senha == "Teste"){
+    if(login == "tecnico" && senha == "tecnico"){
+        alert('Sucesso');
+        location.href = "./agendatecnico.html";
+    }
+    else if(login == "adm" && senha == "adm"){
         alert('Sucesso');
         location.href = "./clientes.html";
     }
