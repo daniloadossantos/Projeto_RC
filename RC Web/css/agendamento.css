@@ -3,31 +3,18 @@
     display: flex;
 }
 
-.calendario {
-  display: flex;
-  flex-wrap: wrap;
+.select-container {
+  margin-bottom: 20px;
 }
 
-.calendario div {
-  flex: 0 0 calc(100% / 7);
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  text-align: center;
-  cursor: pointer;
+.select-container label {
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-.calendario div:hover {
-  background-color: #f0f0f0;
-}
-
-.popup {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  max-height: 150px;
-  overflow-y: auto;
-  z-index: 1;
-  color:#34333d;
+.select-container select {
+  padding: 5px;
+  border-radius: 5px;
 }
 
 #lista-clientes,
