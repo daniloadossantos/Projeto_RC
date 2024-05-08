@@ -417,8 +417,6 @@ updateTable();
 const searchByName = () => {
   const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
   const dbRcarcondicionado = readCliente();
-
-
   const filteredList = dbRcarcondicionado.filter(cliente => {
     return cliente.nome.toLowerCase().includes(searchTerm);
   });
