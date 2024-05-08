@@ -1,3 +1,5 @@
+const modal = document.getElementById('cadastro-form-servico');
+
 const openForm = () => {
 	document.getElementById('cadastro-form-servico').classList.add('active');
 	modal.classList.add('active');
@@ -87,6 +89,9 @@ const clearFields = () => {
 const clearModal = () => {
     clearFields();
 	document.getElementById('tipo-servico').value = '';
+	document.getElementById('quantidade').value = '';
+	document.getElementById('nome').value = '';
+	document.getElementById('nomeTecnico').value = '';
 }
 
 document.getElementById('limparForm').addEventListener('click', clearModal);
@@ -98,32 +103,56 @@ const geradorId = (index) => {
 }
 
 const saveServico = () => {
-	if(isValidFields()){
+	if (isValidFields()) {
+		const tipoServico = document.getElementById('tipo-servico').value;
+		const quantidade = parseInt(document.getElementById('quantidade').value);
 		const servico = {
-		  numId: gerarNumeroUnico(),
-		  nome: document.getElementById('nome').value,
-		  tipoServico: document.getElementById('tipo-servico').value,
-		  descricao: document.getElementById('descricao').value,
-		  preco: document.getElementById('preco').value
+			numId: gerarNumeroUnico(),
+			nome: document.getElementById('nome').value,
+			tipoServico: tipoServico,
+			descricao: document.getElementById('descricao').value,
+			preco: calcularPreco(tipoServico, quantidade)
 		}
-		const index = document.getElementById('nome').dataset.index
-		if(index == 'new'){
-		  createServico(servico)
-		  ordenarNomes()
-		  updateTable()
-		  clearFields()
-		  closeForm()
-
-		} 
-		else{
-		  updateServico(index, servico)
-		  ordenarNomes()
-		  updateTable()
-		  closeForm()
-
+		const index = document.getElementById('nome').dataset.index;
+		if (index == 'new') {
+			createServico(servico);
+			ordenarNomes();
+			updateTable();
+			clearFields();
+			closeForm();
+		}
+		else {
+			updateServico(index, servico);
+			ordenarNomes();
+			updateTable();
+			closeForm();
 		}
 	}
 }
+
+const calcularPreco = () => {
+    const tipoServicoSelecionado = document.getElementById('tipo-servico').value;
+    const quantidade = parseInt(document.getElementById('quantidade').value);
+    const precos = {
+        "Instalação": 100,
+        "Manutenção": 120,
+        "Reparo": 80,
+        "Limpeza": 90
+    };
+
+    if (precos.hasOwnProperty(tipoServicoSelecionado)) {
+        const precoUnitario = precos[tipoServicoSelecionado];
+        const precoTotal = precoUnitario * quantidade;
+
+        document.getElementById('preco').value = precoTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+    }
+	else {
+        document.getElementById('preco').value = '';
+    }
+};
+
+document.getElementById('tipo-servico').addEventListener('change', calcularPreco);
+document.getElementById('quantidade').addEventListener('change', calcularPreco);
 
 const createRow = (servico, index) => {
 	const newRow = document.createElement('tr');
@@ -280,3 +309,26 @@ checkboxes.forEach((checkbox, index) => {
     });
 });
 
+const popularClientes = () => {
+    const clientes = JSON.parse(localStorage.getItem('db_RcClient')) || [];
+    const selectCliente = document.getElementById('nome');
+    selectCliente.innerHTML = '<option value="">Selecione o cliente</option>';
+    clientes.forEach(cliente => {
+        const option = document.createElement('option');
+        option.value = cliente.nome;
+        option.textContent = cliente.nome;
+        selectCliente.appendChild(option);
+    });
+}
+
+const popularTecnicos = () => {
+    const tecnicos = JSON.parse(localStorage.getItem('db_rcarcondicionado')) || [];
+    const selectTecnico = document.getElementById('nomeTecnico');
+    selectTecnico.innerHTML = '<option value="">Selecione o técnico</option>';
+    tecnicos.forEach(tecnico => {
+        const option = document.createElement('option');
+        option.value = tecnico.nome;
+        option.textContent = tecnico.nome;
+        selectTecnico.appendChild(option);
+    });
+}
