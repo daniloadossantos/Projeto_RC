@@ -340,9 +340,15 @@ const isAnyCheckboxSelected = () => {
 };
 
 const toggleActionButtonsVisibility = () => {
-  const actionButtons = document.querySelectorAll('.btn_acoes');
-  for (const button of actionButtons) {
-    button.style.display = isAnyCheckboxSelected() ? 'inline-flex' : 'none';
+  const checkboxes = document.querySelectorAll('.checkbox-item');
+  for (const checkbox of checkboxes) {
+      const row = checkbox.closest('tr');
+      const actionButtons = row.querySelector('.btn_acoes');
+      if (checkbox.checked) {
+          actionButtons.style.display = 'inline-flex';
+      } else {
+          actionButtons.style.display = 'none';
+      }
   }
 };
 

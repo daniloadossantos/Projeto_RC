@@ -56,10 +56,12 @@ function validarCNPJ(cnpj) {
     // Remove caracteres não numéricos
     cnpj = cnpj.replace(/\D/g,'');
 
-    if (!cnpj || typeof cnpj !== 'string' || cnpj.length !== 14) return { valido: false, numero: cnpj }; // Verifica se o CNPJ tem 14 dígitos
+    if (!cnpj || typeof cnpj !== 'string' || cnpj.length !== 14) 
+      return alert("CPF/CNPJ inválido. Tente novamente!"); // Verifica se o CNPJ tem 14 dígitos}
 
     // Verifica se todos os caracteres são iguais
-    if (/^(\d)\1{13}$/.test(cnpj)) return { valido: false, numero: cnpj };
+    else if (/^(\d)\1{13}$/.test(cnpj)) 
+      return alert("CPF/CNPJ inválido. Tente novamente!");
 
     // Calcula o primeiro dígito verificador
     let tamanho = cnpj.length - 2;
@@ -103,7 +105,7 @@ function validarDocumento(numeroString) {
     // Verifica o número de dígitos
     if (isNaN(numero) || numeroString.length !== 11 && numeroString.length !== 14) {
         // Se o número não puder ser convertido para um número válido ou não tiver o tamanho adequado, retorna false
-        return { valido: false, numero: numeroString };
+        return alert("CPF/CNPJ inválido. Tente novamente!") /*{ valido: false, numero: numeroString };*/
     } else if (numeroString.length === 11) {
         // Se tiver 11 dígitos, chama a função para validar CPF
         return { valido: true, numero: validarCPF(numero.toString()) };
@@ -240,6 +242,8 @@ const refreshTable = () => {
   updateTable()
   const input = document.querySelector('.campo_pesquisa')
   input.value = ""
+  pessoaFisicaFilter.checked = false;
+  pessoaJuridicaFilter.checked = false;
 }
 
 const ordenarNomes = () => {
@@ -316,6 +320,7 @@ const createRow = (cliente, index) => {
     <td>${cliente.cpf}</td>
     <td>${cliente.telefone1}<br>${cliente.telefone2}</td>
     <td>${cliente.rua}, ${cliente.numero} ${cliente.bairro}, ${cliente.cidade}-${cliente.estado} ${cliente.complemento} ${cliente.cep}</td>
+
     <td><div class="btn_crud btn_acoes" >
     <button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
     <button id="agenda-${index}" class="btn_crud btn_agenda" type="button"</button>
@@ -354,7 +359,7 @@ const editCliente = (index) => {
 }
 const agendaCliente = (index) => {
   const cliente = readCliente()[index]
-  window.location.href = "http://127.0.0.1:5500/RC%20Web/agendamento.html"
+  window.location.href = "http://127.0.0.1:5500/agendamento.html"
   
 }
 
@@ -389,10 +394,16 @@ const isAnyCheckboxSelected = () => {
 };
 
 const toggleActionButtonsVisibility = () => {
-  const actionButtons = document.querySelectorAll('.btn_acoes');
-  for (const button of actionButtons) {
-    button.style.display = isAnyCheckboxSelected() ? 'inline-flex' : 'none';
-  }
+    const checkboxes = document.querySelectorAll('.checkbox-item');
+    for (const checkbox of checkboxes) {
+        const row = checkbox.closest('tr');
+        const actionButtons = row.querySelector('.btn_acoes');
+        if (checkbox.checked) {
+            actionButtons.style.display = 'inline-flex';
+        } else {
+            actionButtons.style.display = 'none';
+        }
+    }
 };
 
 const updateTable = () => {
@@ -483,9 +494,8 @@ const filterByPersonType = () => {
 
     cpfInputs.forEach(row => {
         const cpf = row.querySelector('td:nth-child(5)').innerText;
-		console.log(cpf)
-		const cpfSemFormatacao = cpf.replace(/\D/g, '');
-		console.log(cpfSemFormatacao)
+		  const cpfSemFormatacao = cpf.replace(/\D/g, '');
+		
 
         if(pessoaFisicaFilter.checked && cpfSemFormatacao.length == 11){
 			row.style.display = '';

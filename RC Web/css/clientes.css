@@ -44,8 +44,7 @@ th, td {
 }
 
 .hidden{
-  opacity: 0;
-  z-index: -5;
+  display: none;
 }
 .cabecalho_tabela_cliente :first-child{
   width:20px;
