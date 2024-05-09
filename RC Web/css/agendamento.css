@@ -136,11 +136,11 @@ th, td {
   justify-content: space-between;
   padding: 1rem;
 }
-.input-box{
+/*.input-box{
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-}
+}*/
 .cadastro-form-body input{
 width: 320px;
 padding: 0.5rem 1rem;
@@ -178,3 +178,81 @@ margin: .2rem;
   transform: scale(0.95);
   color:#bab6e8;
 }
+
+#seletor-ano select,
+#seletor-mes select,
+#dia,
+#horario {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#seletor-ano select,
+#seletor-mes select {
+  height: 40px;
+}
+
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: calc(100% - 22px); /* Subtraia a largura do ícone de seleção do tamanho total */
+  height: 40px !important; /* Define a altura para 40px */
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-box label {
+  margin-bottom: 5px;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.input-box select {
+  cursor: pointer;
+}
+
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 460px !important; /* Defina a largura desejada */
+  height: 40px !important; /* Define a altura para 40px */
+}
+
+/* Adicione a propriedade 'box-sizing' para garantir que o padding e a borda não aumentem a largura */
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado,
+.input-box input[type="text"][readonly],
+.input-box input[type="text"][readonly]:focus,
+.input-box input[type="text"][readonly]:hover,
+.input-box select[readonly],
+.input-box select[readonly]:focus,
+.input-box select[readonly]:hover {
+  box-sizing: border-box;
+}
+
+#nome,
+#nomeTecnico {
+  width: 460px !important; /* Defina a largura desejada */
+}
+
