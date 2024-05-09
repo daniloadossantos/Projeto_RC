@@ -1,6 +1,6 @@
 /*FORMULÁRIO*/
-.sides-form{
-    display: flex;
+.sides-form {
+  display: flex;
 }
 
 .select-container {
@@ -19,28 +19,32 @@
 
 #lista-clientes,
 #lista-tecnicos {
-  max-height: 200px; /* Defina a altura máxima da lista conforme necessário */
-  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando a lista for maior do que a altura máxima */
+  max-height: 200px;
+  /* Defina a altura máxima da lista conforme necessário */
+  overflow-y: auto;
+  /* Adiciona uma barra de rolagem vertical quando a lista for maior do que a altura máxima */
 }
 
 /*TABELA*/
-.tabela{
+.tabela {
   grid-column-start: 2;
   background-color: #e2e1ef;
   width: 100%;
   border-collapse: collapse;
 }
+
 .tabela table {
   width: 100%;
-  padding: 10px 0px ; 
+  padding: 10px 0px;
 }
 
-.tabela_tecnicos{
+.tabela_agendamento {
   max-height: 400px;
   overflow: auto;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ccc;
   padding: 3px;
 }
@@ -49,31 +53,33 @@ th, td {
   background-color: #bab6e8;
 }*/
 
-.cabecalho_tabela_agendamento{
+.cabecalho_tabela_agendamento {
   background-color: #b0b6c3;
   line-height: 2em;
 }
 
-.cabecalho_tabela_agendamento :first-child{
-  width:20px;
+.cabecalho_tabela_agendamento :first-child {
+  width: 20px;
 }
 
-.cabecalho_tabela_agendamento :nth-child(2){
-  width:70px;
+.cabecalho_tabela_agendamento :nth-child(2) {
+  width: 70px;
 }
 
-.cabecalho_tabela_agendamento :nth-child(4),.cabecalho_tabela_agendamento :nth-child(7){
-  width:120px;
+.cabecalho_tabela_agendamento :nth-child(4),
+.cabecalho_tabela_agendamento :nth-child(7) {
+  width: 120px;
 }
 
-.cabecalho_tabela_agendamento :nth-child(3), .cabecalho_tabela_agendamento :nth-child(6){
-  width:230px;
+.cabecalho_tabela_agendamento :nth-child(3),
+.cabecalho_tabela_agendamento :nth-child(6) {
+  width: 230px;
 }
 
 
 /* modal formulário */
 
-#cadastro-form-agendamento.active{
+#cadastro-form-agendamento.active {
   opacity: 1;
   z-index: 1;
   position: fixed;
@@ -82,7 +88,7 @@ th, td {
   visibility: visible;
 }
 
-#cadastro-form-agendamento{
+#cadastro-form-agendamento {
   opacity: 0;
   z-index: -1;
   top: -100%;
@@ -99,11 +105,11 @@ th, td {
   visibility: hidden;
 }
 
-#cadastro-form-agendamento p{
+#cadastro-form-agendamento p {
   margin-left: 20px;
 }
 
-.cadastro-form-header{
+.cadastro-form-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,64 +123,131 @@ th, td {
 }
 
 #form {
-    display: flex;
-    gap: 5%;
-    height: 350px;
+  display: flex;
+  gap: 5%;
+  height: 350px;
 
 }
 
 .left-side-form {
-    display: flex;
-    flex-direction: column;
-    width:90%;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
 }
 
 
-.input-group{
+.input-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 1rem;
 }
-.input-box{
+
+.input-box {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
-.cadastro-form-body input{
-width: 320px;
-padding: 0.5rem 1rem;
-margin: .2rem;
+
+.cadastro-form-body input {
+  width: 320px;
+  padding: 0.5rem 1rem;
+  margin: .2rem;
 }
 
-.form-button{
+.form-button {
   display: flex;
   gap: 40px;
   margin: 30px 0px 20px 20px;
 }
-.form-button button{
+
+.form-button button {
   width: 120px;
   height: 40px;
 }
 
-#cadastrarAgendamento{
+#cadastrarAgendamento {
   background-color: #05b31c;
-  color:#FFF;
+  color: #FFF;
 }
 
-#cadastrarAgendamento:active{
+#cadastrarAgendamento:active {
   background-color: #ffffff;
   transform: scale(0.95);
-  color:#05b31c;
+  color: #05b31c;
 }
 
-#limparForm{
+#limparForm {
   background-color: #bab6e8;
-  color:#FFF;
+  color: #FFF;
 }
 
-#limparForm:active{
+#limparForm:active {
   background-color: #ffffff;
   transform: scale(0.95);
-  color:#bab6e8;
+  color: #bab6e8;
+}
+
+/* Estilos para a div de erro */
+#error-message {
+  display: none;
+  justify-content: center;
+  line-height: 1.5em;
+  width: 300px;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  align-items: center;
+  background-color: #ffcccc;
+  border: 1px solid #ff0000;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Estilos para o botão "ok" */
+.error-button {
+  background-color: #ff0000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para a div de confirmação */
+
+#confirmation-message {
+  display:block;
+  visibility: hidden;
+  line-height: 1.5em;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  border: 1px solid #333;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index:100;
+}
+
+/* Estilos para os botões "Sim" e "Não" */
+.confirmation-button {
+  background-color: #333;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
 }
