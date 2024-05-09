@@ -76,6 +76,122 @@
 			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 		}
 		
+		//Criar tabela Serviços
+		$tb = "SERVICOS";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				tipo		VARCHAR(20) NOT NULL,
+				descricao	VARCHAR(70) NOT NULL,
+				preco		DECIMAL 	NOT NULL,
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
+		//Criar tabela Técnicos
+		$tb = "TECNICOS";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				nome		VARCHAR(45) NOT NULL,
+				cpf			VARCHAR(11) NOT NULL,
+				preco		DECIMAL 	NOT NULL,
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
+		//Criar tabela Atendente
+		$tb = "ATENDENTE";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				nome		VARCHAR(45) NOT NULL,
+				cpf			VARCHAR(11) NOT NULL
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
+		//Criar tabela Agendamentos
+		$tb = "AGENDAMENTOS";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				data		DATE 		NOT NULL
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
+		
+		//Criar tabela Execucoes
+		$tb = "EXECUCOES";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				data		DATE 		NOT NULL
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
+		
+		//Criar tabela Confirmacoes
+		$tb = "CONFIRMACOES";
+		try 
+		{	
+			$criatb = 
+			"CREATE TABLE IF NOT EXISTS $db.$tb (
+				cod			INT(6)      NOT NULL UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+				data		DATETIME	NULL,
+				obs			VARCHAR(140)NULL		
+			)
+			ENGINE=InnoDB DEFAULT CHARSET=latin1";     
+			$conectar->exec($criatb);          
+			echo "<p>CREATE TABLE $tb -> OK!</p>"; 
+		} 
+		catch(PDOException $erro)
+		{ 
+			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
+		}
+		
 
 	}
 	$conectar = null;
