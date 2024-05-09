@@ -1,21 +1,19 @@
 <?php
 
-class Cliente 
+class Tecnico
 {
 	private int $codigo;
 	private string $nome;
 	private string $email;
 	private string $cpf;
 	private string $telefone;
-	private string $endereco;
 	
 	public function __construct(
 		int $cod, 
 		string $nome, 
 		string $email, 
 		string $cpf, 
-		string $telefone, 
-		string $endereco
+		string $telefone
 	)
 	{
 		$this->codigo = $cod;
@@ -23,7 +21,6 @@ class Cliente
 		$this->email = $email;
 		$this->cpf = $cpf;
 		$this->telefone = $telefone;
-		$this->endereco = $endereco;
 	}
 	
 	public function getCod(): int
@@ -51,20 +48,16 @@ class Cliente
 		return $this->telefone;
 	}
 	
-	public function getEnd(): string
-	{
-		return $this->endereco;
-	}
-	
 	public function show()
 	{
 		$pi = "<p>";
 		$po = "</p>";
+		var_dump($this);
 		echo $pi . $this->codigo . $po;
 		echo $pi . $this->nome . $po;
 		echo $pi . $this->email . $po;
 		echo $pi . $this->cpf . $po;
 		echo $pi . $this->telefone . $po;
-		echo $pi . $this->endereco . $po;
 	}
+
 }
