@@ -85,12 +85,12 @@
           <div class="search-container">
             <div class="input-box">
               <label for="nomeCliente">Nome do Cliente*</label>
-              <select id="nome" data-index="new" class="form-field" name="nomeCliente" onclick="popularClientes()">
+              <select id="nome" class="form-field" name="nomeCliente" onclick="popularClientes()">
                 <option value="">Selecione o cliente</option>
               </select>
               <div class="input-box">
                 <label for="nomeClienteSelecionado">Cliente Selecionado:</label>
-                <input type="text" id="nomeClienteSelecionado" data-index="new" readonly>
+                <input type="text" id="nomeClienteSelecionado" data-num-id="1" readonly>
               </div>
             </div>
 
@@ -131,6 +131,19 @@
             <select id="horario"></select>
           </div>
 
+          <div class="select-status">
+            <label for="status">Status:</label>
+            <select id="status">
+
+              <option value="Agendado">Agendado</option>
+              <option value="Cumprido">Cumprido</option>
+              <option value="Cancelado pelo cliente">Cancelado pelo cliente</option>
+              <option value="Cancelado pelo técnico">Cancelado pelo técnico</option>
+
+            </select>
+
+          </div>
+
 
 
           <div class="form-button">
@@ -143,6 +156,21 @@
     </div>
   </div>
   </section>
+
+  <div id="confirmation-message">
+    <p>Você tem certeza que deseja continuar?</p>
+    <button class="confirmation-button" onclick="esconderDiv('confirmation-message')" value="Sim">Sim</button>
+    <button class="confirmation-button" onclick="esconderDiv('confirmation-message')" value="Não">Não</button>
+  </div>
+
+  <div id="error-message">
+    <p>Oops! Ocorreu um erro no preenchimento do formulário.</p>
+    <button class="error-button" onclick="esconderDiv('error-message')">OK</button>
+  </div>
+
+
+
+
   </div>
   <footer>
     <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
