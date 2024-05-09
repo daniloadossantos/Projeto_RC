@@ -270,7 +270,7 @@ const createRow = (tecnico, index) => {
   newRow.innerHTML = `
     <td><input type="checkbox" id="id-${index}" class="checkbox-item" /></td>  
     <td>${tecnico.numId}</td>
-    <td>${tecnico.nome} ${tecnico.sobrenome}</td>
+    <td>${tecnico.nome}</td>
     <td>${tecnico.cpf}</td>
     <td>${tecnico.telefone1}<br>${tecnico.telefone2}</td>
     <td>${tecnico.email}</td>
@@ -283,6 +283,22 @@ const createRow = (tecnico, index) => {
 const clearTable = () => {
   const rows = document.querySelectorAll('#tb_tecnico>tbody tr')
   rows.forEach(row => row.parentNode.removeChild(row))
+}
+
+const clearModal = () => {
+  clearFields();
+  document.getElementById('nome').value = '' 
+  document.getElementById('cpf').value = '' 
+  document.getElementById('tel1').value = '' 
+  document.getElementById('tel2').value = '' 
+  document.getElementById('email').value = '' 
+  document.getElementById('cep').value = '' 
+  document.getElementById('rua').value = '' 
+  document.getElementById('numero').value = '' 
+  document.getElementById('bairro').value = '' 
+  document.getElementById('cidade').value = '' 
+  document.getElementById('estado').value = '' 
+  document.getElementById('complemento').value = '' 
 }
 
 const fillFields = (tecnico) => {

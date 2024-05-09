@@ -204,6 +204,7 @@ margin: .2rem;
   margin-bottom: 10px;
   width: calc(100% - 22px); /* Subtraia a largura do ícone de seleção do tamanho total */
   height: 40px !important; /* Define a altura para 40px */
+  background-color:#e6e8ec;
 }
 
 .input-box {
