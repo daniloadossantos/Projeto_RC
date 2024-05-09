@@ -56,10 +56,12 @@ function validarCNPJ(cnpj) {
     // Remove caracteres não numéricos
     cnpj = cnpj.replace(/\D/g,'');
 
-    if (!cnpj || typeof cnpj !== 'string' || cnpj.length !== 14) return { valido: false, numero: cnpj }; // Verifica se o CNPJ tem 14 dígitos
+    if (!cnpj || typeof cnpj !== 'string' || cnpj.length !== 14) 
+      return alert("CPF/CNPJ inválido. Tente novamente!"); // Verifica se o CNPJ tem 14 dígitos}
 
     // Verifica se todos os caracteres são iguais
-    if (/^(\d)\1{13}$/.test(cnpj)) return { valido: false, numero: cnpj };
+    else if (/^(\d)\1{13}$/.test(cnpj)) 
+      return alert("CPF/CNPJ inválido. Tente novamente!");
 
     // Calcula o primeiro dígito verificador
     let tamanho = cnpj.length - 2;
@@ -97,20 +99,19 @@ function validarCNPJ(cnpj) {
 
 // Função para validar CPF ou CNPJ e formatar
 function validarDocumento(numeroString) {
-    
+    // Remove caracteres não numéricos e converte para número
+    const numero = parseInt(numeroString.replace(/\D/g, ''));
 
     // Verifica o número de dígitos
     if (isNaN(numero) || numeroString.length !== 11 && numeroString.length !== 14) {
-        // Se o número não puder ser convertido para um número válido ou não tiver o tamanho adequado, retorna falso
-        return alert("Número de documento inválido.");
-        // Remove caracteres não numéricos e converte para número
-    let numero = parseInt(numeroString.replace(/\D/g,''));
+        // Se o número não puder ser convertido para um número válido ou não tiver o tamanho adequado, retorna false
+        return alert("CPF/CNPJ inválido. Tente novamente!") /*{ valido: false, numero: numeroString };*/
     } else if (numeroString.length === 11) {
         // Se tiver 11 dígitos, chama a função para validar CPF
-        return validarCPF(numero.toString());
+        return { valido: true, numero: validarCPF(numero.toString()) };
     } else {
         // Se tiver 14 dígitos, chama a função para validar CNPJ
-        return validarCNPJ(numero.toString());
+        return { valido: true, numero: validarCNPJ(numero.toString()) };
     }
 }
 
@@ -241,6 +242,8 @@ const refreshTable = () => {
   updateTable()
   const input = document.querySelector('.campo_pesquisa')
   input.value = ""
+  pessoaFisicaFilter.checked = false;
+  pessoaJuridicaFilter.checked = false;
 }
 
 const ordenarNomes = () => {
@@ -273,41 +276,39 @@ const geradorId = (index) => {
 }
 
 const saveCliente = () => {
-  if (isValidFields()){
-    const cliente = {
-      numId: gerarNumeroUnico(),
-      nome: document.getElementById('nome').value.trim(),
-      nome_repres: document.getElementById('nome_repres').value.trim(),
-      cpf: validarDocumento(document.getElementById('cpf').value),
-      telefone1: formatarTelefone( document.getElementById('tel1').value),
-      telefone2: formatarTelefone(document.getElementById('tel2').value),
-      email: document.getElementById('email').value.trim(),
-      rua: document.getElementById('rua').value,
-      cep: document.getElementById('cep').value,
-      numero: document.getElementById('numero').value,
-      bairro: document.getElementById('bairro').value,
-      cidade: document.getElementById('cidade').value,
-      estado: document.getElementById('estado').value,
-      complemento: document.getElementById('complemento').value
+    if (isValidFields()) {
+        const cliente = {
+            numId: gerarNumeroUnico(),
+            nome: document.getElementById('nome').value.trim(),
+            nome_repres: document.getElementById('nome_repres').value.trim(),
+            cpf: validarDocumento(document.getElementById('cpf').value).numero,
+            telefone1: formatarTelefone(document.getElementById('tel1').value),
+            telefone2: formatarTelefone(document.getElementById('tel2').value),
+            email: document.getElementById('email').value.trim(),
+            rua: document.getElementById('rua').value,
+            cep: document.getElementById('cep').value,
+            numero: document.getElementById('numero').value,
+            bairro: document.getElementById('bairro').value,
+            cidade: document.getElementById('cidade').value,
+            estado: document.getElementById('estado').value,
+            complemento: document.getElementById('complemento').value
+        };
+        const index = document.getElementById('nome').dataset.index;
+        if (index == 'new') {
+            createCliente(cliente);
+            ordenarNomes();
+            updateTable();
+            clearFields();
+            clearCepForm();
+            closeForm();
+        } else {
+            updateCliente(index, cliente);
+            ordenarNomes();
+            updateTable();
+            closeForm();
+        }
     }
-    const index = document.getElementById('nome').dataset.index
-    if (index == 'new'){
-      createCliente(cliente)
-      ordenarNomes()
-      updateTable()
-      clearFields()
-      clearCepForm()
-      closeForm()
-
-    } else{
-      updateCliente(index, cliente)
-      ordenarNomes()
-      updateTable()
-      closeForm()
-    
-    }
-  }
-}
+};
 
 const createRow = (cliente, index) => {
   const newRow = document.createElement('tr')
@@ -319,6 +320,7 @@ const createRow = (cliente, index) => {
     <td>${cliente.cpf}</td>
     <td>${cliente.telefone1}<br>${cliente.telefone2}</td>
     <td>${cliente.rua}, ${cliente.numero} ${cliente.bairro}, ${cliente.cidade}-${cliente.estado} ${cliente.complemento} ${cliente.cep}</td>
+
     <td><div class="btn_crud btn_acoes" >
     <button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
     <button id="agenda-${index}" class="btn_crud btn_agenda" type="button"</button>
@@ -357,7 +359,7 @@ const editCliente = (index) => {
 }
 const agendaCliente = (index) => {
   const cliente = readCliente()[index]
-  window.location.href = "http://127.0.0.1:5500/RC%20Web/agendamento.html"
+  window.location.href = "http://127.0.0.1:5500/agendamento.html"
   
 }
 
@@ -392,10 +394,16 @@ const isAnyCheckboxSelected = () => {
 };
 
 const toggleActionButtonsVisibility = () => {
-  const actionButtons = document.querySelectorAll('.btn_acoes');
-  for (const button of actionButtons) {
-    button.style.display = isAnyCheckboxSelected() ? 'inline-flex' : 'none';
-  }
+    const checkboxes = document.querySelectorAll('.checkbox-item');
+    for (const checkbox of checkboxes) {
+        const row = checkbox.closest('tr');
+        const actionButtons = row.querySelector('.btn_acoes');
+        if (checkbox.checked) {
+            actionButtons.style.display = 'inline-flex';
+        } else {
+            actionButtons.style.display = 'none';
+        }
+    }
 };
 
 const updateTable = () => {
@@ -417,8 +425,6 @@ updateTable();
 const searchByName = () => {
   const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase(); 
   const dbRcarcondicionado = readCliente();
-
-
   const filteredList = dbRcarcondicionado.filter(cliente => {
     return cliente.nome.toLowerCase().includes(searchTerm);
   });
@@ -479,3 +485,37 @@ document.getElementById('btn_search').addEventListener('click', (event) => {
   event.preventDefault();
   searchByName(); 
 });
+
+//filtro de pf ou pj
+const filterByPersonType = () => {
+    const pessoaFisicaFilter = document.getElementById('pessoaFisicaFilter');
+    const pessoaJuridicaFilter = document.getElementById('pessoaJuridicaFilter');
+    const cpfInputs = document.querySelectorAll('#tb_cliente tbody tr');
+
+    cpfInputs.forEach(row => {
+        const cpf = row.querySelector('td:nth-child(5)').innerText;
+		  const cpfSemFormatacao = cpf.replace(/\D/g, '');
+		
+
+        if(pessoaFisicaFilter.checked && cpfSemFormatacao.length == 11){
+			row.style.display = '';
+		}
+		else if(pessoaJuridicaFilter.checked && cpfSemFormatacao.length == 14){
+			row.style.display = '';
+		}
+		else if(!pessoaFisicaFilter.checked && !pessoaJuridicaFilter.checked) {
+            row.style.display = ''; 
+        }
+		else{
+            row.style.display = 'none';
+        }
+    })
+};
+
+document.querySelectorAll('input[type="checkbox"][name="tipo_pessoa"]').forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+        filterByPersonType();
+    });
+});
+
+

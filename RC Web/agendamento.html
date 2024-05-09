@@ -60,6 +60,7 @@
                 <th>Data</th>
                 <th>Endereço</th>
                 <th>Técnico responsável</th>
+                <th>Status</th>
                 <th></th>
               </tr>
             </thead>
@@ -80,37 +81,70 @@
 
       <form id="form">
         <div class="left-side-form">
-          <div class="search-container">
-            <h3 class="lbl_form">Cliente:</h3>
 
-            <input type="text" id="cliente" placeholder="Pesquisar cliente" oninput="pesquisarCliente(this.value)"
-              required>
-            <button type="button" onclick="togglePopup('popup-cliente')">Pesquisar</button>
-          </div>
-          <ul id="lista-clientes"></ul>
           <div class="search-container">
-            <h3 class="lbl_form">Técnico:</h3>
+            <div class="input-box">
+              <label for="nomeCliente">Nome do Cliente*</label>
+              <select id="nome" class="form-field" name="nomeCliente" onclick="popularClientes()">
+                <option value="">Selecione o cliente</option>
+              </select>
+              <div class="input-box">
+                <label for="nomeClienteSelecionado">Cliente Selecionado:</label>
+                <input type="text" id="nomeClienteSelecionado" data-num-id="1" readonly>
+              </div>
+            </div>
 
-            <input type="text" id="tecnico" placeholder="Pesquisar técnico" oninput="pesquisarTecnico(this.value)"
-              required>
-            <button type="button" onclick="togglePopup('popup-cliente')">Pesquisar</button>
+            <div class="input-box">
+              <label for="nomeTecnico">Nome do Técnico*</label>
+              <select id="nomeTecnico" name="nomeTecnico" onclick="popularTecnicos()">
+                <option value="">Selecione o técnico</option>
+              </select>
+              <div class="input-box">
+                <label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>
+                <input type="text" id="nomeTecnicoSelecionado" readonly>
+              </div>
+            </div>
           </div>
-          <ul id="lista-tecnicos"></ul>
         </div>
-
         <div class="right-side-form">
 
-          <div id="seletor-ano">
-            <label for="ano">Ano:</label>
-            <select id="ano"></select>
+          <div class="seletor-mes-ano">
+
+            <div id="seletor-ano">
+              <label for="ano">Ano:</label>
+              <select id="ano"></select>
+            </div>
+
+            <div id="seletor-mes">
+              <label for="mes">Mês:</label>
+              <select id="mes"></select>
+            </div>
           </div>
 
-          <div id="seletor-mes">
-            <label for="mes">Mês:</label>
-            <select id="mes"></select>
+          <div class="select-container">
+            <label for="dia">Dia:</label>
+            <select id="dia"></select>
           </div>
-          <div id="grade-dias" class="calendario">
+
+          <div class="select-container">
+            <label for="horario">Horário:</label>
+            <select id="horario"></select>
           </div>
+
+          <div class="select-status">
+            <label for="status">Status:</label>
+            <select id="status">
+
+              <option value="Agendado">Agendado</option>
+              <option value="Cumprido">Cumprido</option>
+              <option value="Cancelado pelo cliente">Cancelado pelo cliente</option>
+              <option value="Cancelado pelo técnico">Cancelado pelo técnico</option>
+
+            </select>
+
+          </div>
+
+
 
           <div class="form-button">
             <button id="cadastrarAgendamento" type="submit">Agendar</button>
@@ -122,6 +156,21 @@
     </div>
   </div>
   </section>
+
+  <div id="confirmation-message">
+    <p>Você tem certeza que deseja continuar?</p>
+    <button class="confirmation-button" onclick="esconderDiv('confirmation-message')" value="Sim">Sim</button>
+    <button class="confirmation-button" onclick="esconderDiv('confirmation-message')" value="Não">Não</button>
+  </div>
+
+  <div id="error-message">
+    <p>Oops! Ocorreu um erro no preenchimento do formulário.</p>
+    <button class="error-button" onclick="esconderDiv('error-message')">OK</button>
+  </div>
+
+
+
+
   </div>
   <footer>
     <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
