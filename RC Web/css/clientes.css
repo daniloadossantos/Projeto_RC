@@ -1,0 +1,199 @@
+/* Estilos para a página de clientes*/
+.tabela{
+  grid-column-start: 2;
+  background-color: #e2e1ef;
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela table {
+  width: 100%;
+  padding: 10px 0px ; 
+}
+
+.tabela_clientes{
+  max-height: 400px;
+  overflow: auto;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+
+.cabecalho_tabela_cliente{
+  background-color: #b0b6c3;
+  line-height: 2em;
+}
+.pesquisa{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+}
+
+.radio_pessoa_filter{
+  display: flex;
+  align-items: center;
+}
+.radio_pessoa_filter label{
+  width: 90px;
+}
+#pessoaFisicaFilter,
+#pessoaJuridicaFilter{
+  width: 15px;
+  margin: 0;
+}
+
+.hidden{
+  display: none;
+}
+.cabecalho_tabela_cliente :first-child{
+  width:20px;
+}
+
+.cabecalho_tabela_cliente :nth-child(3){
+  width:220px;
+}
+
+.cabecalho_tabela_cliente :nth-child(2){
+  width: 60px;
+}
+.cabecalho_tabela_cliente :nth-child(4), .cabecalho_tabela_cliente :nth-child(5),.cabecalho_tabela_cliente :nth-child(6){
+  width:160px;
+}
+
+
+
+/* modal formulário cliente */
+
+#cadastro-form-cliente.active{
+  opacity: 1;
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  visibility: visible;
+}
+
+#cadastro-form-cliente{
+  opacity: 0;
+  z-index: -1;
+  top: -100%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #34333d;
+  width: 800px;
+  max-width: 90%;
+  height: 450px;
+  border-radius: .5rem;
+  padding: 2.5%;
+  color: #ffffff;
+  visibility: hidden;
+}
+
+#cadastro-form-cliente p{
+  margin-left: 20px;
+}
+
+.cadastro-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.radio_pessoa{
+display: block;
+width: 100%;
+padding-bottom: 20px;
+}
+.radio_pessoa label{
+  width: 150px;
+  margin-right: 30px;
+}
+#pessoaFisica,
+#pessoaJuridica{
+  width: 15px;
+  height: 15px;
+  margin: 0px 5px;
+}
+
+.cadastro-form-body form{
+  overflow-y: auto;
+  height: 330px;
+}
+.input-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.cep-form-field:disabled{
+  background-color: #e6e8ec;
+  color: #34333d;
+}
+
+.cadastro-form-body input,
+.form-select{
+width: 320px;
+padding: 0.5rem 1rem;
+margin: .2rem;
+}
+
+.form-button{
+  display: flex;
+  gap: 40px;
+  margin: 10px 0px 20px 20px;
+}
+.form-button button{
+  width: 120px;
+  height: 40px;
+}
+.espaco_form{
+  width: 100%;
+  height: 20px;
+  background-color:#b0b6c3;
+  margin: 20px 0px;
+  padding: 10px 0;
+  color: #34333dad;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.form-select{
+  width: 356px;
+}
+
+#cadastrarCliente{
+  background-color: #05b31c;
+  color:#FFF;
+}
+
+#cadastrarCliente:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#05b31c;
+}
+
+#limparForm{
+  background-color: #bab6e8;
+  color:#FFF;
+}
+
+#limparForm:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#bab6e8;
+}
+
+
+
+
