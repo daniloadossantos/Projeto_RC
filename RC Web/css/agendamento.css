@@ -1,0 +1,289 @@
+/*FORMULÁRIO*/
+.sides-form{
+    display: flex;
+}
+
+.select-container {
+  margin-bottom: 20px;
+}
+
+.select-container label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.select-container select {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#lista-clientes,
+#lista-tecnicos {
+  max-height: 200px; /* Defina a altura máxima da lista conforme necessário */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando a lista for maior do que a altura máxima */
+}
+
+/*TABELA*/
+.tabela{
+  grid-column-start: 2;
+  background-color: #e2e1ef;
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela table {
+  width: 100%;
+  padding: 10px 0px ; 
+}
+
+.tabela_tecnicos{
+  max-height: 400px;
+  overflow: auto;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 3px;
+}
+
+/*.tabela tbody tr:nth-child(even){
+  background-color: #bab6e8;
+}*/
+
+.cabecalho_tabela_agendamento{
+  background-color: #b0b6c3;
+  line-height: 2em;
+}
+
+.cabecalho_tabela_agendamento :first-child{
+  width:20px;
+}
+
+.cabecalho_tabela_agendamento :nth-child(2){
+  width:70px;
+}
+
+.cabecalho_tabela_agendamento :nth-child(4),.cabecalho_tabela_agendamento :nth-child(7){
+  width:120px;
+}
+
+.cabecalho_tabela_agendamento :nth-child(3), .cabecalho_tabela_agendamento :nth-child(6){
+  width:230px;
+}
+
+
+/* modal formulário */
+#cadastro-form-agendamento.active {
+  box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
+  border: 7.5px solid #201a2e;
+  border-style: double; /* a dashed tbm é legal */
+}
+#cadastro-form-agendamento.active{
+  opacity: 1;
+  z-index: 10;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  visibility: visible;
+}
+
+#cadastro-form-agendamento{
+  opacity: 0;
+  z-index: -1;
+  top: -100%;
+  left: -100%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: #34333d;
+  width: 800px;
+  max-width: 90%;
+  height: 500px;
+  border-radius: .5rem;
+  padding: 2.5%;
+  color: #ffffff;
+  visibility: hidden;
+}
+
+#cadastro-form-agendamento p{
+  margin-left: 20px;
+}
+
+.cadastro-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.cadastro-form-body {
+  box-sizing: content-box;
+}
+
+#form {
+    display: flex;
+    gap: 5%;
+    height: 350px;
+
+}
+
+.left-side-form {
+    display: flex;
+    flex-direction: column;
+    width:90%;
+}
+
+
+.input-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+}
+/*.input-box{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}*/
+.cadastro-form-body input{
+width: 320px;
+padding: 0.5rem 1rem;
+margin: .2rem;
+}
+
+.form-button{
+  display: flex;
+  gap: 40px;
+  margin: 30px 0px 20px 20px;
+}
+.form-button button{
+  width: 120px;
+  height: 40px;
+}
+
+#cadastrarAgendamento{
+  background-color: #05b31c;
+  color:#FFF;
+}
+
+#cadastrarAgendamento:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#05b31c;
+}
+
+#limparForm{
+  background-color: #bab6e8;
+  color:#FFF;
+}
+
+#limparForm:active{
+  background-color: #ffffff;
+  transform: scale(0.95);
+  color:#bab6e8;
+}
+
+#seletor-ano select,
+#seletor-mes select,
+#dia,
+#horario {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#seletor-ano select,
+#seletor-mes select {
+  height: 40px;
+}
+
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado {
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 0 !important;
+  width: calc(100% - 22px); /* Subtraia a largura do ícone de seleção do tamanho total */
+  height: 40px !important;
+  background-color: #a1a6a6;
+  border: 2px solid #2e2e2e;
+  border-radius: 5px;
+}
+
+#nomeClienteSelecionado::placeholder,
+#nomeTecnicoSelecionado::placeholder{
+    color: #4b5059;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-box label {
+  margin-bottom: 5px;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.input-box select {
+  cursor: pointer;
+}
+
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: 460px !important; /* Defina a largura desejada */
+  height: 40px !important; /* Define a altura para 40px */
+}
+
+/* Adicione a propriedade 'box-sizing' para garantir que o padding e a borda não aumentem a largura */
+#nomeClienteSelecionado,
+#nomeTecnicoSelecionado,
+.input-box input[type="text"][readonly],
+.input-box input[type="text"][readonly]:focus,
+.input-box input[type="text"][readonly]:hover,
+.input-box select[readonly],
+.input-box select[readonly]:focus,
+.input-box select[readonly]:hover {
+  box-sizing: border-box;
+}
+
+#nome,
+#nomeTecnico {
+  width: 460px !important; /* Defina a largura desejada */
+}
+
+#status {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer; /* Adicionei o cursor pointer para indicar que é clicável */
+  background-color: #e6e8ec; /* Cor de fundo */
+}
+
+#status:focus {
+  outline: none; /* Remover a borda de foco ao selecionar */
+}
+
+/* Adicione a propriedade 'box-sizing' para garantir que o padding e a borda não aumentem a largura */
+#status,
+#status:focus,
+#status:hover {
+  box-sizing: border-box;
+}

@@ -57,3 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
     // Exibir os agendamentos do dia ao carregar a página
     exibirAgendamentosDoDia();
 });
+
+// Função teste de login
+function logar(){
+    var login = document.getElementById('nome').value;
+    var senha = document.getElementById('email').value;
+
+    if(login == "tecnico" && senha == "tecnico"){
+        alert('Sucesso');
+        location.href = "./agendatecnico.html";
+    }
+    else if(login == "adm" && senha == "adm"){
+        alert('Sucesso');
+        location.href = "./clientes.html";
+    }
+    else{
+        alert('Usuario ou senha incorreta');
+    }
+}
