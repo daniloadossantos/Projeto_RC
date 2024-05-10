@@ -2,11 +2,11 @@
 
 class Agendamento 
 {
-	private int $codigo;
-	private String $nomeCliente;
-	private string $data;
-	private string $endereco;
-	private string $tecnico;
+	public int $codigo;
+	public String $nomeCliente;
+	public string $data;
+	public string $endereco;
+	public string $tecnico;
 	
 	public function __construct(
 		int $codigo,
@@ -23,30 +23,30 @@ class Agendamento
 		$this->tecnico = $tecnico;
 	}
 	
-	public function getCodigo(): int
-	{
-		return $this->codigo;
-	}
+	// public function getCodigo(): int
+	// {
+		// return $this->codigo;
+	// }
 	
-	public function getNomeCliente(): string
-	{
-		return $this->nomeCliente;
-	}
+	// public function getNomeCliente(): string
+	// {
+		// return $this->nomeCliente;
+	// }
 	
-	public function getData(): string
-	{
-		return $this->data;
-	}
+	// public function getData(): string
+	// {
+		// return $this->data;
+	// }
 	
-	public function getEndereco(): string
-	{
-		return $this->endereco;
-	}
+	// public function getEndereco(): string
+	// {
+		// return $this->endereco;
+	// }
 	
-	public function getTecnico(): string
-	{
-		return $this->tecnico;
-	}
+	// public function getTecnico(): string
+	// {
+		// return $this->tecnico;
+	// }
 	
 	public function show()
 	{

@@ -1,7 +1,5 @@
 <?php 
-	require('./db/conectar_db.php');
-	
-	
+	require('./php/db/conectar_db.php');
 	
 	if($conectar){
 		if(false)
@@ -59,7 +57,7 @@
 				cod			INT(6)      UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 				nome		VARCHAR(70) NOT NULL,
 				email		VARCHAR(30) NOT NULL,
-				cpf_cpnj	VARCHAR(14) NOT NULL,
+				cpf_cnpj	VARCHAR(14) NOT NULL,
 				tel			VARCHAR(14) NOT NULL,
 				cep			CHAR(9)		NOT NULL,
 				end_nro		INT 		NOT NULL,
@@ -228,17 +226,17 @@
 		{ 
 			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 		}
-		/*
+		
 		//Criar tabela Orçamentos
 		$tb = "ORCAMENTOS";
 		try 
 		{	
 			$criatb = 
 			"CREATE TABLE IF NOT EXISTS $db.$tb (
-				cod				INT(6)      NOT NULL UNSIGNED, 
-				cod_aprova		INT(6)		NOT NULL UNSIGNED,
-				cod_catalog		INT(6) 		NOT NULL UNSIGNED,
-				cod_serv		INT(6)		NOT NULL UNSIGNED,
+				cod				INT(6)  UNSIGNED    NOT NULL, 
+				cod_aprova		INT(6)	UNSIGNED	NOT NULL,
+				cod_catalog		INT(6)  UNSIGNED	NOT NULL,
+				cod_serv		INT(6)	UNSIGNED	NOT NULL,
 				data			DATETIME	NOT NULL,
 				descricao		VARCHAR(100) NULL,
 				CONSTRAINT PK_$tb PRIMARY KEY (cod, cod_aprova, cod_catalog, cod_serv),
@@ -260,15 +258,15 @@
 		{	
 			$criatb = 
 			"CREATE TABLE IF NOT EXISTS $db.$tb (
-				cod				INT(6)		NOT NULL UNSIGNED,
-				cod_cliente		INT(6)      NOT NULL UNSIGNED,
-				cod_servico		INT(6)		NOT NULL UNSIGNED,
-				cod_atendent	INT(6) 		NOT NULL UNSIGNED,
-				cod_tecnico		INT(6) 		NOT NULL UNSIGNED,
-				cod_agenda		INT(6) 		NOT NULL UNSIGNED,
-				cod_execucoes	INT(6) 		NOT NULL UNSIGNED,
-				cod_confirma	INT(6) 		NOT NULL UNSIGNED,
-				cod_orcamento	INT(6) 		NOT NULL UNSIGNED,
+				cod				INT(6)	 UNSIGNED	NOT NULL,
+				cod_cliente		INT(6)   UNSIGNED   NOT NULL,
+				cod_servico		INT(6)	 UNSIGNED	NOT NULL,
+				cod_atendent	INT(6) 	 UNSIGNED	NOT NULL,
+				cod_tecnico		INT(6) 	 UNSIGNED	NOT NULL,
+				cod_agenda		INT(6) 	 UNSIGNED	NOT NULL,
+				cod_execucoes	INT(6) 	 UNSIGNED	NOT NULL,
+				cod_confirma	INT(6) 	 UNSIGNED	NOT NULL,
+				cod_orcamento	INT(6) 	 UNSIGNED	NOT NULL,
 				dt_realiza		DATETIME 	NULL,
 				dt_agendada		DATETIME	NULL,
 				CONSTRAINT PK_$tb PRIMARY KEY (cod),
@@ -289,7 +287,6 @@
 		{ 
 			echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 		}
-		*/
 		
 	}
 	$conectar = null;
