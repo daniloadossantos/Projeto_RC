@@ -1,5 +1,4 @@
 <?php
-require_once('./cls/cep.php');
 
 class Cliente 
 {

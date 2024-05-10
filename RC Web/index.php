@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-require_once('./db/db.php');
+require_once('./php/db/db.php');
 
 // Testes de classe
-require_once('./cls/cliente.php');
-require_once('./cls/servico.php');
-require_once('./cls/agendamento.php');
-require_once('./cls/tecnico.php');
-require_once('./cls/cep.php');
-require_once('./cls/aprovacao.php');
+require_once('./php/cls/cliente.php');
+require_once('./php/cls/servico.php');
+require_once('./php/cls/agendamento.php');
+require_once('./php/cls/tecnico.php');
+require_once('./php/cls/cep.php');
+require_once('./php/cls/aprovacao.php');
 
 // $cli = new Cliente(12, "Joao", "jo@gmail.com", "400500900-25", "11920003000", "Avenida lagod");
 // $serv = new Servico(32, "Augusto", "Manutencao", "Manutencao de ar-condicionado", 89.56);

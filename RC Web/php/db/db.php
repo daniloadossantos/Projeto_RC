@@ -1,7 +1,7 @@
 <?php
 //session_start();
-require_once('./cls/cliente.php');
-require_once('./cls/cep.php');
+require_once('./php/cls/cliente.php');
+require_once('./php/cls/cep.php');
 
 
 class DB 

@@ -1,5 +1,5 @@
 <?php 
-	require('./db/conectar.php');
+	require('./php/db/conectar.php');
 	if($conectar){
 		try {
 			$criadb = "CREATE DATABASE $db";

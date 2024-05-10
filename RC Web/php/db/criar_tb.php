@@ -1,5 +1,5 @@
 <?php 
-	require('./db/conectar_db.php');
+	require('./php/db/conectar_db.php');
 	
 	if($conectar){
 		if(false)
