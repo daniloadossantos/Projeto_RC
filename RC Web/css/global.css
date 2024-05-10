@@ -20,7 +20,7 @@ li{
 }
 .grid {
   display: grid;
-  height: 95vh;
+  height: 100vh;
 }
 .grid-template-row{
   grid-template-columns: 100px auto;
