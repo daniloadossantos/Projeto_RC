@@ -54,10 +54,11 @@
 			  <tr class="cabecalho_tabela_servicos">
 				<th>🗹</th> 
 				<th>ID</th>
-				<th>Nome do Cliente</th>
+				<th>Cliente</th>
 				<th>Tipo de Serviço</th>
 				<th>Descrição do Serviço</th>
 				<th>Valor do Serviço</th>
+				<th>Técnico</th>
 				<th></th>
 			</tr>
 			</thead>
@@ -77,23 +78,22 @@
 		<form id = "form">
 		  <div class="input-group">
 			<div class="input-box">
-				<!--<label for="nome">Nome do Cliente*</label>
-				<input type="text" id="nome" data-index="new" class="form-field" placeholder="Digite o nome do cliente" required> -->
-				<label for="nomeCliente">Nome do Cliente*</label>
-				<select id="nome" data-index="new" class="form-field" name="nomeCliente" onclick="popularClientes()" >
-					<option value="">Selecione o cliente</option>
+				<label for="idAgendamento">ID do Agendamento*</label>
+				<select id="idAgendamento" required>
+					<option value="">Selecione o ID do agendamento</option>
 				</select>
 			</div>
-			<div class="input-box">
-			<label for="nomeTecnico">Nome do Técnico*</label>
-			<select id="nomeTecnico" name="nomeTecnico" onclick="popularTecnicos()" >
-				<option value="">Selecione o técnico</option>
-			  <!-- Opções dos nomes dos técnicos serão adicionadas dinamicamente -->
-			</select>
+			<div class="input-box" class="readonly">
+				<label for="nome">Nome do Cliente</label>
+				<input type="text" id="nome" name="nome" placeholder="Cliente Solicitante" readonly>
+			</div>
+			<div class="input-box" class="readonly">
+				<label for="nomeTecnico">Nome do Técnico</label>
+				<input type="text" id="nomeTecnico" name="nomeTecnico" placeholder="Técnico Destinado" readonly>
 			</div>
 			<div class="input-box">
 			  <label for="tipo-servico" class="form-field">Tipo de Serviço*</label></td>
-                <select id="tipo-servico" required>
+                <select id="tipo-servico" name="tipo-servico" required>
 					<option value="">Selecione o tipo de serviço</option>
 					<option value="Instalação">Instalação</option>
 					<option value="Manutenção">Manutenção</option>
@@ -123,15 +123,15 @@
 			  <input type="textarea" id="descricao" rows="4" class="form-field"  placeholder="Descrição do serviço">
 			</div>
 			<div class=" input-box">
-			  <label for="preco">Preço*</label>
-			  <input type="money" id="preco" class="form-field" placeholder="Valor do serviço" maxlength="12" required>
+			  <label for="preco">Preço</label>
+			  <input type="money" id="preco" class="form-field" placeholder="Valor do serviço" maxlength="12">
 			</div>
 		  </div>
 		  <p>*preenchimento obrigatório</p>
 		  
 		  <div class="form-button">
 			<button id="cadastrarServico">Salvar Serviço</button>
-			<button id="limparForm">Limpar</button>
+			<button id="limparForm" type="button">Limpar</button>
 		  </div>
 		</form>
 	</div>

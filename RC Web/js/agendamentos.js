@@ -179,7 +179,7 @@ preencherSeletorMes();
 preencherSeletorDia();
 preencherSeletorHorario();
 
-//CRUD tecnico
+//CRUD Agendamentos
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcAgenda')) ?? []
 const setLocalStorage = (dbAgenda) => localStorage.setItem("db_rcAgenda", JSON.stringify(dbAgenda))
