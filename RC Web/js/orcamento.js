@@ -384,3 +384,96 @@ const preencherDadosAgendamento = () => {
 
 document.getElementById('idAgendamento').addEventListener('change', preencherDadosAgendamento);
 popularIdsAgendamentos();
+
+
+
+
+
+
+
+//IMPRESSÃO
+//IMPRESSÃO
+function gerarPDF() {
+	const registros = JSON.parse(localStorage.getItem('db_local')) || [];
+
+	//mapeamento doq queremos q tenha no rel
+    const dados = registros.map(servico => ({
+        nome: servico.nome,
+        tipoServico: servico.tipoServico,
+        descricao: servico.descricao,
+        preco: servico.preco,
+        nomeTecnico: servico.nomeTecnico
+    }));
+	//const logo = 'img/rc.png';
+	const conteudoPDF = {
+    content: [
+        //{ image: logo, width: 200, alignment: 'center' }, 
+        { text: 'RC REFRIGERAÇÃO E AR-CONDICIONADO', style: 'topStyle', alignment: 'center' },
+        { text: 'Registro de Serviços', style: 'header', alignment: 'center', decoration: 'underline' },
+        {
+            table: {
+                headerRows: 1,
+                widths: ['auto', 'auto', '*', 'auto', 'auto'],
+                body: [
+                    [
+                        { text: 'Cliente', style: 'tableHeader', alignment: 'center' }, 
+                        { text: 'Tipo de Serviço', style: 'tableHeader', alignment: 'center' }, 
+                        { text: 'Descrição do Serviço', style: 'tableHeader', alignment: 'center' }, 
+                        { text: 'Valor do Serviço', style: 'tableHeader', alignment: 'center' }, 
+                        { text: 'Técnico', style: 'tableHeader', alignment: 'center' }
+                    ],
+                    ...dados.map(registro => [registro.nome, registro.tipoServico, registro.descricao, registro.preco, registro.nomeTecnico])
+                ]
+            }
+        },
+        {
+        columns: [
+            [
+                { text: 'Endereço: ', bold: true }, 'Rua onde Judas perdeu as botas, 12 - bairro legal, SP\n',
+                { text: 'Telefone: ', bold: true }, '(11) 9 91111-1111\n',
+                { text: 'Email: ', bold: true }, 'emaildeles@gmail.com\n'
+            ]
+        ],
+			margin: [20, 480, 0, 0]
+        }
+    ],
+    styles: {
+        header: {
+            fontSize: 16,
+            italics: true,
+            margin: [0, 0, 0, 30]
+        },
+        topStyle: {
+            fontSize: 18,
+            bold: true,
+            margin: [0, 0, 0, 20]
+        },
+        tableHeader: {
+            bold: true,
+            fillColor: '#b0b6c3'
+        }
+    }
+};
+
+
+    pdfMake.createPdf(conteudoPDF).download('registro_servicos.pdf');
+}
+
+const botaoImprimir = document.getElementById('botao-imprimir');
+botaoImprimir.addEventListener('click', gerarPDF);
+
+/*
+//converter a img pra url pq esse ngç é chato
+function toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            callback(reader.result);
+        };
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
+}*/
