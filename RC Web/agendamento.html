@@ -78,7 +78,6 @@
       <button id="close-cadastro-form" class="close-form-agendamento"></button>
     </div>
     <div class="cadastro-form-body">
-
       <form id="form">
         <div class="left-side-form">
 
@@ -89,8 +88,8 @@
                 <option value="">Selecione o cliente</option>
               </select>
               <div class="input-box">
-                <label for="nomeClienteSelecionado">Cliente Selecionado:</label>
-                <input type="text" id="nomeClienteSelecionado" data-num-id="1" readonly>
+                <!--<label for="nomeClienteSelecionado">Cliente Selecionado:</label>-->
+                <input type="text" id="nomeClienteSelecionado" data-num-id="1" placeholder="Cliente Selecionado" for="nomeClienteSelecionado" readonly>
               </div>
             </div>
 
@@ -100,14 +99,13 @@
                 <option value="">Selecione o técnico</option>
               </select>
               <div class="input-box">
-                <label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>
-                <input type="text" id="nomeTecnicoSelecionado" readonly>
+                <!--<label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>-->
+                <input type="text" id="nomeTecnicoSelecionado" placeholder="Técnico Selecionado" for="nomeTecnicoSelecionado" readonly>
               </div>
             </div>
           </div>
         </div>
         <div class="right-side-form">
-
           <div class="seletor-mes-ano">
 
             <div id="seletor-ano">
@@ -143,8 +141,6 @@
             </select>
 
           </div>
-
-
 
           <div class="form-button">
             <button id="cadastrarAgendamento" type="submit">Agendar</button>

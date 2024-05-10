@@ -72,10 +72,14 @@ th, td {
 
 
 /* modal formulário */
-
+#cadastro-form-agendamento.active {
+  box-shadow: 0px 0px 170px rgba(232, 252, 252, 0.82);
+  border: 7.5px solid #201a2e;
+  border-style: double; /* a dashed tbm é legal */
+}
 #cadastro-form-agendamento.active{
   opacity: 1;
-  z-index: 1;
+  z-index: 10;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -92,7 +96,7 @@ th, td {
   background-color: #34333d;
   width: 800px;
   max-width: 90%;
-  height: 450px;
+  height: 500px;
   border-radius: .5rem;
   padding: 2.5%;
   color: #ffffff;
@@ -199,12 +203,18 @@ margin: .2rem;
 #nomeClienteSelecionado,
 #nomeTecnicoSelecionado {
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
   margin-bottom: 10px;
+  margin-left: 0 !important;
   width: calc(100% - 22px); /* Subtraia a largura do ícone de seleção do tamanho total */
-  height: 40px !important; /* Define a altura para 40px */
-  background-color:#e6e8ec;
+  height: 40px !important;
+  background-color: #a1a6a6;
+  border: 2px solid #2e2e2e;
+  border-radius: 5px;
+}
+
+#nomeClienteSelecionado::placeholder,
+#nomeTecnicoSelecionado::placeholder{
+    color: #4b5059;
 }
 
 .input-box {
@@ -257,3 +267,23 @@ margin: .2rem;
   width: 460px !important; /* Defina a largura desejada */
 }
 
+#status {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer; /* Adicionei o cursor pointer para indicar que é clicável */
+  background-color: #e6e8ec; /* Cor de fundo */
+}
+
+#status:focus {
+  outline: none; /* Remover a borda de foco ao selecionar */
+}
+
+/* Adicione a propriedade 'box-sizing' para garantir que o padding e a borda não aumentem a largura */
+#status,
+#status:focus,
+#status:hover {
+  box-sizing: border-box;
+}
