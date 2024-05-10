@@ -6,6 +6,8 @@ require_once('./php/cls/cep.php');
 
 class DB 
 {
+	// Path da conexao
+	private static string $path = './php/db/conectar_db.php';
 	// Nome das tabelas
 	private static string $cep = "CEP";
 	private static string $cli = "CLIENTES";
@@ -25,7 +27,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cli);
 			$res->execute();
 			$clientes = [];
@@ -59,7 +61,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "DELETE FROM $db.".DB::$cli." WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -78,7 +80,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "UPDATE $db.".DB::$cli." SET ".
 			"nome       = '".$cli->nome."', ".
 			"email      = '".$cli->email."', ".
@@ -106,7 +108,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "INSERT INTO $db.".DB::$cli.
 			"(nome, email, cpf_cnpj, tel, cep, end_nro, end_cmplto, dt_cad) VALUES (".  
 			"'".$cli->nome."', ".
@@ -135,7 +137,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cep);
 			$res->execute();
 			$ceps = [];
@@ -166,7 +168,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "DELETE FROM $db.".DB::$cep." WHERE cod = '$cod'";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -185,7 +187,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "UPDATE $db.".DB::$cep." SET ".
 			"uf        = '".$cep->uf."', ".
 			"cidade    = '".$cep->cidade."', ".
@@ -210,7 +212,7 @@ class DB
 	{
 		try
 		{
-			require('./db/conectar_db.php');
+			require(DB::$path);
 			$sql = "INSERT INTO $db.".DB::$cep.
 			"(cod, uf, cidade, bairro, logra, ender)  VALUES (".  
 			"'".$cep->cod."', ".
