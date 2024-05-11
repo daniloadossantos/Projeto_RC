@@ -195,6 +195,7 @@ const createRow = (servico, index) => {
             <div class="btn_crud btn_acoes">
                 <button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
                 <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button>
+				<button id="print-${index}" class="btn_crud btn_imprimir" type="button" data-action="print" style="display: none;"></button>
             </div>
         </td>
     `;
@@ -230,6 +231,47 @@ const editDelete = (event) => {
 		const [action, index] = event.target.id.split('-')
 		if(action == 'edit'){
 		  editServico(index)
+		}
+		else if (action == 'print') {
+			const servico = readServico()[index];
+			const conteudoPDF = {
+				content: [
+					{ text: 'RC REFRIGERAÇÃO E AR-CONDICIONADO', style: 'topStyle', alignment: 'center' },
+					{ text: `Registro de Serviço - Cliente ${servico.nome}`, style: 'header', alignment: 'center', decoration: 'underline' },
+					{
+						ul: [
+							`Técnico Responsável: ${servico.nomeTecnico}`,
+							`Tipo de Serviço: ${servico.tipoServico}`,
+							`Descrição: ${servico.descricao}`,
+							`Valor Total do Serviço: ${servico.preco}`
+						],
+						margin: [7, 15, 0, 0]
+					},
+					{
+					columns: [
+						[
+							{ text: 'Endereço: ', bold: true }, 'Rua onde Judas perdeu as botas, 12 - bairro legal, SP\n',
+							{ text: 'Telefone: ', bold: true }, '(11) 9 9111-1111\n',
+							{ text: 'Email: ', bold: true }, 'emaildeles@gmail.com\n'
+						]
+					],
+						margin: [20, 500, 0, 0]
+					}
+				],
+				styles: {
+					header: {
+					fontSize: 16,
+					italics: true,
+					margin: [0, 0, 0, 30]
+				},
+				topStyle: {
+					fontSize: 18,
+					bold: true,
+					margin: [0, 0, 0, 20]
+				}
+				}
+			};
+			pdfMake.createPdf(conteudoPDF).download(`orcamento_${servico.nome}.pdf`);
 		}
 		else {
 		  const servico = readServico()[index]  
@@ -311,7 +353,17 @@ document.getElementById('btn_search').addEventListener('click', (event) => {
 const checkboxes = document.querySelectorAll('.checkbox-item');
 const actionButtons = document.querySelectorAll('.btn_acoes');
 checkboxes.forEach((checkbox, index) => {
+	const row = checkbox.closest('tr');
+    const actionButtonsRow = row.querySelector('.btn_acoes');
+    const printButton = row.querySelector('.btn_imprimir');
     checkbox.addEventListener('change', () => {
+		if (checkbox.checked) {
+        actionButtonsRow.style.display = 'inline-flex';
+        printButton.style.display = 'inline-flex'; // Mostrar botão de imprimir
+		} else {
+			actionButtonsRow.style.display = 'none';
+			printButton.style.display = 'none'; // Ocultar botão de imprimir
+		}
         if (!checkbox.checked) {
             const row = checkbox.closest('tr');
             const actionButtonsRow = row.querySelector('.btn_acoes');
@@ -385,13 +437,6 @@ const preencherDadosAgendamento = () => {
 document.getElementById('idAgendamento').addEventListener('change', preencherDadosAgendamento);
 popularIdsAgendamentos();
 
-
-
-
-
-
-
-//IMPRESSÃO
 //IMPRESSÃO
 function gerarPDF() {
 	const registros = JSON.parse(localStorage.getItem('db_local')) || [];
