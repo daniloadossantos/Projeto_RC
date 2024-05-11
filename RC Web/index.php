@@ -10,6 +10,13 @@ require_once('./php/cls/agendamento.php');
 require_once('./php/cls/tecnico.php');
 require_once('./php/cls/cep.php');
 require_once('./php/cls/aprovacao.php');
+require_once('./php/cls/catalogo.php');
+require_once('./php/cls/confirmacoes.php');
+require_once('./php/cls/execucoes.php');
+require_once('./php/cls/orcamentos.php');
+require_once('./php/cls/servico.php');
+require_once('./php/cls/solicitacoes.php');
+
 
 // $cli = new Cliente(12, "Joao", "jo@gmail.com", "400500900-25", "11920003000", "Avenida lagod");
 // $serv = new Servico(32, "Augusto", "Manutencao", "Manutencao de ar-condicionado", 89.56);
@@ -25,9 +32,9 @@ require_once('./php/cls/aprovacao.php');
 // $cep->show();
 // $aprov->show();
 
-function view($arr){
-	foreach($arr as $key => $value)
-	{
+function view($arr)
+{
+	foreach ($arr as $key => $value) {
 		echo "<h2>$key</h2><p>";
 		print_r($value);
 		echo "</p></br>";
@@ -58,7 +65,7 @@ function hd(string $msg)
 
 // DB::insertCliente($cli);
 
-	// $clientes = DB::getClientes()??[];
+// $clientes = DB::getClientes()??[];
 // view($clientes);
 
 
@@ -77,12 +84,12 @@ $cep->cidade  = "São Paulo";
 DB::updateCEP($cep);
 
 $cep = new CEP(
-"08050-820", 
-"SP", 
-"São Paulo",
-"Jardim das Camélias",
-"Jardim",
-"Rua Madrigal da Sombra"
+	"08050-820",
+	"SP",
+	"São Paulo",
+	"Jardim das Camélias",
+	"Jardim",
+	"Rua Madrigal da Sombra"
 );
 
 hd("Teste DELETE");
@@ -93,5 +100,3 @@ view(DB::getCEPs());
 hd("Teste CREATE");
 DB::insertCEP($cep);
 view(DB::getCEPs());
-
-

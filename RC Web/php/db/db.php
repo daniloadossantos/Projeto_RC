@@ -1,5 +1,6 @@
 <?php
-//session_start();
+session_start();
+require_once('./php/db/criar_tb.php');
 require_once('./php/cls/cliente.php');
 require_once('./php/cls/cep.php');
 require_once('./php/cls/agendamento.php');
@@ -13,11 +14,11 @@ require_once('./php/cls/solicitacoes.php');
 require_once('./php/cls/tecnico.php');
 
 
-
 class DB
 {
 	// Path da conexao
 	private static string $path = './php/db/conectar_db.php';
+	private static string $db = 'rcsystem';
 	// Nome das tabelas
 	private static string $cep = "CEP";
 	private static string $cli = "CLIENTES";
@@ -37,7 +38,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$cli);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cli);
 			$res->execute();
 			$clientes = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -66,7 +67,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$cli . " WHERE cod = $index";
+			$sql = "DELETE FROM " . $db . "." . DB::$cli . " WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -80,7 +81,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$cli . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$cli . " SET " .
 				"nome       = '" . $cli->nome . "', " .
 				"email      = '" . $cli->email . "', " .
 				"cpf_cnpj   = '" . $cli->cpf_cnpj . "', " .
@@ -104,7 +105,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$cli .
+			$sql = "INSERT INTO " . $db . "." . DB::$cli .
 				"(nome, email, cpf_cnpj, tel1, tel2, cep, end_nro, end_cmplto, dt_cad) VALUES (" .
 				"'" . $cli->nome . "', " .
 				"'" . $cli->email . "', " .
@@ -129,7 +130,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$cep);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cep);
 			$res->execute();
 			$ceps = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -154,7 +155,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$cep . " WHERE cod = '$cod'";
+			$sql = "DELETE FROM " . $db . "." . DB::$cep . " WHERE cod = '$cod'";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -168,7 +169,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$cep . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$cep . " SET " .
 				"uf        = '" . $cep->uf . "', " .
 				"cidade    = '" . $cep->cidade . "', " .
 				"bairro    = '" . $cep->bairro . "', " .
@@ -188,7 +189,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$cep .
+			$sql = "INSERT INTO " . $db . "." . DB::$cep .
 				"(cod, uf, cidade, bairro, logra, ender)  VALUES (" .
 				"'" . $cep->cod . "', " .
 				"'" . $cep->uf . "', " .
@@ -211,7 +212,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$tec);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$tec);
 			$res->execute();
 			$tecnicos = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -239,7 +240,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$tec . " WHERE cod = $index";
+			$sql = "DELETE FROM " . $db . "." . DB::$tec . " WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -253,7 +254,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$tec . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$tec . " SET " .
 				"nome       = '" . $tecnico->getNome() . "', " .
 				"email      = '" . $tecnico->getEmail() . "', " .
 				"cpf        = '" . $tecnico->getCPF() . "', " .
@@ -272,7 +273,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$tec .
+			$sql = "INSERT INTO " . $db . "." . DB::$tec .
 				"(nome, email, cpf, tel) VALUES (" .
 				"'" . $tecnico->getNome() . "', " .
 				"'" . $tecnico->getEmail() . "', " .
@@ -295,7 +296,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$sol);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$sol);
 			$res->execute();
 			$solicitacoes = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -324,7 +325,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$sol . " WHERE cod_solicitacao = $index";
+			$sql = "DELETE FROM " . $db . "." . DB::$sol . " WHERE cod_solicitacao = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -338,7 +339,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$sol . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$sol . " SET " .
 				"cod_cliente       = '" . $solicitacao->getCodCliente() . "', " .
 				"cod_servico       = '" . $solicitacao->getCodServico() . "', " .
 				"data_realizacao   = '" . $solicitacao->getDataRealizacao() . "', " .
@@ -361,7 +362,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$sol .
+			$sql = "INSERT INTO " . $db . "." . DB::$sol .
 				"(cod_cliente, cod_servico, data_realizacao, data_agendamento, cod_tecnico, cod_execucao, cod_confirmacao, cod_orcamento) VALUES (" .
 				"'" . $solicitacao->getCodCliente() . "', " .
 				"'" . $solicitacao->getCodServico() . "', " .
@@ -384,7 +385,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$ser);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$ser);
 			$res->execute();
 			$servicos = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -409,7 +410,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$ser . " WHERE codigo = $codigo";
+			$sql = "DELETE FROM " . $db . "." . DB::$ser . " WHERE codigo = $codigo";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -423,12 +424,12 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$ser . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$ser . " SET " .
 				"nome = '" . $servico->getNome() . "', " .
 				"tipo = '" . $servico->getTipo() . "', " .
 				"descricao = '" . $servico->getDescricao() . "', " .
 				"valor = '" . $servico->getValor() . "' " .
-				"WHERE codigo = " . $servico->getCodigo();
+				"WHERE codigo = " . $servico->getCod();
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -442,7 +443,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$ser .
+			$sql = "INSERT INTO " . $db . "." . DB::$ser .
 				"(nome, tipo, descricao, valor) VALUES (" .
 				"'" . $servico->getNome() . "', " .
 				"'" . $servico->getTipo() . "', " .
@@ -461,7 +462,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$orc);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$orc);
 			$res->execute();
 			$orcamentos = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -484,7 +485,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$orc . " WHERE codigo_aprovacao = $codigoAprovacao";
+			$sql = "DELETE FROM " . $db . "." . DB::$orc . " WHERE codigo_aprovacao = $codigoAprovacao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -498,7 +499,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$orc . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$orc . " SET " .
 				"data_aprovacao = '" . $orcamento->getDataAprovacao() . "', " .
 				"status_aprovacao = '" . $orcamento->getStatusAprovacao() . "' " .
 				"WHERE codigo_aprovacao = " . $orcamento->getCodigoAprovacao();
@@ -515,7 +516,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$orc .
+			$sql = "INSERT INTO " . $db . "." . DB::$orc .
 				"(codigo_aprovacao, data_aprovacao, status_aprovacao) VALUES (" .
 				"'" . $orcamento->getCodigoAprovacao() . "', " .
 				"'" . $orcamento->getDataAprovacao() . "', " .
@@ -533,7 +534,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$cat);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cat);
 			$res->execute();
 			$catalogo = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -556,7 +557,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$cat . " WHERE codigo_servico = $codigoServico";
+			$sql = "DELETE FROM " . $db . "." . DB::$cat . " WHERE codigo_servico = $codigoServico";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -570,7 +571,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$cat . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$cat . " SET " .
 				"nome_servico = '" . $servico->getNomeServico() . "', " .
 				"preco_servico = '" . $servico->getPrecoServico() . "' " .
 				"WHERE codigo_servico = " . $servico->getCodigoServico();
@@ -587,7 +588,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$cat .
+			$sql = "INSERT INTO " . $db . "." . DB::$cat .
 				"(codigo_servico, nome_servico, preco_servico) VALUES (" .
 				"'" . $servico->getCodigoServico() . "', " .
 				"'" . $servico->getNomeServico() . "', " .
@@ -605,7 +606,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$con);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$con);
 			$res->execute();
 			$confirmacoes = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -628,7 +629,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$con . " WHERE codigo_confirmacao = $codigoConfirmacao";
+			$sql = "DELETE FROM " . $db . "." . DB::$con . " WHERE codigo_confirmacao = $codigoConfirmacao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -642,7 +643,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$con . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$con . " SET " .
 				"data_confirmacao = '" . $confirmacao->getDataConfirmacao() . "', " .
 				"status = '" . $confirmacao->getStatus() . "' " .
 				"WHERE codigo_confirmacao = " . $confirmacao->getCodigoConfirmacao();
@@ -659,7 +660,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$con .
+			$sql = "INSERT INTO " . $db . "." . DB::$con .
 				"(codigo_confirmacao, data_confirmacao, status) VALUES (" .
 				"'" . $confirmacao->getCodigoConfirmacao() . "', " .
 				"'" . $confirmacao->getDataConfirmacao() . "', " .
@@ -676,7 +677,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db." . DB::$exe);
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$exe);
 			$res->execute();
 			$execucoes = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -699,7 +700,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "DELETE FROM $db." . DB::$exe . " WHERE codigo_execucao = $codigoExecucao";
+			$sql = "DELETE FROM " . $db . "." . DB::$exe . " WHERE codigo_execucao = $codigoExecucao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -713,7 +714,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "UPDATE $db." . DB::$exe . " SET " .
+			$sql = "UPDATE " . $db . "." . DB::$exe . " SET " .
 				"data_execucao = '" . $execucao->getDataExecucao() . "', " .
 				"status = '" . $execucao->getStatus() . "' " .
 				"WHERE codigo_execucao = " . $execucao->getCodigoExecucao();
@@ -730,7 +731,7 @@ class DB
 	{
 		try {
 			require(DB::$path);
-			$sql = "INSERT INTO $db." . DB::$exe .
+			$sql = "INSERT INTO " . $db . "." . DB::$exe .
 				"(codigo_execucao, data_execucao, status) VALUES (" .
 				"'" . $execucao->getCodigoExecucao() . "', " .
 				"'" . $execucao->getDataExecucao() . "', " .

@@ -107,4 +107,9 @@ class Solicitacao
     {
         return $this->codigoOrcamento;
     }
+
+    public function getCodSolicitacao(): int
+    {
+        return $this->codigoSolicitacao;
+    }
 }
