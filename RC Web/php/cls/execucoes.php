@@ -1,3 +1,4 @@
+<?php
 class Execucoes 
 {
     public int $codigoExecucao;
@@ -24,5 +25,20 @@ class Execucoes
         echo $pi . "Data de Execução: " . $this->dataExecucao . $po;
         echo $pi . "Status: " . $this->status . $po;
         echo "<br/><br/>";
+    }
+
+    public function getCodigoExecucao(): int
+    {
+        return $this->codigoExecucao;
+    }
+
+    public function getDataExecucao(): string
+    {
+        return $this->dataExecucao;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
     }
 }
