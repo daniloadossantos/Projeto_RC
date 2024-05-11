@@ -52,16 +52,20 @@ function formatarTelefone(telefone) {
 //PESQUISA CLIENTES E TECNICOS
 const popularClientes = () => {
   const clientes = JSON.parse(localStorage.getItem('db_RcClient')) || [];
+  console.log("Clientes recuperados do armazenamento local:", clientes); // Adiciona log para verificar os clientes recuperados
   const selectCliente = document.getElementById('nome');
   const inputClienteSelecionado = document.getElementById('nomeClienteSelecionado');
 
   selectCliente.innerHTML = '<option value="">Selecione o cliente</option>';
 
   clientes.forEach(cliente => {
-    const option = document.createElement('option');
-    option.value = cliente.nome + " " + cliente.sobrenome;
-    option.textContent = cliente.nome + " " + cliente.sobrenome;
-    selectCliente.appendChild(option);
+	  console.log("Cliente:", cliente);
+    if (cliente.nome) {
+      const option = document.createElement('option');
+      option.value = cliente.nome;
+      option.textContent = cliente.nome;
+      selectCliente.appendChild(option);
+    }
   });
 
   // Adicionar evento de alteração ao <select>
@@ -77,6 +81,8 @@ const popularClientes = () => {
     }
   });
 }
+
+
 
 const popularTecnicos = () => {
   const tecnicos = JSON.parse(localStorage.getItem('db_rcarcondicionado')) || [];
@@ -184,21 +190,18 @@ preencherSeletorHorario();
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcAgenda')) ?? []
 const setLocalStorage = (dbAgenda) => localStorage.setItem("db_rcAgenda", JSON.stringify(dbAgenda))
 
-const createAgendamento = (agendamento) => {
-  const dbCliente = getLocalStorageCliente();
-  if (dbCliente.length > 0) {
-    const numId = dbCliente[0].numId;
-    agendamento.numIdCliente = numId;
+const createAgendamento = (agendamento, numIdCliente) => {
+  if (numIdCliente) {
+    agendamento.numIdCliente = numIdCliente;
 
     const dbAgenda = getLocalStorage();
     dbAgenda.push(agendamento);
     setLocalStorage(dbAgenda);
     console.log("Agendamento criado com sucesso.");
   } else {
-    console.log("Não há clientes cadastrados.");
+    console.log("O número de identificação do cliente não foi fornecido.");
   }
 }
-
 
 const readAgenda = () => getLocalStorage()
 
