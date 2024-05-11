@@ -1,3 +1,4 @@
+<?php
 class Catalogo 
 {
     public int $codigoServico;
@@ -24,5 +25,20 @@ class Catalogo
         echo $pi . "Nome do Serviço: " . $this->nomeServico . $po;
         echo $pi . "Preço do Serviço: $" . number_format($this->precoServico, 2) . $po;
         echo "<br/><br/>";
+    }
+
+    public function getCodigoServico(): int
+    {
+        return $this->codigoServico;
+    }
+
+    public function getNomeServico(): string
+    {
+        return $this->nomeServico;
+    }
+
+    public function getPrecoServico(): float
+    {
+        return $this->precoServico;
     }
 }
