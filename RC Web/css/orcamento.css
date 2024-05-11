@@ -233,3 +233,13 @@ th, td {
   }
 
 }
+
+#botao-imprimir{
+  background-color: #9967f5;
+  background-image: url('../img/printer-print-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 45px;
+  height: 40px;
+  background-size: 60%;
+}

@@ -2,7 +2,7 @@
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
-	$db = "RCSystem";
+	$db = "rcsystem";
 	
 	try {             
 		$conectar = new PDO("mysql:host=$host;dbname=$db", $user, $pass);  
