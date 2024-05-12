@@ -201,8 +201,7 @@ margin: .2rem;
 }
 
 #nomeClienteSelecionado,
-#nomeTecnicoSelecionado,
-#enderecoClienteSelecionado {
+#nomeTecnicoSelecionado {
   padding: 10px;
   margin-bottom: 10px;
   margin-left: 0 !important;
@@ -214,8 +213,7 @@ margin: .2rem;
 }
 
 #nomeClienteSelecionado::placeholder,
-#nomeTecnicoSelecionado::placeholder,
-#enderecoClienteSelecionado::placeholder{
+#nomeTecnicoSelecionado::placeholder{
     color: #4b5059;
 }
 
@@ -243,8 +241,7 @@ margin: .2rem;
 }
 
 #nomeClienteSelecionado,
-#nomeTecnicoSelecionado,
-#enderecoClienteSelecionado {
+#nomeTecnicoSelecionado {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -256,7 +253,6 @@ margin: .2rem;
 /* Adicione a propriedade 'box-sizing' para garantir que o padding e a borda não aumentem a largura */
 #nomeClienteSelecionado,
 #nomeTecnicoSelecionado,
-#enderecoClienteSelecionado,
 .input-box input[type="text"][readonly],
 .input-box input[type="text"][readonly]:focus,
 .input-box input[type="text"][readonly]:hover,
