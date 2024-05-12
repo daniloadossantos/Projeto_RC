@@ -7,15 +7,13 @@ class CEP
 	public string $cidade;
 	public string $bairro;
 	public string $logra;
-	public string $ender;
 	
 	public function __construct(
 		string $cod,
 		string $uf,
 		string $cidade,
 		string $bairro,
-		string $logra,
-		string $ender 
+		string $logra
 	)
 	{
 		$this->cod = $cod;
@@ -23,7 +21,6 @@ class CEP
 		$this->cidade = $cidade;
 		$this->bairro = $bairro;
 		$this->logra = $logra;
-		$this->ender = $ender;
 	}
 	
 	// public function getCod():string
