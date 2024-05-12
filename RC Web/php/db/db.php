@@ -2,18 +2,18 @@
 if(session_status() == PHP_SESSION_NONE){
 	session_start();
 }
-require_once('./php/db/criar_tb.php');
-require_once('./php/cls/cliente.php');
-require_once('./php/cls/cep.php');
-require_once('./php/cls/agendamento.php');
-require_once('./php/cls/aprovacao.php');
-require_once('./php/cls/catalogo.php');
-require_once('./php/cls/confirmacoes.php');
-require_once('./php/cls/execucoes.php');
-require_once('./php/cls/orcamentos.php');
-require_once('./php/cls/servico.php');
-require_once('./php/cls/solicitacoes.php');
-require_once('./php/cls/tecnico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_tb.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/agendamento.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/aprovacao.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/catalogo.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/confirmacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/execucoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/orcamentos.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/solicitacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php');
 
 
 class DB
@@ -200,7 +200,7 @@ class DB
 				"uf        = '" . $cep->uf . "', " .
 				"cidade    = '" . $cep->cidade . "', " .
 				"bairro    = '" . $cep->bairro . "', " .
-				"logra     = '" . $cep->logra . "' " .
+				"logra     = '" . $cep->logra . "'" .
 				"WHERE cod  = '" . $cep->cod . "' ";
 			$res = $conectar->prepare($sql);
 			$res->execute();
