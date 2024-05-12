@@ -141,8 +141,7 @@ class DB
 					$reg["uf"],
 					$reg["cidade"],
 					$reg["bairro"],
-					$reg["logra"],
-					$reg["ender"]
+					$reg["logra"]
 				);
 			}
 			return $ceps;
@@ -201,8 +200,7 @@ class DB
 				"uf        = '" . $cep->uf . "', " .
 				"cidade    = '" . $cep->cidade . "', " .
 				"bairro    = '" . $cep->bairro . "', " .
-				"logra     = '" . $cep->logra . "', " .
-				"ender     = '" . $cep->ender . "' " .
+				"logra     = '" . $cep->logra . "' " .
 				"WHERE cod  = '" . $cep->cod . "' ";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -218,13 +216,12 @@ class DB
 		try {
 			require(DB::$path);
 			$sql = "INSERT INTO " . $db . "." . DB::$cep .
-				"(cod, uf, cidade, bairro, logra, ender)  VALUES (" .
+				"(cod, uf, cidade, bairro, logra)  VALUES (" .
 				"'" . $cep->cod . "', " .
 				"'" . $cep->uf . "', " .
 				"'" . $cep->cidade . "', " .
 				"'" . $cep->bairro . "', " .
-				"'" . $cep->logra . "', " .
-				"'" . $cep->ender . "' )";
+				"'" . $cep->logra . "')";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
