@@ -83,7 +83,6 @@ function hd(string $msg)
 // $cep->cidade  = "São Paulo";
 // DB::updateCEP($cep);
 
-<<<<<<< HEAD
 // $cep = new CEP(
 // "08050-820", 
 // "SP", 
@@ -108,26 +107,12 @@ $cep = new CEP(
 // view(DB::getCEPs());
 
 
-<<<<<<< HEAD
 // hd("Teste CREATE");
 // DB::insertCEP($cep);
 // view(DB::getCEPs());
 
-$cep = '01101010';
-$url = "https://viacep.com.br/ws/$cep/json/";
-$res = file_get_contents($url);
-var_dump($res);
-echo "</br>";
-$arr = json_decode($res);
-var_dump($arr);
-echo "</br>";
-echo "<p>". $arr->cep . "</p>";
-echo "<p>". $arr->uf . "</p>";
 
-
-
-
-echo "<button><a href=\"./php/pg/clientes.php\">Clientes</a></button>";
+echo "<button><a href=\"./clientes.php\">Clientes</a></button>";
 
 =======
 hd("Teste CREATE");
