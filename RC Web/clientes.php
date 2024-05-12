@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/RC Web/php/db/db.php');
-require_once($_SERVER['DOCUMENT_ROOT'] .'/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/cliente.php');
 
 if(isset($_POST["SELECT"]))
 {
