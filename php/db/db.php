@@ -151,58 +151,6 @@ class DB
 		}
 	}
 
-<<<<<<< HEAD
-	public static function hasCEP(string $cep): bool
-	{
-		try
-		{
-			require(DB::$path);
-			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cep." WHERE cod = '".$cep."'");
-			$res->execute();
-			$ceps = 0;
-			while($reg = $res->fetch(PDO::FETCH_ASSOC))
-				$ceps++;
-			return ($ceps != 0) ? true : false;
-		}
-		catch(PDOException $e)
-		{
-			echo "Erro em  hasCEPs. ".$e->getMessage();
-		}
-		catch(Exception $e)
-		{
-			echo "Erro: ".$e->getMessage();
-		}
-		finally
-		{
-			$conectar = null;
-		}
-	}
-
-	public static function fetchCEP(string $cep): CEP
-	{
-		try
-		{
-			$url = "https://viacep.com.br/ws/$cep/json/";
-			$res = file_get_contents($url);
-			$res = json_decode($res);
-			$cep = new CEP(
-				$res->cep,
-				$res->uf,
-				$res->localidade,
-				$res->bairro,
-				$res->logradouro,
-				$res->logradouro
-			)
-			return $cep;
-		}
-		catch(Exception $e)
-		{
-			echo "Erro em fetch CEPs. ".$e->getMessage();
-		}
-	}
-	
-=======
->>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
 	public static function delCEP(string $cod)
 	{
 		try {
@@ -257,8 +205,6 @@ class DB
 			$conectar = null;
 		}
 	}
-<<<<<<< HEAD
-=======
 
 
 	// CRUD Técnicos
@@ -798,5 +744,4 @@ class DB
 			$conectar = null;
 		}
 	}
->>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
 }
