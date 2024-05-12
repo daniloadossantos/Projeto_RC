@@ -90,18 +90,16 @@ $ceps = DB::getCEPs();
                     <td id="email-<?=$cli->cod?>"><?=$cli->email?></td>
                     <td id="cpf_cnpj-<?=$cli->cod?>"><?=$cli->cpf_cnpj?></td>
                     <td >
-                      <!-- <span id="tel-<?=$cli->cod?>"><?=$cli->tel?></span> -->
-                      <span id="tel1-<?=$cli->cod?>"><?=$cli->tel?></span>
-                      <span id="tel2-<?=$cli->cod?>"><?=$cli->tel?></span>
+                      <span id="tel1-<?=$cli->cod?>"><?=$cli->tel1?></span>
+                      <span id="tel2-<?=$cli->cod?>"><?=$cli->tel2?></span>
                     </td>
                     <td>
                       <span id="cep-<?=$cli->cod?>"><?=$cli->cep?></span>,
                       <span id="uf-<?=$cli->cod?>"><?=$ceps[$cli->cep]->uf?></span>,  
                       <span id="cidade-<?=$cli->cod?>"><?=$ceps[$cli->cep]->cidade?></span>, 
-                      <span id="bairro-<?=$cli->cod?>"><?=$ceps[$cli->cep]->bairro?></span>,
-                      <span id="logra-<?=$cli->cod?>"><?=$ceps[$cli->cep]->logra?></span>,
-                      <span id="ender-<?=$cli->cod?>"><?=$ceps[$cli->cep]->ender?></span>,
-                      <span id="end-nro-<?=$cli->cod?>"><?=$cli->end_nro?></span>,
+                      <span id="bairro-<?=$cli->cod?>"><?=$ceps[$cli->cep]->bairro?></span>, 
+                      <span id="logra-<?=$cli->cod?>"><?=$ceps[$cli->cep]->logra?></span>, 
+                      <span id="end-nro-<?=$cli->cod?>"><?=$cli->end_nro?></span>, 
                       <span id="end-cmplto-<?=$cli->cod?>"><?=$cli->end_cmplto?></span>
                     </td>
 
@@ -155,7 +153,7 @@ $ceps = DB::getCEPs();
           
             <div class=" input-box">
               <label for="tel1">Telefone comercial*</label>
-              <input type="tel" id="tel1" name="tel" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="11" required>
+              <input type="tel" id="tel1" name="tel1" class="form-field" placeholder="(XX) XXXXXX-XXXX " maxlength="11" required>
             </div>
             <div class=" input-box">
               <label for="tel1" id="tel2_label">Telefone pessoal</label>
