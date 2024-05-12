@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/System/php/db/db.php');
-require_once($_SERVER['DOCUMENT_ROOT'] .'/System/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/RC Web/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/RC Web/php/cls/cliente.php');
 
 if(isset($_POST["SELECT"]))
 {
@@ -233,7 +233,7 @@ $ceps = DB::getCEPs();
     <footer>
       <p>&copy Todos os direitos reservados - 2024 <a href="./index.html">login</a></p>
     </footer>
-    <script src="./js/clientes.js"></script>
+    <script src="./js/clientes_php.js"></script>
 
 </body>
 </html>
