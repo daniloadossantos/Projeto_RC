@@ -60,8 +60,7 @@ if ($conectar) {
 				uf		VARCHAR(20)		NOT NULL,
 				cidade	VARCHAR(40)		NOT NULL,
 				bairro	VARCHAR(40)		NOT NULL,
-				logra	VARCHAR(20)		NOT NULL,
-				ender	VARCHAR(40)		NOT NULL)
+				logra	VARCHAR(20)		NOT NULL)
 				ENGINE=InnoDB DEFAULT CHARSET=latin1	
 			";
 		//
