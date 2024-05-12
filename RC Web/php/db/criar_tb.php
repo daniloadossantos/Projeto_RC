@@ -1,16 +1,8 @@
 <?php
-require('./php/db/conectar_db.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/conectar_db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/util/log.php');
 
-$_SERVER['LOG'] = false;
-function exib(string $msg)
-{
-	if($_SERVER['LOG'])
-	{
-		$pi = "<p>";
-		$po = "</p>";
-		echo "$pi $msg $po";
-	}
-}
+setExib(false);
 
 try {
 	// Tenta estabelecer a conexão com o banco de dados
@@ -282,3 +274,4 @@ $conectar = null;
 unset($conectar);
 unset($tb);
 unset($criatb);
+setExib(false);

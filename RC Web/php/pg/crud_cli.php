@@ -3,14 +3,10 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/util/log.php');
 
-$_SERVER['LOG'] = true;
+setExib(true);
 
-function exib(sring $msg)
-{
-    if($_SERVER['LOG'])
-        echo "<p> $msg </p>";
-}
 var_dump($_POST);
 
 function checkCEP()
@@ -70,6 +66,7 @@ if(isset($_POST[$CREATE]))
         checkCEP();
         $cliente = makeCliente();
         DB::insertCliente($cliente);
+        exib("Cliente criado");
     }
     catch(Exception $e)
     {
@@ -83,6 +80,7 @@ else if(isset($_POST[$DELETE]))
     {
         $cod = (int) $_POST['cod'];
         DB::delCliente($cod);
+        exib("Cliente deletado");
     }
     catch(Exception $e)
     {
@@ -98,6 +96,7 @@ else if(isset($_POST[$UPDATE]))
         checkCEP();
         $cliente = makeCliente();
         DB::updateCliente($cliente);
+        exib("Cliente atualizado");
     }
     catch(Exception $e)
     {
@@ -108,6 +107,8 @@ else if(isset($_POST[$READ]))
 {
     echo "Vou procurar";
 }
+exib("<button><a href=\"../../clientes.php\">Clientes</a></button>");
 
+setExib(false);
 //header('Location: ./../../clientes.php');
 
