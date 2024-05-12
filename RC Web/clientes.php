@@ -1,10 +1,19 @@
 <?php
 session_start();
 
-require('./php/db/db.php');
-require_once('./php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/System/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/System/php/cls/cliente.php');
 
-$clientes = DB::getClientes();
+if(isset($_POST["SELECT"]))
+{
+  $clientes = DB::getClientePorNome($_POST["SELECT"]??"");
+  unset($_POST["SELECT"]);
+}
+else
+{
+  $clientes = DB::getClientes();
+}
+
 $ceps = DB::getCEPs();
 ?>
 <!DOCTYPE html>
@@ -72,15 +81,28 @@ $ceps = DB::getCEPs();
             </thead>
             <tbody>
                 <?php foreach($clientes as $cod => $cli){ ?>
-                  <tr>
+                  <tr  id="cli-id-<?=$cod?>">
                     <td><input type="checkbox" id="id-<?=$cod?>" class="checkbox-item" /></td>
-                    <td><?=$cli->cod?></td>
-                    <td><?=$cli->nome?></td>
-                    <td><?=$cli->email?></td>
-                    <td><?=$cli->cpf_cnpj?></td>
-                    <td><?=$cli->tel?></td>
-                    <td><?=$cli->cep?>, <?=$ceps[$cli->cep]->uf?>,  <?=$ceps[$cli->cep]->bairro?></td>
-           
+                    <td id="cod-<?=$cli->cod?>"><?=$cli->cod?></td>
+                    <td id="nome-<?=$cli->cod?>"><?=$cli->nome?></td>
+                    <td id="email-<?=$cli->cod?>"><?=$cli->email?></td>
+                    <td id="cpf_cnpj-<?=$cli->cod?>"><?=$cli->cpf_cnpj?></td>
+                    <td >
+                      <!-- <span id="tel-<?=$cli->cod?>"><?=$cli->tel?></span> -->
+                      <span id="tel1-<?=$cli->cod?>"><?=$cli->tel?></span>
+                      <span id="tel2-<?=$cli->cod?>"><?=$cli->tel?></span>
+                    </td>
+                    <td>
+                      <span id="cep-<?=$cli->cod?>"><?=$cli->cep?></span>,
+                      <span id="uf-<?=$cli->cod?>"><?=$ceps[$cli->cep]->uf?></span>,  
+                      <span id="cidade-<?=$cli->cod?>"><?=$ceps[$cli->cep]->cidade?></span>, 
+                      <span id="bairro-<?=$cli->cod?>"><?=$ceps[$cli->cep]->bairro?></span>,
+                      <span id="logra-<?=$cli->cod?>"><?=$ceps[$cli->cep]->logra?></span>,
+                      <span id="ender-<?=$cli->cod?>"><?=$ceps[$cli->cep]->ender?></span>,
+                      <span id="end-nro-<?=$cli->cod?>"><?=$cli->end_nro?></span>,
+                      <span id="end-cmplto-<?=$cli->cod?>"><?=$cli->end_cmplto?></span>
+                    </td>
+
                     <td><div class="btn_crud btn_acoes" >
                 <button id="edit-<?=$cli->cod?>" class="btn_crud btn_altera" type="button" data-action="edit"></button>
                 <button id="agenda-<?=$cli->cod?>" class="btn_crud btn_agenda" type="button"></button>
@@ -105,6 +127,7 @@ $ceps = DB::getCEPs();
         <form id = "form" name="form" method="post" action="./php/pg/crud_cli.php">
           <div class="input-group">
             <div class="espaco_form"><p>Dados Cadastrais</p></div>
+            <input type="hidden" id="cod" name="cod" value="">
             <div class="radio_pessoa">
               <input  type="radio" value="pf" id="pessoaFisica" name="tipo_pessoa" checked>
               <label for="pessoaFisica">Pessoa Física</label>
@@ -121,7 +144,7 @@ $ceps = DB::getCEPs();
             </div>
             <div class="input-box">
               <label id="cpf_label" for="cpf">CPF*</label>
-              <input type="text" id="cpf" nome="cpf_cnpj" class="form-field" placeholder="Apenas números" minlength="11" maxlength="14" required>
+              <input type="text" id="cpf" name="cpf_cnpj" class="form-field" placeholder="Apenas números" minlength="11" maxlength="14" required>
             </div>
             <div class="input-box">
               <label for="email">Email</label>
@@ -195,7 +218,7 @@ $ceps = DB::getCEPs();
               </select>              
             </div>
           </div>
-        
+          <input type="hidden" id="op" name="op" value="">
         </form>
         <div class="form-button">
           <button id="cadastrarCliente">Salvar</button>
