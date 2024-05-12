@@ -70,6 +70,41 @@ class DB
 		}
 	}
 
+	public static function getClientePorNome(string $nome)
+	{
+		try
+		{
+			require(DB::getPath());
+			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cli." WHERE nome LIKE '%".$nome."%'");
+			$res->execute();
+			$clientes = [];
+			while($reg = $res->fetch(PDO::FETCH_ASSOC))
+			{
+				$clientes[$reg["cod"]] = new Cliente(
+					$reg["cod"],
+					$reg["nome"]??"",
+					$reg["email"]??"",
+					$reg["cpf_cnpj"]??"",
+					$reg["tel"]??"",
+					$reg["te2"]??"",
+					$reg["cep"]??"",
+					$reg["end_nro"],
+					$reg["end_cmplto"]??"",
+					$reg["dt_cad"]??""
+				);
+			}
+			return $clientes;
+		}
+		catch(PDOException $e)
+		{
+			echo "Erro em obter Clientes. ".$e->getMessage();
+		}
+		finally
+		{
+			$conectar = null;
+		}
+	}
+
 	public static function delCliente(int $index)
 	{
 		try {
