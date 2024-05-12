@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+  session_start();
+}
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/cliente.php');

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(session_status() == PHP_SESSION_NONE){
+	session_start();
+}
 require_once('./php/db/criar_tb.php');
 require_once('./php/cls/cliente.php');
 require_once('./php/cls/cep.php');
