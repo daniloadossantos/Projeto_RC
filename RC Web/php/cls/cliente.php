@@ -23,7 +23,7 @@ class Cliente
 		string $tel1,
 		string $tel2,
 		string $cep,
-		string $end_nro,
+		int $end_nro,
 		string $end_cmplto,
 		string $dt_cad
 	) {
