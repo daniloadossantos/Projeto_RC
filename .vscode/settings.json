@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/27275644-a707-40ad-87b6-f675f52f3e95/resourceGroups/rcsystemapp_group/providers/Microsoft.Web/sites/rcsystemapp",
+  "appService.deploySubpath": "../RC Web"
+}
