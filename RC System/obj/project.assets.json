@@ -8,19 +8,19 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\dalot\\.nuget\\packages\\": {}
+    "C:\\Users\\viera\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\RC System.csproj",
+      "projectUniqueName": "C:\\Users\\viera\\OneDrive\\Documentos\\RC\\RCC\\Projeto_RC\\RC System\\RC System.csproj",
       "projectName": "RC System",
-      "projectPath": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\RC System.csproj",
-      "packagesPath": "C:\\Users\\dalot\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dalot\\Desktop\\Projeto_RC\\RC System\\obj\\",
+      "projectPath": "C:\\Users\\viera\\OneDrive\\Documentos\\RC\\RCC\\Projeto_RC\\RC System\\RC System.csproj",
+      "packagesPath": "C:\\Users\\viera\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\viera\\OneDrive\\Documentos\\RC\\RCC\\Projeto_RC\\RC System\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dalot\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\viera\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

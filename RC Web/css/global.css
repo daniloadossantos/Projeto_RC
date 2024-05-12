@@ -20,7 +20,7 @@ li{
 }
 .grid {
   display: grid;
-  height: 95vh;
+  height: 100vh;
 }
 .grid-template-row{
   grid-template-columns: 100px auto;
@@ -106,9 +106,15 @@ li{
   border-radius: 5px;
   box-shadow: 2px 2px 5px #615ea4;
 }
+
+.item.btn {
+    background: none;
+}
+
 .btn_altera:hover,
 .btn_exclui:hover,
-.btn_agenda:hover{
+.btn_agenda:hover,
+.btn_imprimir:hover{
   box-shadow: 2px 2px 5px #bab6e8;
   cursor: pointer;
 }
@@ -236,10 +242,10 @@ button#open-cadastro-form.btn_novo{
 
 .btn_altera,
 .btn_exclui,
-.btn_agenda{
+.btn_agenda,
+.btn_imprimir{
 	width: 32px;
 	height: 32px;
-
 }
 
 .btn_altera {
@@ -259,6 +265,14 @@ button#open-cadastro-form.btn_novo{
 .btn_agenda {
   background-color: #615e94;
   background-image: url('../img/calendar-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.btn_imprimir {
+  background-color: #0691bf;
+  background-image: url('../img/printer-with-paper-svgrepo-com.svg');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

@@ -53,11 +53,11 @@ class Agendamento
 		$pi = "<p>";
 		$po = "</p>";
 		
-		echo $pi . "Codigo " . $this->codigo;
-		echo "Nome " . $this->nomeCliente;
-		echo "Data " . $this->data;
-		echo "Ender " . $this->endereco ;
-		echo "Tecnico " . $this->tecnico . $po;
+		echo $pi . "Codigo " . $this->codigo . $po;
+		echo $pi . "Nome " . $this->nomeCliente . $po;
+		echo $pi . "Data " . $this->data . $po;
+		echo $pi . "Ender " . $this->endereco . $po ;
+		echo $pi . "Tecnico " . $this->tecnico . $po;
 		echo "</br> </br>";
 	}
 }

@@ -45,6 +45,7 @@
 
 		<div class="item btn">
 			<button id="open-cadastro-form" class=" btn_crud btn_novo" title="Novo Cadastro" onclick="clearModal()"></button>
+			<button id="botao-imprimir" title="Imprimir Relatório"></button>
 		</div>
 	  </div>
 	  <div class="item tabela">
@@ -130,7 +131,7 @@
 		  <p>*preenchimento obrigatório</p>
 		  
 		  <div class="form-button">
-			<button id="cadastrarServico">Salvar Serviço</button>
+			<button id="cadastrarServico">Salvar</button>
 			<button id="limparForm" type="button">Limpar</button>
 		  </div>
 		</form>
@@ -138,10 +139,12 @@
 	</div>
 
 	<footer>
-	  <p>&copy Todos os direitos reservados - 2024 <a href="index.html">login</a></p>
+	  <p>&copy Todos os direitos reservados - 2024</p>
 	</footer>
 
 	<script src="./js/orcamento.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
 
 	</body>
 </html>
