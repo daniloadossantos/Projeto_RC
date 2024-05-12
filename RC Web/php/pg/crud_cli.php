@@ -1,8 +1,17 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/System/php/cls/cliente.php');
-require_once($_SERVER['DOCUMENT_ROOT'] .'/System/php/cls/cep.php');
-require_once($_SERVER['DOCUMENT_ROOT'] .'/System/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
+
+$_SERVER['LOG'] = true;
+
+function exib(sring $msg)
+{
+    if($_SERVER['LOG'])
+        echo "<p> $msg </p>";
+}
+var_dump($_POST);
 
 function checkCEP()
 {
@@ -16,7 +25,6 @@ function checkCEP()
                 $_POST['uf'],
                 $_POST['end_cidade'],
                 $_POST['end_bairro'],
-                $_POST['rua'],
                 $_POST['rua']
             );
     
@@ -39,10 +47,11 @@ function makeCliente()
         $_POST['email'] ?? "",
         $_POST['cpf_cnpj'] ?? "",
         $_POST['tel1'] ?? "",
+        $_POST['tel2'] ?? "",
         $_POST['cep'] ?? "",
-        $_POST['end_nro'] ?? "",
+        (int)$_POST['end_nro'] ?? 0,
         $_POST["end_cmplto"] ?? "",
-        Date('d-m-Y')
+        Date('Y-m-d')
     );
     return $cliente;
 }
@@ -100,5 +109,5 @@ else if(isset($_POST[$READ]))
     echo "Vou procurar";
 }
 
-header('Location: ./../../clientes.php');
+//header('Location: ./../../clientes.php');
 
