@@ -59,10 +59,6 @@ class CEP
 		// $this->bairro = $bairro;
 	// }
 	
-	// public function getEnder():string
-	// {
-		// return $this->ender;
-	// }
 	// public function setEnder(string $ender)
 	// {
 		// $this->ender = $ender;
@@ -87,7 +83,6 @@ class CEP
 		echo $pi . $this->uf . $po;
 		echo $pi . $this->cidade . $po;
 		echo $pi . $this->bairro . $po;
-		echo $pi . $this->ender . $po;
 		echo $pi . $this->logra . $po;
 	}
 	
