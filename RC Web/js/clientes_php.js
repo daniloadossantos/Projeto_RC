@@ -269,7 +269,7 @@ const editCliente = (index) => {
 
 const agendaCliente = (index) => {
   setOperation('SELECT', index)
-  window.location.href = location.protocol + '//' + location.host + "/System/agendamento.html"
+  window.location.href = location.protocol + '//' + location.host + "/Projeto_RC/RC%20Web/agendamento.html"
   // window.location.href = "http://127.0.0.1:5500/agendamento.html"
 }
 
