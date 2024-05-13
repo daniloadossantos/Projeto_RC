@@ -25,7 +25,7 @@ class Cliente
 		string $cep,
 		int $end_nro,
 		string $end_cmplto,
-		string $dt_cad
+		string $dt_cad = ""
 	) {
 		$this->cod = $cod;
 		$this->nome = $nome;
