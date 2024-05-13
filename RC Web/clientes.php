@@ -6,6 +6,12 @@ if(session_status() == PHP_SESSION_NONE){
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/cliente.php');
 
+if( !isset($_SESSION['USER']) )
+{
+  header('Location: ./inde.php');
+}
+
+echo CLIENTES;
 if(isset($_POST["SELECT"]))
 {
   $clientes = DB::getClientePorNome($_POST["SELECT"]??"");
