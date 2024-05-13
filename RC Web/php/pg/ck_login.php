@@ -1,9 +1,20 @@
 <?php
 session_start();
 
+// Independente de o usuario existir ou a senha ser válida
+// redireciona para as páginas que precisa se true
+$_SESSION['INGNORE_USER'] = true;
+
 // Se houver uma tabela para validação de senhas
 // a validação pode ser feita por aqui
-if( isset($_POST['nome']) && isset($_POST['senha']))
+
+if($_SESSION['INGNORE_USER'])
+{
+    $_POST['nome'] = 'adm';
+    $_POST['senha'] = 'adm';
+}
+
+if(isset($_POST['nome']) && isset($_POST['senha']))
 {
     if($_POST['nome'] === 'tecnico' && $_POST['senha'] === 'tecnico')
     {
