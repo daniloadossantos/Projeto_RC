@@ -193,33 +193,33 @@ $ceps = DB::getCEPs();
               <label for="estado">Estado</label>
               <select id="estado" name="uf" class="form-field cep-form-field form-select"  required disabled>
                 <option selected name="null" value="">Selecione o Estado</option>
-                <option value="AC" name="AC" value="AC" >Acre</option>
-                <option value="AL" name="AL" value="AL" >Alagoas</option>
-                <option value="AP" name="AP" value="AP" >Amapá</option>
-                <option value="AM" name="AM" value="AM" >Amazonas</option>
-                <option value="BA" name="BA" value="BA" >Bahia</option>
-                <option value="CE" name="CE" value="CE" >Ceará</option>
-                <option value="DF" name="DF" value="DF" >Distrito Federal</option>
-                <option value="ES" name="ES" value="ES" >Espírito Santo</option>
-                <option value="GO" name="GO" value="GO" >Goiás</option>
-                <option value="MA" name="MA" value="MA" >Maranhão</option>
-                <option value="MT" name="MT" value="MT" >Mato Grosso</option>
-                <option value="MS" name="MS" value="MS" >Mato Grosso do Sul</option>
-                <option value="MG" name="MG" value="MG" >Minas Gerais</option>
-                <option value="PA" name="PA" value="PA" >Pará</option>
-                <option value="PB" name="PB" value="PB" >Paraíba</option>
-                <option value="PR" name="PR" value="PR" >Paraná</option>
-                <option value="PE" name="PE" value="PE" >Pernambuco</option>
-                <option value="PI" name="PI" value="PI" >Piauí</option>
-                <option value="RJ" name="RJ" value="RJ" >Rio de Janeiro</option>
-                <option value="RN" name="RN" value="RN" >Rio Grande do Norte</option>
-                <option value="RS" name="RS" value="RS" >Rio Grande do Sul</option>
-                <option value="RO" name="RO" value="RO" >Rondônia</option>
-                <option value="RR" name="RR" value="RR" >Roraima</option>
-                <option value="SC" name="SC" value="SC" >Santa Catarina</option>
-                <option value="SP" name="SP" value="SP" >São Paulo</option>
-                <option value="SE" name="SE" value="SE" >Sergipe</option>
-                <option value="TO" name="TO" value="TO" >Tocantins</option>
+                <option name="AC" value="AC" >Acre</option>
+                <option name="AL" value="AL" >Alagoas</option>
+                <option name="AP" value="AP" >Amapá</option>
+                <option name="AM" value="AM" >Amazonas</option>
+                <option name="BA" value="BA" >Bahia</option>
+                <option name="CE" value="CE" >Ceará</option>
+                <option name="DF" value="DF" >Distrito Federal</option>
+                <option name="ES" value="ES" >Espírito Santo</option>
+                <option name="GO" value="GO" >Goiás</option>
+                <option name="MA" value="MA" >Maranhão</option>
+                <option name="MT" value="MT" >Mato Grosso</option>
+                <option name="MS" value="MS" >Mato Grosso do Sul</option>
+                <option name="MG" value="MG" >Minas Gerais</option>
+                <option name="PA" value="PA" >Pará</option>
+                <option name="PB" value="PB" >Paraíba</option>
+                <option name="PR" value="PR" >Paraná</option>
+                <option name="PE" value="PE" >Pernambuco</option>
+                <option name="PI" value="PI" >Piauí</option>
+                <option name="RJ" value="RJ" >Rio de Janeiro</option>
+                <option name="RN" value="RN" >Rio Grande do Norte</option>
+                <option name="RS" value="RS" >Rio Grande do Sul</option>
+                <option name="RO" value="RO" >Rondônia</option>
+                <option name="RR" value="RR" >Roraima</option>
+                <option name="SC" value="SC" >Santa Catarina</option>
+                <option name="SP" value="SP" >São Paulo</option>
+                <option name="SE" value="SE" >Sergipe</option>
+                <option name="TO" value="TO" >Tocantins</option>
               </select>              
             </div>
           </div>
