@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/cliente.php'
 
 if( !isset($_SESSION['USER']) )
 {
-  header('Location: ./inde.php');
+  header('Location: ./index.php');
 }
 
 if(isset($_POST["SELECT"]))
@@ -42,12 +42,12 @@ $ceps = DB::getCEPs();
           <h1>Bem-vindo, <span class="nome_func"> <?= $_SESSION['USER'] ?> </span>!</h1>
           <div class="btn_menu">
             <div class="btn_perfil"><a href=""><img src="./img/user-circle-svgrepo-com.svg" alt="foto do usuário" title="Perfil"></a></div>
-            <div class="btn_logout"><a href="index.html"><img src="./img/logout-svgrepo-com.svg" alt="logout" title="Sair"></a></div>
+            <div class="btn_logout"><a href="index.php"><img src="./img/logout-svgrepo-com.svg" alt="logout" title="Sair"></a></div>
           </div>
         </header>
       </div>
       <div class="item sidenav menu_lateral">
-        <div class="menu_clientes"> <a href="clientes.html" title="Clientes"><img src="./img/users-svgrepo-com.svg" alt="Clientes"></a></div>
+        <div class="menu_clientes"> <a href="clientes.php" title="Clientes"><img src="./img/users-svgrepo-com.svg" alt="Clientes"></a></div>
         <div class="menu_servicos"> <a href="orcamento.html" title="Serviços"><img src="./img/tools-svgrepo-com.svg" alt="Serviços"></a></div>
         <div class="menu_agendamentos"> <a href="agendamento.html" title="Agendamentos"><img src="./img/calendar-svgrepo-com.svg" alt="Agendamentos"></a></div>
         <div class="menu_tecnicos"> <a href="tecnicos.html" title="Técnicos"><img src="./img/construction-worker-svgrepo-com.svg" alt="Técnicos"></a></div>
