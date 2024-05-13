@@ -1,6 +1,17 @@
 <?php
 session_start();
 
+if(isset($_POST['nome']))
+  unset($_POST['nome']);
+
+if(isset($_POST['senha']))
+  unset($_POST['senha']);
+
+if(isset($_SESSION['USER']))
+  unset($_SESSION['USER']);
+
+if(isset($_SESSION['PG_ACCESS']))
+  unset($_SESSION['PG_ACCESS']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
