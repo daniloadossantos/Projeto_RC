@@ -109,7 +109,14 @@ if ($conectar) {
 			"CREATE TABLE IF NOT EXISTS $db.$tb (
 				cod			INT(6)      UNSIGNED	NOT NULL  AUTO_INCREMENT PRIMARY KEY, 
 				nome		VARCHAR(45) 			NOT NULL,
-				cpf			VARCHAR(11) 			NOT NULL
+				email		VARCHAR(30) 			NOT NULL,
+				cpf			VARCHAR(11) 			NOT NULL,
+				tel1		VARCHAR(14)				NOT NULL,
+				tel2		VARCHAR(14)				NULL,
+				cep			CHAR(9)					NOT NULL,
+				end_nro		INT 					NOT NULL,
+				end_cmplto	VARCHAR(45)				NULL,
+				CONSTRAINT FK_" . $tb . "_CEP FOREIGN KEY (cep) REFERENCES CEP (cod)
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
