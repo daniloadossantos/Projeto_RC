@@ -1,5 +1,12 @@
 <?php 
 	session_start();
+	// Azure config
+	// $host = "rcsystemapp-server.mysql.database.azure.com";
+	// $user = "gdofitzows";
+	// $pass = 'g$xswhDY9sXWMC7p';
+	// $db = "db_rcsystem";
+
+	// XAMP config
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
@@ -11,3 +18,4 @@
 	}catch(PDOException $e) {
 		echo "Falha de conexão:<br />" . $e->getMessage();
 	}
+
