@@ -5,7 +5,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/util/log.php');
 
-setExib(true);
+setExib(false);
 
 var_dump($_POST);
 
@@ -46,8 +46,7 @@ function makeCliente()
         $_POST['tel2'] ?? "",
         $_POST['cep'] ?? "",
         (int)$_POST['end_nro'] ?? 0,
-        $_POST["end_cmplto"] ?? "",
-        Date('Y-m-d')
+        $_POST["end_cmplto"] ?? ""
     );
     return $cliente;
 }
@@ -65,6 +64,7 @@ if(isset($_POST[$CREATE]))
         echo $nome;
         checkCEP();
         $cliente = makeCliente();
+        $cliente->show();
         DB::insertCliente($cliente);
         exib("Cliente criado");
     }
@@ -110,5 +110,5 @@ else if(isset($_POST[$READ]))
 exib("<button><a href=\"../../clientes.php\">Clientes</a></button>");
 
 setExib(false);
-//header('Location: ./../../clientes.php');
+header('Location: ./../../clientes.php');
 

@@ -56,19 +56,19 @@ function hd(string $msg)
 
 //Teste update
 // DB::updateCliente($cli);
-$clientes = DB::getClientes()??[];
-view($clientes);
+// $clientes = DB::getClientes()??[];
+// view($clientes);
 
 // Teste insert
-$cli = new Cliente(0, "Ricardo", "ric@gu.com", "80090050022", '11985263410', "11945781245", "03087-000", 789, "A esquerda");
-$cli->show();
+// $cli = new Cliente(0, "Ricardo", "ric@gu.com", "80090050022", '11985263410', "11945781245", "03087-000", 789, "A esquerda");
+// $cli->show();
 
-echo date('d-m-Y');
+// echo date('d-m-Y');
 
-DB::insertCliente($cli);
+// DB::insertCliente($cli);
 
-$clientes = DB::getClientes()??[];
-view($clientes);
+// $clientes = DB::getClientes()??[];
+// view($clientes);
 
 
 // - - - - - - CEPs - -- - - - 
@@ -115,7 +115,7 @@ view($clientes);
 
 
 echo "<button><a href=\"./clientes.php\">Clientes</a></button>";
-
+echo "<button><a href=\"./inde.php\">Login</a></button>";
 //=======
 // hd("Teste CREATE");
 // DB::insertCEP($cep);

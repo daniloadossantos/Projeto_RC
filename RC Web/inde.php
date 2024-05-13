@@ -21,7 +21,7 @@ session_start();
       <div class="box-login">
         <div class="login-form">
           <h2>Bem vindo à RC System</h2>
-          <form method="post" action="./php/pg/ck_login.php">
+          <form method="post" id="login-form" action="./php/pg/ck_login.php">
             <div>
               <label for="cod_func">Usuário</label>
               <a href="#"><span>Esqueci meu usuário</span></a>
@@ -32,7 +32,7 @@ session_start();
               <a href="#"><span>Esqueci minha senha</span></a>
               <input type="password" name="senha" id="email" placeholder="Digite sua senha" required>
             </div>
-            <button type="submit" onclick="logar(); return false">Entrar</button>
+            <button type="submit">Entrar</button>
           </form>
         </div>
       </div>
@@ -41,7 +41,7 @@ session_start();
       <p>Todos os direitos reservados. 2024 <a href="clientes.php">clientes</a></p>
     </footer>
 
-  <script src="./js/script.js"></script>
+  <script src="./js/login_php.js"></script>
 
 </body>
 </html>
