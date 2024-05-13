@@ -287,7 +287,37 @@ class DB
 					$reg["nome"] ?? "",
 					$reg["email"] ?? "",
 					$reg["cpf"] ?? "",
-					$reg["tel"] ?? "",
+					$reg["tel1"] ?? "",
+					$reg["tel2"] ?? "",
+					$reg["cep"] ?? "",
+					$reg["end_nro"],
+					$reg["end_cmplto"] ?? ""
+				);
+			}
+			return $tecnicos;
+		} catch (PDOException $e) {
+			echo "Erro em obter Técnicos. " . $e->getMessage();
+		} finally {
+			$conectar = null;
+		}
+	}
+
+	public static function getTecnicosPorNome(string $nome)
+	{
+		try {
+			require(DB::getPath());
+			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$tec . " WHERE nome LIKE '%" . $nome . "%'");
+			$res->execute();
+			$tecnicos = [];
+			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
+				// Supondo que exista uma classe Tecnico representando a entidade do banco de dados
+				$tecnicos[$reg["cod"]] = new Tecnico(
+					$reg["cod"],
+					$reg["nome"] ?? "",
+					$reg["email"] ?? "",
+					$reg["cpf"] ?? "",
+					$reg["tel1"] ?? "",
+					$reg["tel2"] ?? "",
 					$reg["cep"] ?? "",
 					$reg["end_nro"],
 					$reg["end_cmplto"] ?? ""
@@ -320,11 +350,15 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$tec . " SET " .
-				"nome       = '" . $tecnico->getNome() . "', " .
-				"email      = '" . $tecnico->getEmail() . "', " .
-				"cpf        = '" . $tecnico->getCPF() . "', " .
-				"tel        = '" . $tecnico->getTel() . "' " .
-				"WHERE cod  = " . $tecnico->getCod();
+				"nome       = '" . $tecnico->getNome() 		. "', " .
+				"email      = '" . $tecnico->getEmail() 	. "', " .
+				"cpf        = '" . $tecnico->getCPF() 		. "', " .
+				"tel1       = '" . $tecnico->getTel1() 		. "', " .
+				"tel2       = '" . $tecnico->getTel2() 		. "', " .
+				"cep        = '" . $tecnico->getCEP() 		. "', " .
+				"end_nro    =  " . $tecnico->getEndNro() 	. ", " .
+				"end_cmplto = '" . $tecnico->getEndCmplto() . "' " .
+				"WHERE cod  =  " . $tecnico->getCod();
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -339,14 +373,15 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$tec .
-				"(nome, email, cpf, tel) VALUES (" .
+				"(nome, email, cpf, tel1, tel2, cep, end_nro, end_cmplto) VALUES (" .
 				"'" . $tecnico->getNome() . "', " .
 				"'" . $tecnico->getEmail() . "', " .
 				"'" . $tecnico->getCPF() . "', " .
-				"'" . $tecnico->getTel() . "', " .
-				"'" . $tecnico->cep . "', " .
-				"'" . $tecnico->end_nro . ", " .
-				"'" . $tecnico->end_cmplto . "', )" .
+				"'" . $tecnico->getTel1() . "', " .
+				"'" . $tecnico->getTel2() . "', " .
+				"'" . $tecnico->getCEP() . "', " .
+				" " . $tecnico->getEndNro() . ", " .
+				"'" . $tecnico->getEndCmplto() . "')";
 				$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
