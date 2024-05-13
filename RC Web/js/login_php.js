@@ -69,7 +69,7 @@ function logar(){
     }
     else if(login == "adm" && senha == "adm"){
         alert('Sucesso');
-        location.href = "./clientes.php";
+        document.getElementById('login-form').submit();
     }
     else{
         alert('Usuario ou senha incorreta');
