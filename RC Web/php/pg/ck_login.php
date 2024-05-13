@@ -45,5 +45,5 @@ if(isset($_POST['nome']) && isset($_POST['senha']))
 else
 {
     unset($_SESSION['USER']);
-    header('Location: ./../../inde.php');
+    header('Location: ./../../index.php');
 }
