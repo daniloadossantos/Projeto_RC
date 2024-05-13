@@ -43,7 +43,7 @@ if(isset($_SESSION['PG_ACCESS']))
               <a href="#"><span>Esqueci minha senha</span></a>
               <input type="password" name="senha" id="email" placeholder="Digite sua senha" required>
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit" onclick="logar(); return false">Entrar</button>
           </form>
         </div>
       </div>
