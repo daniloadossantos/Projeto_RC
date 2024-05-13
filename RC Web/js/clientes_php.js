@@ -262,6 +262,8 @@ const editCliente = (index) => {
   setOperation('UPDATE')
   setCodigo(index)
   fillFields(index)
+  document.getElementById("numero").disabled =  false;
+  document.getElementById("complemento").disabled = false;
   openForm()
 }
 
