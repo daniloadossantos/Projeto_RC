@@ -1,23 +1,25 @@
 <?php
-session_start();
-require_once('./php/db/criar_tb.php');
-require_once('./php/cls/cliente.php');
-require_once('./php/cls/cep.php');
-require_once('./php/cls/agendamento.php');
-require_once('./php/cls/aprovacao.php');
-require_once('./php/cls/catalogo.php');
-require_once('./php/cls/confirmacoes.php');
-require_once('./php/cls/execucoes.php');
-require_once('./php/cls/orcamentos.php');
-require_once('./php/cls/servico.php');
-require_once('./php/cls/solicitacoes.php');
-require_once('./php/cls/tecnico.php');
+if(session_status() == PHP_SESSION_NONE){
+	session_start();
+}
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_tb.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/agendamento.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/aprovacao.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/catalogo.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/confirmacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/execucoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/orcamentos.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/solicitacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php');
 
 
 class DB
 {
 	// Path da conexao
-	private static string $path = './php/db/conectar_db.php';
+	private static string $path = '/php/db/conectar_db.php';
 	private static string $db = 'rcsystem';
 	// Nome das tabelas
 	private static string $cep = "CEP";
@@ -33,11 +35,16 @@ class DB
 	private static string $orc = "ORCAMENTOS";
 	private static string $sol = "SOLICITACOES";
 
+	private static function getPath()
+	{
+		return $_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web' . DB::$path;
+	}
+
 	// CRUD Clientes
 	public static function getClientes()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cli);
 			$res->execute();
 			$clientes = [];
@@ -63,10 +70,45 @@ class DB
 		}
 	}
 
+	public static function getClientePorNome(string $nome)
+	{
+		try
+		{
+			require(DB::getPath());
+			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cli." WHERE nome LIKE '%".$nome."%'");
+			$res->execute();
+			$clientes = [];
+			while($reg = $res->fetch(PDO::FETCH_ASSOC))
+			{
+				$clientes[$reg["cod"]] = new Cliente(
+					$reg["cod"],
+					$reg["nome"]??"",
+					$reg["email"]??"",
+					$reg["cpf_cnpj"]??"",
+					$reg["tel"]??"",
+					$reg["te2"]??"",
+					$reg["cep"]??"",
+					$reg["end_nro"],
+					$reg["end_cmplto"]??"",
+					$reg["dt_cad"]??""
+				);
+			}
+			return $clientes;
+		}
+		catch(PDOException $e)
+		{
+			echo "Erro em obter Clientes. ".$e->getMessage();
+		}
+		finally
+		{
+			$conectar = null;
+		}
+	}
+
 	public static function delCliente(int $index)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$cli . " WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -80,7 +122,7 @@ class DB
 	public static function updateCliente(Cliente $cli)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$cli . " SET " .
 				"nome       = '" . $cli->nome . "', " .
 				"email      = '" . $cli->email . "', " .
@@ -104,7 +146,7 @@ class DB
 	public static function insertCliente(Cliente $cli)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$cli .
 				"(nome, email, cpf_cnpj, tel1, tel2, cep, end_nro, end_cmplto, dt_cad) VALUES (" .
 				"'" . $cli->nome . "', " .
@@ -113,9 +155,9 @@ class DB
 				"'" . $cli->tel1 . "', " .
 				"'" . $cli->tel2 . "', " .
 				"'" . $cli->cep . "', " .
-				"'" . $cli->end_nro . ", " .
+				" " . $cli->end_nro . ", " .
 				"'" . $cli->end_cmplto . "', " .
-				"'" . $cli->dt_cad . "' )";
+				" CURDATE())";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -129,7 +171,7 @@ class DB
 	public static function getCEPs()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cep);
 			$res->execute();
 			$ceps = [];
@@ -139,8 +181,7 @@ class DB
 					$reg["uf"],
 					$reg["cidade"],
 					$reg["bairro"],
-					$reg["logra"],
-					$reg["ender"]
+					$reg["logra"]
 				);
 			}
 			return $ceps;
@@ -151,10 +192,36 @@ class DB
 		}
 	}
 
+	public static function hasCEP(string $cep): bool
+	{
+		try
+		{
+			require(DB::getPath());
+			$res = $conectar->prepare("SELECT * FROM $db.".DB::$cep." WHERE cod = '".$cep."'");
+			$res->execute();
+			$ceps = 0;
+			while($reg = $res->fetch(PDO::FETCH_ASSOC))
+				$ceps++;
+			return ($ceps != 0) ? true : false;
+		}
+		catch(PDOException $e)
+		{
+			echo "Erro em  hasCEPs. ".$e->getMessage();
+		}
+		catch(Exception $e)
+		{
+			echo "Erro: ".$e->getMessage();
+		}
+		finally
+		{
+			$conectar = null;
+		}
+	}
+	
 	public static function delCEP(string $cod)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$cep . " WHERE cod = '$cod'";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -168,13 +235,12 @@ class DB
 	public static function updateCEP(CEP $cep)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$cep . " SET " .
 				"uf        = '" . $cep->uf . "', " .
 				"cidade    = '" . $cep->cidade . "', " .
 				"bairro    = '" . $cep->bairro . "', " .
-				"logra     = '" . $cep->logra . "', " .
-				"ender     = '" . $cep->ender . "' " .
+				"logra     = '" . $cep->logra . "'" .
 				"WHERE cod  = '" . $cep->cod . "' ";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -188,15 +254,14 @@ class DB
 	public static function insertCEP(CEP $cep)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$cep .
-				"(cod, uf, cidade, bairro, logra, ender)  VALUES (" .
+				"(cod, uf, cidade, bairro, logra)  VALUES (" .
 				"'" . $cep->cod . "', " .
 				"'" . $cep->uf . "', " .
 				"'" . $cep->cidade . "', " .
 				"'" . $cep->bairro . "', " .
-				"'" . $cep->logra . "', " .
-				"'" . $cep->ender . "' )";
+				"'" . $cep->logra . "')";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -211,7 +276,7 @@ class DB
 	public static function getTecnicos()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$tec);
 			$res->execute();
 			$tecnicos = [];
@@ -239,7 +304,7 @@ class DB
 	public static function delTecnico(int $index)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$tec . " WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -253,7 +318,7 @@ class DB
 	public static function updateTecnico(Tecnico $tecnico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$tec . " SET " .
 				"nome       = '" . $tecnico->getNome() . "', " .
 				"email      = '" . $tecnico->getEmail() . "', " .
@@ -272,7 +337,7 @@ class DB
 	public static function insertTecnico(Tecnico $tecnico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$tec .
 				"(nome, email, cpf, tel) VALUES (" .
 				"'" . $tecnico->getNome() . "', " .
@@ -295,7 +360,7 @@ class DB
 	public static function getSolicitacoes()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$sol);
 			$res->execute();
 			$solicitacoes = [];
@@ -324,7 +389,7 @@ class DB
 	public static function delSolicitacao(int $index)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$sol . " WHERE cod_solicitacao = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -338,7 +403,7 @@ class DB
 	public static function updateSolicitacao(Solicitacao $solicitacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$sol . " SET " .
 				"cod_cliente       = '" . $solicitacao->getCodCliente() . "', " .
 				"cod_servico       = '" . $solicitacao->getCodServico() . "', " .
@@ -361,7 +426,7 @@ class DB
 	public static function insertSolicitacao(Solicitacao $solicitacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$sol .
 				"(cod_cliente, cod_servico, data_realizacao, data_agendamento, cod_tecnico, cod_execucao, cod_confirmacao, cod_orcamento) VALUES (" .
 				"'" . $solicitacao->getCodCliente() . "', " .
@@ -384,7 +449,7 @@ class DB
 	public static function getServicos()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$ser);
 			$res->execute();
 			$servicos = [];
@@ -409,7 +474,7 @@ class DB
 	public static function deleteServico(int $codigo)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$ser . " WHERE codigo = $codigo";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -423,7 +488,7 @@ class DB
 	public static function updateServico(Servico $servico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$ser . " SET " .
 				"nome = '" . $servico->getNome() . "', " .
 				"tipo = '" . $servico->getTipo() . "', " .
@@ -442,7 +507,7 @@ class DB
 	public static function insertServico(Servico $servico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$ser .
 				"(nome, tipo, descricao, valor) VALUES (" .
 				"'" . $servico->getNome() . "', " .
@@ -461,7 +526,7 @@ class DB
 	public static function getOrcamentos()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$orc);
 			$res->execute();
 			$orcamentos = [];
@@ -484,7 +549,7 @@ class DB
 	public static function deleteOrcamento(int $codigoAprovacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$orc . " WHERE codigo_aprovacao = $codigoAprovacao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -498,7 +563,7 @@ class DB
 	public static function updateOrcamento(Orcamento $orcamento)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$orc . " SET " .
 				"data_aprovacao = '" . $orcamento->getDataAprovacao() . "', " .
 				"status_aprovacao = '" . $orcamento->getStatusAprovacao() . "' " .
@@ -515,7 +580,7 @@ class DB
 	public static function insertOrcamento(Orcamento $orcamento)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$orc .
 				"(codigo_aprovacao, data_aprovacao, status_aprovacao) VALUES (" .
 				"'" . $orcamento->getCodigoAprovacao() . "', " .
@@ -533,7 +598,7 @@ class DB
 	public static function getCatalogo()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$cat);
 			$res->execute();
 			$catalogo = [];
@@ -556,7 +621,7 @@ class DB
 	public static function deleteCatalogo(int $codigoServico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$cat . " WHERE codigo_servico = $codigoServico";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -570,7 +635,7 @@ class DB
 	public static function updateCatalogo(Catalogo $servico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$cat . " SET " .
 				"nome_servico = '" . $servico->getNomeServico() . "', " .
 				"preco_servico = '" . $servico->getPrecoServico() . "' " .
@@ -587,7 +652,7 @@ class DB
 	public static function insertCatalogo(Catalogo $servico)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$cat .
 				"(codigo_servico, nome_servico, preco_servico) VALUES (" .
 				"'" . $servico->getCodigoServico() . "', " .
@@ -605,7 +670,7 @@ class DB
 	public static function getConfirmacoes()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$con);
 			$res->execute();
 			$confirmacoes = [];
@@ -628,7 +693,7 @@ class DB
 	public static function deleteConfirmacao(int $codigoConfirmacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$con . " WHERE codigo_confirmacao = $codigoConfirmacao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -642,7 +707,7 @@ class DB
 	public static function updateConfirmacao(Confirmacoes $confirmacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$con . " SET " .
 				"data_confirmacao = '" . $confirmacao->getDataConfirmacao() . "', " .
 				"status = '" . $confirmacao->getStatus() . "' " .
@@ -659,7 +724,7 @@ class DB
 	public static function insertConfirmacao(Confirmacoes $confirmacao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$con .
 				"(codigo_confirmacao, data_confirmacao, status) VALUES (" .
 				"'" . $confirmacao->getCodigoConfirmacao() . "', " .
@@ -676,7 +741,7 @@ class DB
 	public static function getExecucoes()
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$res = $conectar->prepare("SELECT * FROM " . $db . "." . DB::$exe);
 			$res->execute();
 			$execucoes = [];
@@ -699,7 +764,7 @@ class DB
 	public static function deleteExecucao(int $codigoExecucao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "DELETE FROM " . $db . "." . DB::$exe . " WHERE codigo_execucao = $codigoExecucao";
 			$res = $conectar->prepare($sql);
 			$res->execute();
@@ -713,7 +778,7 @@ class DB
 	public static function updateExecucao(Execucoes $execucao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$exe . " SET " .
 				"data_execucao = '" . $execucao->getDataExecucao() . "', " .
 				"status = '" . $execucao->getStatus() . "' " .
@@ -730,7 +795,7 @@ class DB
 	public static function insertExecucao(Execucoes $execucao)
 	{
 		try {
-			require(DB::$path);
+			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$exe .
 				"(codigo_execucao, data_execucao, status) VALUES (" .
 				"'" . $execucao->getCodigoExecucao() . "', " .

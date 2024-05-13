@@ -1,5 +1,8 @@
 <?php
-require('./php/db/conectar_db.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/conectar_db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/util/log.php');
+
+setExib(false);
 
 try {
 	// Tenta estabelecer a conexão com o banco de dados
@@ -8,9 +11,9 @@ try {
 
 	// Verifica se a conexão foi estabelecida com sucesso
 	if ($conectar) {
-		echo "Conexão com o banco de dados estabelecida com sucesso!";
+		exib("Conexão com o banco de dados estabelecida com sucesso!");
 	} else {
-		echo "Falha ao estabelecer a conexão com o banco de dados.";
+		exib("Falha ao estabelecer a conexão com o banco de dados.");
 	}
 } catch (PDOException $e) {
 	// Se houver um erro, exibe a mensagem de erro
@@ -21,17 +24,18 @@ try {
 if ($conectar) {
 
 	try {
-		$pi = "<p>";
-		$po = "</p>";
 		$tb = "CEP";
+		$drop = false;
+		if($drop){
 		$droptb = "DROP TABLE IF EXISTS $db.$tb";
 		$conectar->exec($droptb);
-		echo "$pi DROP TABLE $db.$tb - OK $po";
+		exib("DROP TABLE $db.$tb - OK");
 
 		$tb = "CLIENTES";
 		$droptb = "DROP TABLE IF EXISTS $db.$tb";
 		$conectar->exec($droptb);
-		echo "$pi DROP TABLE $db.$tb - OK $po";
+		exib("DROP TABLE $db.$tb - OK");
+		}
 	} catch (PDOException $erro) {
 		echo "$pi Erro no DROP da tabela $db.$tb" . $erro->getMessage() . $po;
 	}
@@ -48,13 +52,12 @@ if ($conectar) {
 				uf		VARCHAR(20)		NOT NULL,
 				cidade	VARCHAR(40)		NOT NULL,
 				bairro	VARCHAR(40)		NOT NULL,
-				logra	VARCHAR(20)		NOT NULL,
-				ender	VARCHAR(40)		NOT NULL)
+				logra	VARCHAR(20)		NOT NULL)
 				ENGINE=InnoDB DEFAULT CHARSET=latin1	
 			";
 		//
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. " . $erro->getMessage();
 	}
@@ -68,7 +71,8 @@ if ($conectar) {
 				nome		VARCHAR(70) NOT NULL,
 				email		VARCHAR(30) NOT NULL,
 				cpf_cnpj	VARCHAR(14) NOT NULL,
-				tel			VARCHAR(14) NOT NULL,
+				tel1		VARCHAR(14) NOT NULL,
+				tel2		VARCHAR(14) NULL,
 				cep			CHAR(9)		NOT NULL,
 				end_nro		INT 		NOT NULL,
 				end_cmplto	VARCHAR(45)	NULL,
@@ -76,7 +80,7 @@ if ($conectar) {
 				CONSTRAINT FK_" . $tb . "_CEP FOREIGN KEY (cep) REFERENCES CEP (cod))
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -93,7 +97,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!") ;
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -109,7 +113,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -125,7 +129,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -140,7 +144,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!") ;
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -156,7 +160,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -173,7 +177,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -189,7 +193,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -206,7 +210,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -228,7 +232,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -261,7 +265,7 @@ if ($conectar) {
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";
 		$conectar->exec($criatb);
-		echo "<p>CREATE TABLE $tb -> OK!</p>";
+		exib("CREATE TABLE $tb -> OK!");
 	} catch (PDOException $erro) {
 		echo "Tabela $tb. Falhou na criacao. Msg: " . $erro->getMessage();
 	}
@@ -270,3 +274,4 @@ $conectar = null;
 unset($conectar);
 unset($tb);
 unset($criatb);
+setExib(false);
