@@ -40,7 +40,7 @@ $ceps = DB::getCEPs();
     <section class="grid grid-template-row">
       <div class="item nav">
         <header class="header-nav">
-          <h1>Bem-vindo, <span class="nome_func">nome</span>!</h1>
+          <h1>Bem-vindo, <span class="nome_func"> <?= $_SESSION['USER'] ?> </span>!</h1>
           <div class="btn_menu">
             <div class="btn_perfil"><a href=""><img src="./img/user-circle-svgrepo-com.svg" alt="foto do usuário" title="Perfil"></a></div>
             <div class="btn_logout"><a href="index.html"><img src="./img/logout-svgrepo-com.svg" alt="logout" title="Sair"></a></div>
