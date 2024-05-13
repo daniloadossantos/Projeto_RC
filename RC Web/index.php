@@ -1,21 +1,21 @@
 <?php
 session_start();
 
-require_once('./php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
 
 // Testes de classe
-require_once('./php/cls/cliente.php');
-require_once('./php/cls/servico.php');
-require_once('./php/cls/agendamento.php');
-require_once('./php/cls/tecnico.php');
-require_once('./php/cls/cep.php');
-require_once('./php/cls/aprovacao.php');
-require_once('./php/cls/catalogo.php');
-require_once('./php/cls/confirmacoes.php');
-require_once('./php/cls/execucoes.php');
-require_once('./php/cls/orcamentos.php');
-require_once('./php/cls/servico.php');
-require_once('./php/cls/solicitacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/agendamento.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/aprovacao.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/catalogo.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/confirmacoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/execucoes.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/orcamentos.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/solicitacoes.php');
 
 
 // $cli = new Cliente(12, "Joao", "jo@gmail.com", "400500900-25", "11920003000", "Avenida lagod");
@@ -56,17 +56,19 @@ function hd(string $msg)
 
 //Teste update
 // DB::updateCliente($cli);
-// $clientes = DB::getClientes()??[];
-// view($clientes);
+$clientes = DB::getClientes()??[];
+view($clientes);
 
-//Teste insert
-// $cli = new Cliente(0, "Ricardo", "ric@gu.com", "80090050022", "11945781245", "03087-000", 789, "A esquerda", "19-05-2020");
+// Teste insert
+$cli = new Cliente(0, "Ricardo", "ric@gu.com", "80090050022", '11985263410', "11945781245", "03087-000", 789, "A esquerda");
+$cli->show();
 
+echo date('d-m-Y');
 
-// DB::insertCliente($cli);
+DB::insertCliente($cli);
 
-// $clientes = DB::getClientes()??[];
-// view($clientes);
+$clientes = DB::getClientes()??[];
+view($clientes);
 
 
 // - - - - - - CEPs - -- - - - 
@@ -91,16 +93,16 @@ function hd(string $msg)
 // "Jardim",
 // "Rua Madrigal da Sombra"
 // );
-=======
-$cep = new CEP(
-	"08050-820",
-	"SP",
-	"São Paulo",
-	"Jardim das Camélias",
-	"Jardim",
-	"Rua Madrigal da Sombra"
-);
->>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
+
+// $cep = new CEP(
+// 	"08050-820",
+// 	"SP",
+// 	"São Paulo",
+// 	"Jardim das Camélias",
+// 	"Jardim",
+// 	"Rua Madrigal da Sombra"
+// );
+//>>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
 
 // hd("Teste DELETE");
 // DB::delCEP($cep->cod);
@@ -114,8 +116,8 @@ $cep = new CEP(
 
 echo "<button><a href=\"./clientes.php\">Clientes</a></button>";
 
-=======
-hd("Teste CREATE");
-DB::insertCEP($cep);
-view(DB::getCEPs());
->>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
+//=======
+// hd("Teste CREATE");
+// DB::insertCEP($cep);
+// view(DB::getCEPs());
+//>>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
