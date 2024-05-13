@@ -155,9 +155,9 @@ class DB
 				"'" . $cli->tel1 . "', " .
 				"'" . $cli->tel2 . "', " .
 				"'" . $cli->cep . "', " .
-				"'" . $cli->end_nro . ", " .
+				" " . $cli->end_nro . ", " .
 				"'" . $cli->end_cmplto . "', " .
-				"'" . $cli->dt_cad . "' )";
+				" CURDATE())";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
