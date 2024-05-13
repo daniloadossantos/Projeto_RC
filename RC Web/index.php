@@ -1,123 +1,58 @@
 <?php
 session_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
+if(isset($_POST['nome']))
+  unset($_POST['nome']);
 
-// Testes de classe
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/agendamento.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/aprovacao.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/catalogo.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/confirmacoes.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/execucoes.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/orcamentos.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/solicitacoes.php');
+if(isset($_POST['senha']))
+  unset($_POST['senha']);
 
+if(isset($_SESSION['USER']))
+  unset($_SESSION['USER']);
 
-// $cli = new Cliente(12, "Joao", "jo@gmail.com", "400500900-25", "11920003000", "Avenida lagod");
-// $serv = new Servico(32, "Augusto", "Manutencao", "Manutencao de ar-condicionado", 89.56);
-// $agend = new Agendamento(64, "Ferreiro", "22/04/2024", "Av tal", "Augusto");
-// $tecnico = new Tecnico(2332, "Jose", "jose@gmail.com", "800900700-64", "97865-2345");
-// $cep = new Cep("04560-200", "SP", "São Paulo", "Jardins", "Praça", "Rua das Rosas");
-// $aprov = new Aprovacoes(3214, "28/06/2029", 1);
+if(isset($_SESSION['PG_ACCESS']))
+  unset($_SESSION['PG_ACCESS']);
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-// $cli->show();
-// $serv->show();
-// $agend->show();
-// $tecnico->show();
-// $cep->show();
-// $aprov->show();
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RC Ar-condicionado</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="./img/rc.svg" alt="">
+    </div>
+    <main>
+      <div class="box-login">
+        <div class="login-form">
+          <h2>Bem vindo à RC System</h2>
+          <form method="post" id="login-form" action="./php/pg/ck_login.php">
+            <div>
+              <label for="cod_func">Usuário</label>
+              <a href="#"><span>Esqueci meu usuário</span></a>
+              <input type="text" id="nome" name="nome" placeholder="Digite o código do usuário" required>
+            </div>
+            <div>
+              <label for="senha">Senha</label>
+              <a href="#"><span>Esqueci minha senha</span></a>
+              <input type="password" name="senha" id="email" placeholder="Digite sua senha" required>
+            </div>
+            <button type="submit">Entrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Todos os direitos reservados. 2024 <a href="clientes.php">clientes</a></p>
+    </footer>
 
-function view($arr)
-{
-	foreach ($arr as $key => $value) {
-		echo "<h2>$key</h2><p>";
-		print_r($value);
-		echo "</p></br>";
-	}
-}
+  <script src="./js/login_php.js"></script>
 
-function hd(string $msg)
-{
-	echo "<h2>$msg</h2>";
-}
-// - - - -  Banco de Dados - - - 
-//require('./db/criar_db.php');
-//require('./db/criar_tb.php');
-
-
-// - - - - - - Clientes - -- - - - 
-// $clientes = DB::getClientes()??[];
-// view($clientes);
-
-//Teste update
-// DB::updateCliente($cli);
-// $clientes = DB::getClientes()??[];
-// view($clientes);
-
-// Teste insert
-// $cli = new Cliente(0, "Ricardo", "ric@gu.com", "80090050022", '11985263410', "11945781245", "03087-000", 789, "A esquerda");
-// $cli->show();
-
-// echo date('d-m-Y');
-
-// DB::insertCliente($cli);
-
-// $clientes = DB::getClientes()??[];
-// view($clientes);
-
-
-// - - - - - - CEPs - -- - - - 
-
-// hd("Teste READ");
-// view(DB::getCEPs());
-
-// hd("Teste UPDATE");
-// $ceps = DB::getCEPs();
-// $cep = $ceps["02652-080"];
-// $cep->cidade  = "Super São Paulo";
-// DB::updateCEP($cep);
-// view(DB::getCEPs());
-// $cep->cidade  = "São Paulo";
-// DB::updateCEP($cep);
-
-// $cep = new CEP(
-// "08050-820", 
-// "SP", 
-// "São Paulo",
-// "Jardim das Camélias",
-// "Jardim",
-// "Rua Madrigal da Sombra"
-// );
-
-// $cep = new CEP(
-// 	"08050-820",
-// 	"SP",
-// 	"São Paulo",
-// 	"Jardim das Camélias",
-// 	"Jardim",
-// 	"Rua Madrigal da Sombra"
-// );
-//>>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
-
-// hd("Teste DELETE");
-// DB::delCEP($cep->cod);
-// view(DB::getCEPs());
-
-
-// hd("Teste CREATE");
-// DB::insertCEP($cep);
-// view(DB::getCEPs());
-
-
-echo "<button><a href=\"./clientes.php\">Clientes</a></button>";
-echo "<button><a href=\"./inde.php\">Login</a></button>";
-//=======
-// hd("Teste CREATE");
-// DB::insertCEP($cep);
-// view(DB::getCEPs());
-//>>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
+</body>
+</html>
