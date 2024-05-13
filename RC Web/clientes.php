@@ -11,7 +11,6 @@ if( !isset($_SESSION['USER']) )
   header('Location: ./inde.php');
 }
 
-echo CLIENTES;
 if(isset($_POST["SELECT"]))
 {
   $clientes = DB::getClientePorNome($_POST["SELECT"]??"");
@@ -48,10 +47,18 @@ $ceps = DB::getCEPs();
         </header>
       </div>
       <div class="item sidenav menu_lateral">
+        <?php if($_SESSION['PG_ACCESS']['CLIENTES']): ?>
         <div class="menu_clientes"> <a href="clientes.html" title="Clientes"><img src="./img/users-svgrepo-com.svg" alt="Clientes"></a></div>
+        <?php endif ?>
+        <?php if($_SESSION['PG_ACCESS']['SERVICOS']): ?>
         <div class="menu_servicos"> <a href="orcamento.html" title="Serviços"><img src="./img/tools-svgrepo-com.svg" alt="Serviços"></a></div>
+        <?php endif ?>
+        <?php if($_SESSION['PG_ACCESS']['AGENDAMENTOS']): ?>
         <div class="menu_agendamentos"> <a href="agendamento.html" title="Agendamentos"><img src="./img/calendar-svgrepo-com.svg" alt="Agendamentos"></a></div>
+        <?php endif?>
+        <?php if($_SESSION['PG_ACCESS']['TECNICOS']): ?>
         <div class="menu_tecnicos"> <a href="tecnicos.html" title="Técnicos"><img src="./img/construction-worker-svgrepo-com.svg" alt="Técnicos"></a></div>
+        <?php endif ?>
       </div>
 
       <div class="item pesquisa">
