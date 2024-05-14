@@ -67,7 +67,6 @@ span{
   padding: 0px 5px;
   border: 2px solid #364156;
   border-radius: 5px;
-  
 }
 
 .login-form button{
@@ -82,4 +81,22 @@ span{
 }
 .login-form input:hover{
   border: 2px solid #e5e8e2;
+}
+
+@media screen and (min-width:320px) and (max-width:720px){
+
+#nome,
+#email{
+  max-width: 100%;
+}
+
+.box-login{
+  max-width: 90%;  
+  left: 5%;
+}
+
+.login-form{
+  width: 100%;
+}
+
 }
