@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
 
 
-setExib(true);
+setExib(false);
 
 var_dump($_POST);
 
@@ -106,7 +106,7 @@ else if(isset($_POST[$READ]))
 {
     echo "Vou procurar";
 }
-exib("<button><a href=\"../../tecnico.php\">Tecnico</a></button>");
+exib("<button><a href=\"../../tecnicos.php\">Tecnico</a></button>");
 
 setExib(false);
-// header('Location: ./../../tecnico.php');
+header('Location: ./../../tecnicos.php');
