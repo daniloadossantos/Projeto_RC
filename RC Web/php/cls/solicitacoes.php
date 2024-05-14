@@ -1,36 +1,36 @@
 <?php
 class Solicitacao
 {
-    public int $codigoCliente;
-    public int $codigoServico;
-    public int $codigoSolicitacao;
-    public string $dataRealizacaoServico;
-    public string $dataAgendamento;
-    public int $codigoTecnico;
-    public int $codigoExecucao;
-    public int $codigoConfirmacao;
-    public int $codigoOrcamento;
+    public int $cod;
+    public int $codCli;
+    public int $codServ;
+    public int $codTec;
+    public int $codAte;
+    public int $codOrc;
+    public string $dataAgen;
+    public string $dataExe;
+    public string $dataConf;
 
     public function __construct(
-        int $codigoCliente,
-        int $codigoServico,
-        int $codigoSolicitacao,
-        string $dataRealizacaoServico,
-        string $dataAgendamento,
-        int $codigoTecnico,
-        int $codigoExecucao,
-        int $codigoConfirmacao,
-        int $codigoOrcamento
+        int $cod,
+        int $codCli,
+        int $codTec = null,
+        int $codServ = null,
+        int $codAte = null,
+        int $codOrc = null,
+        string $dataAgen = null,
+        string $dataExe = null,
+        string $dataConf = null,
     ) {
-        $this->codigoCliente = $codigoCliente;
-        $this->codigoServico = $codigoServico;
-        $this->codigoSolicitacao = $codigoSolicitacao;
-        $this->dataRealizacaoServico = $dataRealizacaoServico;
-        $this->dataAgendamento = $dataAgendamento;
-        $this->codigoTecnico = $codigoTecnico;
-        $this->codigoExecucao = $codigoExecucao;
-        $this->codigoConfirmacao = $codigoConfirmacao;
-        $this->codigoOrcamento = $codigoOrcamento;
+        $this->cod = $cod;
+        $this->codCli = $codCli;
+        $this->codServ = $codServ;
+        $this->codTec = $codTec;
+        $this->codAte = $codAte;
+        $this->dataAgen = $dataAgen;
+        $this->dataExe = $dataExe;
+        $this->dataConf = $dataConf;
+        $this->codOrc = $codOrc;
     }
 
     public function show()
@@ -38,69 +38,59 @@ class Solicitacao
         $pi = "<p>";
         $po = "</p>";
 
-        echo $pi . "Código do Cliente: " . $this->codigoCliente . $po;
-        echo $pi . "Código do Serviço: " . $this->codigoServico . $po;
-        echo $pi . "Código da Solicitação: " . $this->codigoSolicitacao . $po;
-        echo $pi . "Data de Realização do Serviço: " . $this->dataRealizacaoServico . $po;
-        echo $pi . "Data de Agendamento: " . $this->dataAgendamento . $po;
-        echo $pi . "Código do Técnico: " . $this->codigoTecnico . $po;
-        echo $pi . "Código de Execuções: " . $this->codigoExecucao . $po;
-        echo $pi . "Código de Confirmações: " . $this->codigoConfirmacao . $po;
-        echo $pi . "Código de Orçamento: " . $this->codigoOrcamento . $po;
+        echo $pi . "Código do Cliente: " . $this->cod . $po;
+        echo $pi . "Código do Serviço: " . $this->codCli . $po;
+        echo $pi . "Código da Solicitação: " . $this->codServ . $po;
+        echo $pi . "Data de Realização do Serviço: " . $this->codTec . $po;
+        echo $pi . "Data de Agendamento: " . $this->codAte . $po;
+        echo $pi . "Código do Técnico: " . $this->dataAgen . $po;
+        echo $pi . "Código de Execuções: " . $this->dataExe . $po;
+        echo $pi . "Código de Confirmações: " . $this->dataConf . $po;
+        echo $pi . "Código de Orçamento: " . $this->codOrc . $po;
         echo "<br/><br/>";
     }
 
-    public function getCodCliente(): ?int
-    {
-        // Obtendo todos os clientes
-        $clientes = DB::getClientes();
+    // public function getCodCliente(): ?int
+    // {
+    //     // Obtendo todos os clientes
+    //     $clientes = DB::getClientes();
 
-        // Verificando se há clientes associados à solicitação
-        if (!empty($clientes)) {
-            // Iterando sobre os clientes
-            foreach ($clientes as $codigo => $cliente) {
-                // Comparando o nome do cliente com o nome associado à solicitação
-                if ($cliente->getCod() === $this->codigoCliente) {
-                    return $codigo; // Retornando o código do cliente encontrado
-                }
-            }
-        }
-        // Se nenhum cliente correspondente for encontrado, retorna null
-        return null;
-    }
-/*    public function getCodCliente(): int
+    //     // Verificando se há clientes associados à solicitação
+    //     if (!empty($clientes)) {
+    //         // Iterando sobre os clientes
+    //         foreach ($clientes as $codigo => $cliente) {
+    //             // Comparando o nome do cliente com o nome associado à solicitação
+    //             if ($cliente->getCod() === $this->codigoCliente) {
+    //                 return $codigo; // Retornando o código do cliente encontrado
+    //             }
+    //         }
+    //     }
+    //     // Se nenhum cliente correspondente for encontrado, retorna null
+    //     return null;
+    // }
+
+    public function getCod(): int
     {
-        return $this->codigoCliente;
-    }*/
+        return $this->cod;
+    }
+
+   public function getCodCliente(): int
+    {
+        return $this->codCli;
+    }
 
     public function getCodServico(): int
     {
-        return $this->codigoServico;
+        return $this->codServ;
     }
-
-    public function getDataRealizacao(): string
-    {
-        return $this->dataRealizacaoServico;
-    }
-
-    public function getDataAgendamento(): string
-    {
-        return $this->dataAgendamento;
-    }
-
     public function getCodTecnico(): int
     {
-        return $this->codigoTecnico;
+        return $this->codTec;
     }
 
-    public function getCodExecucao(): int
+    public function getCodAtend(): int
     {
-        return $this->codigoExecucao;
-    }
-
-    public function getCodConfirmacao(): int
-    {
-        return $this->codigoConfirmacao;
+        return $this->codAte;
     }
 
     public function getCodOrcamento(): int
@@ -108,8 +98,21 @@ class Solicitacao
         return $this->codigoOrcamento;
     }
 
-    public function getCodSolicitacao(): int
+    public function getDataAgendamento(): string
     {
-        return $this->codigoSolicitacao;
+        return $this->dataAgen;
     }
+
+
+    public function getDataExecucao(): int
+    {
+        return $this->dataExe;
+    }
+
+    public function getDataConfirmacao(): int
+    {
+        return $this->dataConf;
+    }
+
+
 }

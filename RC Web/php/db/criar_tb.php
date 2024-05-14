@@ -249,25 +249,20 @@ if ($conectar) {
 	try {
 		$criatb =
 			"CREATE TABLE IF NOT EXISTS $db.$tb (
-				cod				INT(6)	 UNSIGNED	NOT NULL,
+				cod				INT(6)	 UNSIGNED	NOT NULL AUTO_INCREMENT,
 				cod_cliente		INT(6)   UNSIGNED   NOT NULL,
-				cod_servico		INT(6)	 UNSIGNED	NOT NULL,
-				cod_atendent	INT(6) 	 UNSIGNED	NOT NULL,
-				cod_tecnico		INT(6) 	 UNSIGNED	NOT NULL,
-				cod_agenda		INT(6) 	 UNSIGNED	NOT NULL,
-				cod_execucoes	INT(6) 	 UNSIGNED	NOT NULL,
-				cod_confirma	INT(6) 	 UNSIGNED	NOT NULL,
-				cod_orcamento	INT(6) 	 UNSIGNED	NOT NULL,
-				dt_realiza		DATETIME 	NULL,
+				cod_servico		INT(6)	 UNSIGNED	NULL,
+				cod_atendent	INT(6) 	 UNSIGNED	NULL,
+				cod_tecnico		INT(6) 	 UNSIGNED	NULL,
+				cod_orcamento	INT(6) 	 UNSIGNED	NULL,
+				dt_confirma		DATETIME 	NULL,
+				dt_executa		DATETIME 	NULL,
 				dt_agendada		DATETIME	NULL,
 				CONSTRAINT PK_$tb PRIMARY KEY (cod),
 				CONSTRAINT FK_" . $tb . "_COD_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTES (cod),
 				CONSTRAINT FK_" . $tb . "_COD_SERVICO FOREIGN KEY (cod_servico) REFERENCES SERVICOS (cod),
 				CONSTRAINT FK_" . $tb . "_COD_ATENDENTE FOREIGN KEY (cod_atendent) REFERENCES ATENDENTES (cod),
 				CONSTRAINT FK_" . $tb . "_COD_TECNICO FOREIGN KEY (cod_tecnico) REFERENCES TECNICOS (cod),
-				CONSTRAINT FK_" . $tb . "_COD_AGENDAMENTO FOREIGN KEY (cod_agenda) REFERENCES AGENDAMENTOS (cod),
-				CONSTRAINT FK_" . $tb . "_COD_EXECUCOES FOREIGN KEY (cod_execucoes) REFERENCES EXECUCOES (cod),
-				CONSTRAINT FK_" . $tb . "_COD_CONFIRMACOES FOREIGN KEY (cod_confirma) REFERENCES CONFIRMACOES (cod),
 				CONSTRAINT FK_" . $tb . "_COD_ORCAMENTOS FOREIGN KEY (cod_orcamento) REFERENCES ORCAMENTOS (cod)
 			)
 			ENGINE=InnoDB DEFAULT CHARSET=latin1";

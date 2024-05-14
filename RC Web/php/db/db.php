@@ -402,15 +402,15 @@ class DB
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
 				// Supondo que exista uma classe Solicitacao representando a entidade do banco de dados
 				$solicitacoes[$reg["cod"]] = new Solicitacao(
+					$reg["cod"],
 					$reg["cod_cliente"],
-					$reg["cod_servico"],
-					$reg["cod_solicitacao"],
-					$reg["data_realizacao"],
-					$reg["data_agendamento"],
-					$reg["cod_tecnico"],
-					$reg["cod_execucao"],
-					$reg["cod_confirmacao"],
-					$reg["cod_orcamento"]
+					$reg["cod_tecnico"] ?? null,
+					$reg["cod_servico"] ?? null,
+					$reg["cod_atendent"] ?? null,
+					$reg["cod_orcamento"] ?? null,
+					$reg["data_agendada"],
+					$reg["data_executa"],
+					$reg["data_confirma"]
 				);
 			}
 			return $solicitacoes;
@@ -440,15 +440,15 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$sol . " SET " .
-				"cod_cliente       = '" . $solicitacao->getCodCliente() . "', " .
-				"cod_servico       = '" . $solicitacao->getCodServico() . "', " .
-				"data_realizacao   = '" . $solicitacao->getDataRealizacao() . "', " .
-				"data_agendamento  = '" . $solicitacao->getDataAgendamento() . "', " .
-				"cod_tecnico       = '" . $solicitacao->getCodTecnico() . "', " .
-				"cod_execucao      = '" . $solicitacao->getCodExecucao() . "', " .
-				"cod_confirmacao   = '" . $solicitacao->getCodConfirmacao() . "', " .
-				"cod_orcamento     = '" . $solicitacao->getCodOrcamento() . "' " .
-				"WHERE cod_solicitacao = " . $solicitacao->getCodSolicitacao();
+				"cod_cliente       = " . $solicitacao->getCodCliente()      . ", " .
+				"cod_servico       = " . $solicitacao->getCodServico()      . ", " .
+				"cod_atendent      = " . $solicitacao->getCodAtend()     . ", " .
+				"cod_tecnico       = " . $solicitacao->getCodTecnico()      . ", " .
+				"cod_orcamento     = " . $solicitacao->getCodOrcamento()    . ", " .
+				"dt_confirma       = '" . $solicitacao->getDataConfirmacao() . "', " .
+				"dt_executa        = '" . $solicitacao->getDataExecucao() . "', " .
+				"dt_agendada       = '" . $solicitacao->getDataAgendamento() . "' " .
+				"WHERE cod = " . $solicitacao->getCod();
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -463,15 +463,15 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$sol .
-				"(cod_cliente, cod_servico, data_realizacao, data_agendamento, cod_tecnico, cod_execucao, cod_confirmacao, cod_orcamento) VALUES (" .
-				"'" . $solicitacao->getCodCliente() . "', " .
-				"'" . $solicitacao->getCodServico() . "', " .
-				"'" . $solicitacao->getDataRealizacao() . "', " .
-				"'" . $solicitacao->getDataAgendamento() . "', " .
-				"'" . $solicitacao->getCodTecnico() . "', " .
-				"'" . $solicitacao->getCodExecucao() . "', " .
-				"'" . $solicitacao->getCodConfirmacao() . "', " .
-				"'" . $solicitacao->getCodOrcamento() . "' )";
+				"(cod_cliente, cod_servico, cod_atendent, cod_tecnico, cod_orcamento, dt_confirma, dt_execut, dt_agendada) VALUES (" .
+				" " . $solicitacao->getCodCliente() . ", " .
+				" " . $solicitacao->getCodServico() . ", " .
+				" " . $solicitacao->getCodAtend() . ", " .
+				" " . $solicitacao->getCodTecnico() . ", " .
+				" " . $solicitacao->getCodOrcamento() . ", " .
+				"'" . $solicitacao->getDataConfirmacao() . "', " .
+				"'" . $solicitacao->getDataExecucao() . "', " .
+				"'" . $solicitacao->getDataAgendamento() . "' )";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -481,6 +481,7 @@ class DB
 		}
 	}
 
+	// CRUD Serviços
 	public static function getServicos()
 	{
 		try {
@@ -557,7 +558,7 @@ class DB
 			$conectar = null;
 		}
 	}
-
+	// CRUD Orçamento
 	public static function getOrcamentos()
 	{
 		try {
@@ -629,7 +630,7 @@ class DB
 			$conectar = null;
 		}
 	}
-
+	// CRUD Catalogo
 	public static function getCatalogo()
 	{
 		try {
@@ -701,7 +702,7 @@ class DB
 			$conectar = null;
 		}
 	}
-
+	// CRUD Confirmação
 	public static function getConfirmacoes()
 	{
 		try {
@@ -773,6 +774,8 @@ class DB
 			$conectar = null;
 		}
 	}
+
+	// CRUD Execução
 	public static function getExecucoes()
 	{
 		try {
@@ -844,4 +847,6 @@ class DB
 			$conectar = null;
 		}
 	}
+
+	// CRUD Agendamentos
 }

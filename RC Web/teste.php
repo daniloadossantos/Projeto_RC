@@ -2,7 +2,7 @@
 session_start();
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
-
+// require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_tb.php');
 // Testes de classe
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/servico.php');
@@ -121,3 +121,46 @@ echo "<button><a href=\"./inde.php\">Login</a></button>";
 // DB::insertCEP($cep);
 // view(DB::getCEPs());
 //>>>>>>> ced99f54713486e72d4790706db67774f4a1bb08
+
+/*
+hd("TESTE VIEW TECNICO");
+
+view(DB::getTecnicos());
+view(DB::getTecnicosPorNome("er"));
+hd("TESTE CREATE TECNICO");
+
+$tec = new Tecnico(
+    5,
+    "Rui Barbosa",
+    "rui@uol.com",
+    "78978978922",
+    "11922223333",
+    "1185236974",
+    "01101-010",
+    29999,
+    "Bloco b"
+);
+
+$tec->show();
+// DB::insertTecnico($tec);
+view(DB::getTecnicos());
+
+hd("TESTE UPDATE TECNICO");
+// DB::updateTecnico($tec);
+view(DB::getTecnicos());
+
+
+hd("TESTE DELETE TECNICO");
+DB::delTecnico(5);
+view(DB::getTecnicos());
+
+*/
+hd("TESTE DELETE SOLICITA");
+
+$sol = new Solicitacao(
+    1,
+);
+
+$sol->show();
+
+DB::insertSolicitacao($sol);
