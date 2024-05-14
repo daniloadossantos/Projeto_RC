@@ -381,7 +381,7 @@ const submitForm = (page = null) => {
   document.getElementById('form').submit()
 }
 
-const saveCliente = (newCliente) => {
+const saveCliente = () => {
   if(isValidFields()){
     cepFieldsEnable(true);
     submitForm();
