@@ -10,17 +10,19 @@ class Solicitacao
     public string $dataAgen;
     public string $dataExe;
     public string $dataConf;
+    public string $status;
 
     public function __construct(
         int $cod,
         int $codCli,
-        int $codTec = null,
-        int $codServ = null,
-        int $codAte = null,
-        int $codOrc = null,
-        string $dataAgen = null,
-        string $dataExe = null,
-        string $dataConf = null,
+        int $codTec = 0,
+        int $codServ = 0,
+        int $codAte = 0,
+        int $codOrc = 0,
+        string $dataAgen = "",
+        string $dataExe = "",
+        string $dataConf = "",
+        string $status
     ) {
         $this->cod = $cod;
         $this->codCli = $codCli;
@@ -31,6 +33,7 @@ class Solicitacao
         $this->dataExe = $dataExe;
         $this->dataConf = $dataConf;
         $this->codOrc = $codOrc;
+        $this->status = $status;
     }
 
     public function show()
@@ -38,14 +41,14 @@ class Solicitacao
         $pi = "<p>";
         $po = "</p>";
 
-        echo $pi . "Código do Cliente: " . $this->cod . $po;
-        echo $pi . "Código do Serviço: " . $this->codCli . $po;
-        echo $pi . "Código da Solicitação: " . $this->codServ . $po;
-        echo $pi . "Data de Realização do Serviço: " . $this->codTec . $po;
-        echo $pi . "Data de Agendamento: " . $this->codAte . $po;
-        echo $pi . "Código do Técnico: " . $this->dataAgen . $po;
-        echo $pi . "Código de Execuções: " . $this->dataExe . $po;
-        echo $pi . "Código de Confirmações: " . $this->dataConf . $po;
+        echo $pi . "Código : " . $this->cod . $po;
+        echo $pi . "Código do cliente: " . $this->codCli . $po;
+        echo $pi . "Código da serv: " . $this->codServ . $po;
+        echo $pi . "Dcod tecnico: " . $this->codTec . $po;
+        echo $pi . "Cod de ate: " . $this->codAte . $po;
+        echo $pi . "Data agenda: " . $this->dataAgen . $po;
+        echo $pi . "Data de Execuções: " . $this->dataExe . $po;
+        echo $pi . "Data de Confirmações: " . $this->dataConf . $po;
         echo $pi . "Código de Orçamento: " . $this->codOrc . $po;
         echo "<br/><br/>";
     }
@@ -95,7 +98,7 @@ class Solicitacao
 
     public function getCodOrcamento(): int
     {
-        return $this->codigoOrcamento;
+        return $this->codOrc;
     }
 
     public function getDataAgendamento(): string
@@ -109,7 +112,7 @@ class Solicitacao
         return $this->dataExe;
     }
 
-    public function getDataConfirmacao(): int
+    public function getDataConf(): int
     {
         return $this->dataConf;
     }
