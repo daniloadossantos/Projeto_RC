@@ -402,15 +402,16 @@ class DB
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
 				// Supondo que exista uma classe Solicitacao representando a entidade do banco de dados
 				$solicitacoes[$reg["cod"]] = new Solicitacao(
-					$reg["cod"],
-					$reg["cod_cliente"],
-					$reg["cod_tecnico"] ?? null,
-					$reg["cod_servico"] ?? null,
-					$reg["cod_atendent"] ?? null,
-					$reg["cod_orcamento"] ?? null,
-					$reg["data_agendada"],
-					$reg["data_executa"],
-					$reg["data_confirma"]
+					$reg["cod"] ?? 0,
+					$reg["cod_cliente"] ?? 0,
+					$reg["cod_tecnico"] ?? 0,
+					$reg["cod_servico"] ?? 0,
+					$reg["cod_atendent"] ?? 0,
+					$reg["cod_orcamento"] ?? 0,
+					$reg["dt_agendada"] ?? "",
+					$reg["dt_executa"] ?? "",
+					$reg["dt_confirma"] ?? "",
+					$reg["status_agd"] ?? ""
 				);
 			}
 			return $solicitacoes;
@@ -425,7 +426,7 @@ class DB
 	{
 		try {
 			require(DB::getPath());
-			$sql = "DELETE FROM " . $db . "." . DB::$sol . " WHERE cod_solicitacao = $index";
+			$sql = "DELETE FROM " . $db . "." . DB::$sol . " WHERE cod = $index";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -440,15 +441,16 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$sol . " SET " .
-				"cod_cliente       = " . $solicitacao->getCodCliente()      . ", " .
-				"cod_servico       = " . $solicitacao->getCodServico()      . ", " .
-				"cod_atendent      = " . $solicitacao->getCodAtend()     . ", " .
-				"cod_tecnico       = " . $solicitacao->getCodTecnico()      . ", " .
-				"cod_orcamento     = " . $solicitacao->getCodOrcamento()    . ", " .
-				"dt_confirma       = '" . $solicitacao->getDataConfirmacao() . "', " .
-				"dt_executa        = '" . $solicitacao->getDataExecucao() . "', " .
-				"dt_agendada       = '" . $solicitacao->getDataAgendamento() . "' " .
-				"WHERE cod = " . $solicitacao->getCod();
+			"cod_cliente       = " . $solicitacao->codCli      . ", " .
+			"cod_servico       = " . (($solicitacao->codServ == 0)? "NULL" : $solicitacao->codServ)      . ", " .
+			"cod_atendent      = " . (($solicitacao->codAte == 0)? "NULL" : $solicitacao->codAte)     . ", " .
+			"cod_tecnico       = " .(($solicitacao->codTec == 0)? "NULL" : $solicitacao->codTec)      . ", " .
+			"cod_orcamento     = " . (($solicitacao->codOrc == 0)? "NULL" : $solicitacao->codOrc)    . ", " .
+			"dt_confirma       = '" . (($solicitacao->dataConf == "")? "NULL" : $solicitacao->dataConf) . "', " .
+			"dt_executa        = '" .(($solicitacao->dataExe == "")? "NULL" : $solicitacao->dataExe) . "', " .
+			"dt_agendada       = '" . (($solicitacao->dataAgen == "")? "NULL" : $solicitacao->dataAgen) . "', " .
+			"status_agd       = '" . (($solicitacao->status == "")? "NULL" : $solicitacao->status) . "' " .
+			"WHERE cod = " . $solicitacao->cod;
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -463,15 +465,16 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$sol .
-				"(cod_cliente, cod_servico, cod_atendent, cod_tecnico, cod_orcamento, dt_confirma, dt_execut, dt_agendada) VALUES (" .
-				" " . $solicitacao->getCodCliente() . ", " .
-				" " . $solicitacao->getCodServico() . ", " .
-				" " . $solicitacao->getCodAtend() . ", " .
-				" " . $solicitacao->getCodTecnico() . ", " .
-				" " . $solicitacao->getCodOrcamento() . ", " .
-				"'" . $solicitacao->getDataConfirmacao() . "', " .
-				"'" . $solicitacao->getDataExecucao() . "', " .
-				"'" . $solicitacao->getDataAgendamento() . "' )";
+				"(cod_cliente, cod_servico, cod_atendent, cod_tecnico, cod_orcamento, dt_confirma, dt_executa, dt_agendada) VALUES (" .
+				" " . $solicitacao->codCli . ", " .
+				" " . (($solicitacao->codServ == 0)? "NULL" : $solicitacao->codServ) . ", " .
+				" " . (($solicitacao->codAte == 0)? "NULL" : $solicitacao->codAte) . ", " .
+				" " . (($solicitacao->codTec == 0)? "NULL" : $solicitacao->codTec) . ", " .
+				" " . (($solicitacao->codOrc == 0)? "NULL" : $solicitacao->codOrc) . ", " .
+				"'" . (($solicitacao->dataConf == "")? "NULL" : $solicitacao->dataConf) . "', " .
+				"'" . (($solicitacao->dataExe == "")? "NULL" : $solicitacao->dataExe) . "', " .
+				"'" . (($solicitacao->dataAgen == "")? "NULL" : $solicitacao->dataAgen) . "', ";
+				"'" . (($solicitacao->status == "")? "NULL" : $solicitacao->status) . "' )";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -490,12 +493,11 @@ class DB
 			$res->execute();
 			$servicos = [];
 			while ($reg = $res->fetch(PDO::FETCH_ASSOC)) {
-				$servicos[$reg["codigo"]] = new Servico(
-					$reg["codigo"],
-					$reg["nome"],
+				$servicos[$reg["cod"]] = new Servico(
+					$reg["cod"],
 					$reg["tipo"],
 					$reg["descricao"],
-					$reg["valor"]
+					$reg["preco"]
 				);
 			}
 			return $servicos;
@@ -511,7 +513,7 @@ class DB
 	{
 		try {
 			require(DB::getPath());
-			$sql = "DELETE FROM " . $db . "." . DB::$ser . " WHERE codigo = $codigo";
+			$sql = "DELETE FROM " . $db . "." . DB::$ser . " WHERE cod = $codigo";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -526,11 +528,10 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "UPDATE " . $db . "." . DB::$ser . " SET " .
-				"nome = '" . $servico->getNome() . "', " .
 				"tipo = '" . $servico->getTipo() . "', " .
 				"descricao = '" . $servico->getDescricao() . "', " .
-				"valor = '" . $servico->getValor() . "' " .
-				"WHERE codigo = " . $servico->getCod();
+				"preco = " . $servico->getValor() . " " .
+				"WHERE cod = " . $servico->getCod();
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
@@ -545,11 +546,10 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$ser .
-				"(nome, tipo, descricao, valor) VALUES (" .
-				"'" . $servico->getNome() . "', " .
+				"(tipo, descricao, preco) VALUES (" .
 				"'" . $servico->getTipo() . "', " .
 				"'" . $servico->getDescricao() . "', " .
-				"'" . $servico->getValor() . "' )";
+				"" . $servico->getValor() . " )";
 			$res = $conectar->prepare($sql);
 			$res->execute();
 		} catch (PDOException $e) {
