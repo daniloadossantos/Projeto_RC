@@ -48,8 +48,8 @@ $ceps = DB::getCEPs();
       </div>
       <div class="item sidenav menu_lateral">
         <div class="menu_clientes"> <a href="clientes.php" title="Clientes"><img src="./img/users-svgrepo-com.svg" alt="Clientes"></a></div>
-        <div class="menu_servicos"> <a href="orcamento.html" title="Serviços"><img src="./img/tools-svgrepo-com.svg" alt="Serviços"></a></div>
-        <div class="menu_agendamentos"> <a href="agendamento.html" title="Agendamentos"><img src="./img/calendar-svgrepo-com.svg" alt="Agendamentos"></a></div>
+        <div class="menu_servicos"> <a href="orcamento.php" title="Serviços"><img src="./img/tools-svgrepo-com.svg" alt="Serviços"></a></div>
+        <div class="menu_agendamentos"> <a href="agendamento.php" title="Agendamentos"><img src="./img/calendar-svgrepo-com.svg" alt="Agendamentos"></a></div>
         <div class="menu_tecnicos"> <a href="tecnicos.php" title="Técnicos"><img src="./img/construction-worker-svgrepo-com.svg" alt="Técnicos"></a></div>
       </div>
 
