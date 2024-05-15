@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	// session_start();
 	// Azure config
 	// $host = "rcsystemapp-server.mysql.database.azure.com";
 	// $user = "gdofitzows";
@@ -10,11 +10,12 @@
 	$host = "localhost";
 	$user = "root";
 	$pass = "";
-	$db = "rcsystem";
+	$db = "rcsystem3";
 	
 	try {             
 		$conectar = new PDO("mysql:host=$host;dbname=$db", $user, $pass);  
 		$conectar->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		echo $conectar;
 	}catch(PDOException $e) {
 		echo "Falha de conexão:<br />" . $e->getMessage();
 	}

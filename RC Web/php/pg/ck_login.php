@@ -27,7 +27,7 @@ if(isset($_POST['nome']) && isset($_POST['senha']))
         ];
         var_dump($_SESSION);
         // Por hora fica com .html
-        header('Location: ./../../agendamento.html');
+        header('Location: ./../../agendamento.php');
     }
     else if($_POST['nome'] === 'adm' && $_POST['senha'] === 'adm')
     {

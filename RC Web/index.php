@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_tb.php');
 
 if(isset($_POST['nome']))
