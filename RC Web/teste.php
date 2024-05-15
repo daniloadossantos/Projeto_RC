@@ -116,6 +116,7 @@ function hd(string $msg)
 
 echo "<button><a href=\"./clientes.php\">Clientes</a></button>";
 echo "<button><a href=\"./inde.php\">Login</a></button>";
+echo "<button><a href=\"./agendamento.php\">Agendamento</a></button>";
 //=======
 // hd("Teste CREATE");
 // DB::insertCEP($cep);
@@ -155,12 +156,37 @@ DB::delTecnico(5);
 view(DB::getTecnicos());
 
 */
-hd("TESTE DELETE SOLICITA");
+// hd("TESTE CREATE SOLICITA");
 
 $sol = new Solicitacao(
-    1,
+    2, 1, 1, dataAgen: "2150-02-15"
 );
+$data = "12/05/2024";
+// $dtf = date_format(date($data), "Y-m-d"); 
+// echo $dtf;
+// echo date_format(date($dtf), "d-m-Y");
 
-$sol->show();
+// $sol->show();
 
-DB::insertSolicitacao($sol);
+// hd("TESTE UPDAE SOLICITA");
+
+// view(DB::getSolicitacoes());
+// DB::updateSolicitacao($sol);
+// hd("TESTE DELETE SOLICITA");
+// view(DB::getSolicitacoes());
+// DB::delSolicitacao(4);
+// view(DB::getSolicitacoes());
+// DB::insertSolicitacao($sol);
+
+hd("TESTE CREATE SERVICO");
+
+$ser = new Servico(3, "Muntencaoooo", "ar", 75.6);
+view(DB::getServicos());
+// DB::insertServico($ser);
+hd("TESTE UPDATE SERVICO");
+// DB::updateServico($ser);
+// DB::deleteServico(3);
+view(DB::getServicos());
+hd("TESTE DELETE SERVICO");
+
+
