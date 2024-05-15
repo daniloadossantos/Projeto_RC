@@ -422,6 +422,7 @@ class DB
 		}
 	}
 
+
 	public static function delSolicitacao(int $index)
 	{
 		try {
@@ -465,7 +466,7 @@ class DB
 		try {
 			require(DB::getPath());
 			$sql = "INSERT INTO " . $db . "." . DB::$sol .
-				"(cod_cliente, cod_servico, cod_atendent, cod_tecnico, cod_orcamento, dt_confirma, dt_executa, dt_agendada) VALUES (" .
+				"(cod_cliente, cod_servico, cod_atendent, cod_tecnico, cod_orcamento, dt_confirma, dt_executa, dt_agendada, status_agd) VALUES (" .
 				" " . $solicitacao->codCli . ", " .
 				" " . (($solicitacao->codServ == 0)? "NULL" : $solicitacao->codServ) . ", " .
 				" " . (($solicitacao->codAte == 0)? "NULL" : $solicitacao->codAte) . ", " .
@@ -473,7 +474,7 @@ class DB
 				" " . (($solicitacao->codOrc == 0)? "NULL" : $solicitacao->codOrc) . ", " .
 				"'" . (($solicitacao->dataConf == "")? "NULL" : $solicitacao->dataConf) . "', " .
 				"'" . (($solicitacao->dataExe == "")? "NULL" : $solicitacao->dataExe) . "', " .
-				"'" . (($solicitacao->dataAgen == "")? "NULL" : $solicitacao->dataAgen) . "', ";
+				"'" . (($solicitacao->dataAgen == "")? "NULL" : $solicitacao->dataAgen) . "', " .
 				"'" . (($solicitacao->status == "")? "NULL" : $solicitacao->status) . "' )";
 			$res = $conectar->prepare($sql);
 			$res->execute();
