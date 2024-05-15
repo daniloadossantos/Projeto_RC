@@ -1,19 +1,3 @@
-const getLocalStorageTecnico = () => JSON.parse(localStorage.getItem('db_rcarcondicionado')) ?? [];
-const setLocalStorageTecnico = (db_rcarcondicionado) => localStorage.setItem("db_rcarcondicionado", JSON.stringify(db_rcarcondicionado));
-
-const getLocalStorageCliente = () => JSON.parse(localStorage.getItem('db_RcClient')) ?? [];
-const setLocalStorageCliente = (db_RcClient) => localStorage.setItem("db_RcClient", JSON.stringify(db_RcClient));
-
-const getLocalStorageServico = () => { const data = localStorage.getItem('db_local'); return data ? JSON.parse(data) : []; };
-const setLocalStorageServico = (dbrcServico) => localStorage.setItem("db_local", JSON.stringify(dbrcServico));
-
-const readTecnico = () => getLocalStorageTecnico();
-const readCliente = () => getLocalStorageCliente();
-const readServico = () => getLocalStorageServico();
-
-const db_RcClient = readCliente();
-const db_rcarcondicionado = readTecnico();
-const db_rcServico = readServico();
 
 //Abrir formulario 
 const openForm = () => {
@@ -50,67 +34,7 @@ function formatarTelefone(telefone) {
 }
 
 //PESQUISA CLIENTES E TECNICOS
-const popularClientes = () => {
-  const clientes = JSON.parse(localStorage.getItem('db_RcClient')) || [];
-  console.log("Clientes recuperados do armazenamento local:", clientes); // Adiciona log para verificar os clientes recuperados
-  const selectCliente = document.getElementById('nome');
-  const inputClienteSelecionado = document.getElementById('nomeClienteSelecionado');
 
-  selectCliente.innerHTML = '<option value="">Selecione o cliente</option>';
-
-  clientes.forEach(cliente => {
-	  console.log("Cliente:", cliente);
-    if (cliente.nome) {
-      const option = document.createElement('option');
-      option.value = cliente.nome;
-      option.textContent = cliente.nome;
-      selectCliente.appendChild(option);
-    }
-  });
-
-  // Adicionar evento de alteração ao <select>
-  selectCliente.addEventListener('change', () => {
-    const selectedOption = selectCliente.options[selectCliente.selectedIndex];
-
-    if (selectedOption.value !== "") {
-      // Se a opção selecionada não for vazia, definir o valor no input
-      inputClienteSelecionado.value = selectedOption.value;
-    } else {
-      // Se a opção selecionada for vazia, limpar o input
-      inputClienteSelecionado.value = "";
-    }
-  });
-}
-
-
-
-const popularTecnicos = () => {
-  const tecnicos = JSON.parse(localStorage.getItem('db_rcarcondicionado')) || [];
-  const selectTecnico = document.getElementById('nomeTecnico');
-  const inputTecnicoSelecionado = document.getElementById('nomeTecnicoSelecionado');
-
-  selectTecnico.innerHTML = '<option value="">Selecione o técnico</option>';
-
-  tecnicos.forEach(tecnico => {
-    const option = document.createElement('option');
-    option.value = tecnico.nome + " " + tecnico.sobrenome;
-    option.textContent = tecnico.nome + " " + tecnico.sobrenome;
-    selectTecnico.appendChild(option);
-  });
-
-  // Adicionar evento de alteração ao <select>
-  selectTecnico.addEventListener('change', () => {
-    const selectedOption = selectTecnico.options[selectTecnico.selectedIndex];
-
-    if (selectedOption.value !== "") {
-      // Se a opção selecionada não for vazia, definir o valor no input
-      inputTecnicoSelecionado.value = selectedOption.value;
-    } else {
-      // Se a opção selecionada for vazia, limpar o input
-      inputTecnicoSelecionado.value = "";
-    }
-  });
-}
 
 // Função para preencher o seletor de anos
 function preencherSeletorAno() {
@@ -119,6 +43,7 @@ function preencherSeletorAno() {
 
   for (let ano = anoAtual; ano <= anoAtual + 10; ano++) {
     const option = document.createElement('option');
+    option.name = "ano"
     option.value = ano;
     option.textContent = ano;
     seletorAno.appendChild(option);
@@ -135,6 +60,7 @@ function preencherSeletorMes() {
 
   for (let mes = 0; mes < 12; mes++) {
     const option = document.createElement('option');
+    option.name = "mes"
     option.value = mes + 1;
     option.textContent = meses[mes];
     seletorMes.appendChild(option);
@@ -155,6 +81,7 @@ function preencherSeletorDia() {
     const data = new Date(anoSelecionado, mesSelecionado, dia);
     const diaSemana = data.getDay();
     const option = document.createElement('option');
+    option.name = "dia"
     option.value = dia;
     option.textContent = `${dia} (${diasSemana[diaSemana]})`;
     seletorDia.appendChild(option);
@@ -175,6 +102,7 @@ function preencherSeletorHorario() {
   for (let hora = 8; hora <= 17; hora++) {
     const option = document.createElement('option');
     option.value = hora;
+    option.name = "hora";
     option.textContent = `${hora}:00`;
     seletorHorario.appendChild(option);
   }
@@ -186,35 +114,29 @@ preencherSeletorDia();
 preencherSeletorHorario();
 
 //CRUD Agendamentos
-
-const getLocalStorage = () => JSON.parse(localStorage.getItem('db_rcAgenda')) ?? []
-const setLocalStorage = (dbAgenda) => localStorage.setItem("db_rcAgenda", JSON.stringify(dbAgenda))
-
-const createAgendamento = (agendamento, numIdCliente) => {
-  if (numIdCliente) {
-    agendamento.numIdCliente = numIdCliente;
-
-    const dbAgenda = getLocalStorage();
-    dbAgenda.push(agendamento);
-    setLocalStorage(dbAgenda);
-    console.log("Agendamento criado com sucesso.");
-  } else {
-    console.log("O número de identificação do cliente não foi fornecido.");
-  }
+const submitForm = (page = null) => {
+    if(page !== null)
+    {
+      document.getElementById('form').action = page
+    }
+    document.getElementById('form').submit()
 }
-
-const readAgenda = () => getLocalStorage()
-
-const updateAgendamento = (index, agendamento) => {
-  const dbAgenda = readAgenda();
-  dbAgenda[index] = agendamento;
-  setLocalStorage(dbAgenda);
+// Tipo de operação a ser utlizada UPDATE/CREATE/DELETE
+// e um valor para o caso especifico do SELECT
+const setOperation = (op, value = true) => {
+    document.getElementById('op').name = op
+    document.getElementById('op').value = value
 }
-
+  
+  // Define o código do cliente a ser UPDATE/DELETE
+const setCodigo = (cod, id) => {
+   document.getElementById(cod).value = id
+}
 const deleteAgendamento = (index) => {
-  const dbAgenda = readAgenda()
-  dbAgenda.splice(index, 1);
-  setLocalStorage(dbAgenda);
+    setOperation("DELETE");
+    setCodigo('cod', index);
+    fillFields(index);
+    submitForm();
 }
 
 const isValidFields = () => {
@@ -226,131 +148,67 @@ const clearFields = () => {
   fields.forEach(field => field.value = "");
 }
 
-const saveAgendamento = () => {
-  console.log("botao agendamento")
-
-
-
-
-
-  if (isValidFields()) {
-    const agendamento = {
-      numId: gerarNumeroUnico(),
-      nomeTecnico: document.getElementById('nomeTecnicoSelecionado').value,
-      nomeCliente: document.getElementById('nomeClienteSelecionado').value,
-      dia: document.getElementById('dia').value,
-      mes: document.getElementById('mes').value,
-      ano: document.getElementById('ano').value,
-      horario: document.getElementById('horario').value,
-      status: document.getElementById('status').value,
-    }
-
-    document.getElementById('nomeClienteSelecionado').dataset.numId = agendamento.numId;
-
-    const index = agendamento.numId;
-    console.log('index:', index); // Verifica se o índice está correto
-
-
-    const getAgendamentoByIndex = (index) => {
-      let agendamento = readAgenda();
-      return agendamento.find(agendamento => agendamento.numId === index);
-    };
-
-    const existingAgendamento = getAgendamentoByIndex(index);
-    console.log(existingAgendamento)
-    if (existingAgendamento) {
-      console.log("update")
-      updateAgendamento(index, agendamento);
-    } else {
-      console.log("criando agendamento")
-      createAgendamento(agendamento);
-      ordenarNomes();
-    }
-
-    clearFields();
-    closeForm();
-    updateTable();
-  } else {
-    console.error('Cliente não encontrado.');
-  }
-};
-
-const createRow = (agendamento, index) => {
-  const newRow = document.createElement('tr')
-  newRow.innerHTML = `
-    <td><input type="checkbox" id="id-${index}" class="checkbox-item"  /></td>  
-    <td>${agendamento.numId}</td>
-    <td>${agendamento.nomeCliente}</td>
-    <td id="data">${agendamento.dia}/${agendamento.mes}/${agendamento.ano}</td>
-    <td></td>
-    <td>${agendamento.nomeTecnico}</td>
-    <td>${agendamento.status}</td>
-
-    <td><div class="btn_crud btn_acoes" ><button id="edit-${index}" class="btn_crud btn_altera" type="button" data-action="edit"></button>
-    <button id="delete-${index}" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
-  `
-  document.querySelector('#tb_agendamento>tbody').appendChild(newRow)
-}
-
-const clearTable = () => {
-  const rows = document.querySelectorAll('#tb_agendamento>tbody tr')
-  rows.forEach(row => row.parentNode.removeChild(row))
-}
-
-const fillFields = (agendamento) => {
-  document.getElementById('nomeTecnicoSelecionado').value = agendamento.nomeTecnico;
-  document.getElementById('nomeClienteSelecionado').value = agendamento.nomeCliente;
-  document.getElementById('dia').value = agendamento.dia;
-  document.getElementById('mes').value = agendamento.mes;
-  document.getElementById('ano').value = agendamento.ano;
-  document.getElementById('horario').value = agendamento.horario;
+const fillFields = (index) => {
+  document.getElementById('nomeTecnicoSelecionado').value = document.querySelector(`#slc-${index} > td:nth-child(6)`).textContent;
+  document.getElementById('nomeClienteSelecionado').value = document.querySelector(`#slc-${index} > td:nth-child(3)`).textContent;
+  document.getElementById('enderecoClienteSelecionado').value = 
+    document.getElementById(`cep-${index}`).textContent + ", " +
+    document.getElementById(`uf-${index}`).textContent + ", " +
+    document.getElementById(`cidade-${index}`).textContent + ", "+ 
+    document.getElementById(`bairro-${index}`).textContent +", "+
+    document.getElementById(`logra-${index}`).textContent+", "+
+    document.getElementById(`end-nro-${index}`).textContent + ", "+
+    document.getElementById(`end-cmplto-${index}`).textContent ;
+    document.getElementById('status').value = document.getElementById(`status-${index}`).value
+    const idCli = document.querySelector(`#slc-${index} > td:nth-child(3)`).id.split('-')[1];
+    const idTec = document.querySelector(`#slc-${index} > td:nth-child(6)`).id.split('-')[1];
+    setCodigo('codCli', idCli)
+    setCodigo('codTec', idTec)
+    document.getElementById(`cli-${idCli}`).selected = true;
+    document.getElementById(`tec-${idTec}`).selected = true;
+    // document.getElementById('nome').selectedIndex = idCli;
+    // document.getElementById('nomeTecnico').selectedIndex = idTec;
+  const dt_time = document.getElementById(`data-${index}`).textContent.split(' ');
+  const [ano, mes, dia] = dt_time[0].split('-');
+  const time = dt_time[1];
+  document.getElementById('dia').selectedIndex = dia-1;
+  document.getElementById('mes').selectedIndex = mes-1;
+  document.getElementById('ano').selectedIndex = ano - (new Date().getFullYear());
+  document.getElementById('horario').selectedIndex = 8 - parseInt(time.charAt(1));
   // Preencha os outros campos do formulário aqui, conforme necessário
 
 }
 
 const editAgendamento = (index) => {
-  const agendamento = readAgenda()[index];
-  agendamento.index = index;
-  fillFields(agendamento);
-  openForm();
+    setOperation('UPDATE')
+    setCodigo('cod',index)
+    fillFields(index)
+    openForm();
 }
 
 const editDelete = (event) => {
   if (event.target.type === 'button') {
     const [action, index] = event.target.id.split('-');
-
+    console.log(action, index);
     if (action === 'edit') {
       editAgendamento(index);
     } else {
-      const agendamento = readAgenda()[index];
-      const response = confirm(`Deseja realmente excluir o agendamento de ${agendamento.nomeTecnico} para ${agendamento.nomeCliente}?`);
+        const nome = document.querySelector(`#slc-${index} > td:nth-child(3)`).textContent
+      const response = confirm(`Deseja realmente excluir o agendamento para ${nome}?`);
       if (response) {
         deleteAgendamento(index);
-        updateTable();
       }
     }
   }
 }
 
-const ordenarNomes = () => {
-  const dbAgenda = readAgenda()
-  dbAgenda.sort(function (a, b) {
-    if (a.nome < b.nome) {
-      return -1;
-    } else if (a.nome > b.nome) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
-  setLocalStorage(dbAgenda);
-}
-
 const refreshTable = () => {
-  ordenarNomes()
   updateTable()
+  setCodigo('cod', 0)
+  setOperation("", "")
   const input = document.querySelector('.campo_pesquisa')
   input.value = ""
+  updateTable()
 }
 
 const isAnyCheckboxSelected = () => {
@@ -371,36 +229,28 @@ const toggleActionButtonsVisibility = () => {
 };
 
 const updateTable = () => {
-  const dbAgenda = readAgenda();
-  clearTable();
-  dbAgenda.forEach(createRow);
-  ordenarNomes();
-
-  const checkboxes = document.querySelectorAll('.checkbox-item');
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('click', toggleActionButtonsVisibility);
-  });
-
-  toggleActionButtonsVisibility();
+    submitForm('./agendamento.php');
 };
-
-updateTable();
 
 const searchByName = () => {
   const searchTerm = document.querySelector('input[name="consulta"]').value.toLowerCase();
   if (searchTerm !== "") {
-    const dbAgenda = readAgenda();
-    const filteredList = dbAgenda.filter(agendamento => {
-      return agendamento.nomeCliente.toLowerCase().includes(searchTerm);
-    });
-
-    clearTable();
-    filteredList.forEach(createRow);
-  } else return;
+    setOperation('SELECT', searchTerm);
+    submitForm('./clientes.php');
+ };
 };
 
 
+const saveAgendamento = () => {
+    if(isValidFields()){
+        submitForm();
+    }
+}
 
+const addNewAgendamento= ()=> {
+    setOperation('CREATE')
+    openForm();
+}
 // Outras funções e eventos permanecem inalterados...
 
 //Eventos
@@ -408,7 +258,7 @@ document.getElementById('close-cadastro-form')
   .addEventListener('click', closeForm)
 
 document.getElementById('open-cadastro-form')
-  .addEventListener('click', openForm)
+  .addEventListener('click', addNewAgendamento)
 
 document.getElementById('cadastrarAgendamento')
   .addEventListener('click', saveAgendamento)
