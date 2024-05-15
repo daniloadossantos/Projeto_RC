@@ -14,10 +14,21 @@ if( !isset($_SESSION['USER']) )
 header('Location: ./index.php');
 }
 
+// if(isset($_POST["SELECT"]))
+// {
+//   $cli = DB::getSoliPorNomeCliente($_POST["SELECT"]??"");
+//   unset($_POST["SELECT"]);
+// }
+// else
+// {
+//   $cli = DB::getClientes();
+// }
+
 $cli = DB::getClientes();
 $ceps = DB::getCEPs();
 $tec = DB::getTecnicos();
 $sol = DB::getSolicitacoes();
+$serv = DB::getServicos();
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +98,37 @@ $sol = DB::getSolicitacoes();
               </tr>
             </thead>
             <tbody>
-
+            <?php foreach($sol as $cod => $solicitacao){ ?>
+                  <tr  id="slc-<?=$cod?>">
+                    <td><input type="checkbox" id="id-<?=$cod?>" class="checkbox-item" /></td>
+                    <td id="cod-<?=$cod?>"><?=$cod?></td>
+                    <td id="cliente-<?=$solicitacao->codCli?>"><?=$cli[$solicitacao->codCli]->nome?></td>
+                    <td id="data-<?=$cod?>"><?=$solicitacao->dataAgen?></td>
+                    <td>
+                      <span id="cep-<?=$cod?>"><?=$ceps[$cli[$solicitacao->codCli]->cep]->cod?></span>,
+                      <span id="uf-<?=$cod?>"><?=$ceps[$cli[$solicitacao->codCli]->cep]->uf?></span>,  
+                      <span id="cidade-<?=$cod?>"><?=$ceps[$cli[$solicitacao->codCli]->cep]->cidade?></span>, 
+                      <span id="bairro-<?=$cod?>"><?=$ceps[$cli[$solicitacao->codCli]->cep]->bairro?></span>, 
+                      <span id="logra-<?=$cod?>"><?=$ceps[$cli[$solicitacao->codCli]->cep]->logra?></span>, 
+                      <span id="end-nro-<?=$cod?>"><?=$cli[$solicitacao->codCli]->end_nro?></span>, 
+                      <span id="end-cmplto-<?=$cod?>"><?=$cli[$solicitacao->codCli]->end_cmplto?></span>
+                    </td>
+                    <td id="tecnico-<?=$solicitacao->codTec?>"><?=isset($tec[$solicitacao->codTec])? $tec[$solicitacao->codTec]->getNome() : ""?></td>
+                    <td>
+                      <span id="status-<?=$cod?>"><?=$solicitacao->status?></span>
+                      <!-- <?php if($solicitacao->dataConf != ""){ ?>
+                        <span id="status-<?=$cod?>">Confirmado</span>
+                      <?php }else if($solicitacao->dataExe != ""){ ?>
+                        <span id="status-<?=$cod?>">Executado</span>
+                      <?php }else if($solicitacao->dataAgen != ""){ ?> 
+                        <span id="status-<?=$cod?>">Agendado</span>
+                      <?php } ?> -->
+                    </td>
+                    <td><div class="btn_crud btn_acoes" >
+                <button id="edit-<?=$cod?>" class="btn_crud btn_altera" type="button" data-action="edit"></button>
+                <button id="delete-<?=$cod?>" class="btn_crud btn_exclui" type="button" data-action="delete"></button></div></td>
+                </tr>
+                <?php }?>
             </tbody>
           </table>
         </div>
@@ -97,18 +138,24 @@ $sol = DB::getSolicitacoes();
 
   <div id="cadastro-form-agendamento">
     <div class="cadastro-form-header">
-      <h2>Cadastro de novo agendamento</h2>
+      <h2>Cadastro de agendamento</h2>
       <button id="close-cadastro-form" class="close-form-agendamento"></button>
     </div>
     <div class="cadastro-form-body">
-      <form id="form">
+      <form id="form" method="POST" action="./php/pg/crud_age.php">
+      <input type="hidden" id="cod" name="cod" value="">
+      <input type="hidden" id="codCli" name="codCli" value="">
+      <input type="hidden" id="codTec" name="codTec" value="">
         <div class="left-side-form">
 
           <div class="search-container">
             <div class="input-box">
               <label for="nomeCliente">Nome do Cliente*</label>
-              <select id="nome" class="form-field" name="nomeCliente" onclick="popularClientes()">
-                <option value="">Selecione o cliente</option>
+              <select id="nome" class="form-field" name="nomeCliente"">
+                <option name="nome_cli" value="">Selecione o cliente</option>
+                <?php foreach($cli as $cod => $cliente){ ?>
+                  <option id="cli-<?=$cod?>" name="nome_cli" value="<?=$cod?>"><?=$cliente->nome?></option>
+                <?php } ?>
               </select>
               <div class="input-box">
                 <!--<label for="nomeClienteSelecionado">Cliente Selecionado:</label>-->
@@ -121,8 +168,11 @@ $sol = DB::getSolicitacoes();
 
             <div class="input-box">
               <label for="nomeTecnico">Nome do Técnico*</label>
-              <select id="nomeTecnico" name="nomeTecnico" onclick="popularTecnicos()">
+              <select id="nomeTecnico" name="nomeTecnico" >
                 <option value="">Selecione o técnico</option>
+                <?php foreach($tec as $cod => $tecnico){ ?>
+                  <option id="tec-<?=$cod?>" name="nome_tec" value="<?=$cod?>"><?=$tecnico->getNome()?></option>
+                <?php } ?>
               </select>
               <div class="input-box">
                 <!--<label for="nomeTecnicoSelecionado">Técnico Selecionado:</label>-->
@@ -136,33 +186,35 @@ $sol = DB::getSolicitacoes();
 
             <div id="seletor-ano">
               <label for="ano">Ano:</label>
-              <select id="ano"></select>
+              <select name="ano" id="ano"></select>
             </div>
 
             <div id="seletor-mes">
               <label for="mes">Mês:</label>
-              <select id="mes"></select>
+              <select name="mes" id="mes"></select>
             </div>
           </div>
 
           <div class="select-container">
             <label for="dia">Dia:</label>
-            <select id="dia"></select>
+            <select name="dia" id="dia"></select>
           </div>
 
           <div class="select-container">
             <label for="horario">Horário:</label>
-            <select id="horario"></select>
+            <select name="hora" id="horario">
+                
+            </select>
           </div>
 
           <div class="select-status">
             <label for="status">Status:</label>
-            <select id="status">
+            <select name="status" id="status">
 
-              <option value="Agendado">Agendado</option>
-              <option value="Cumprido">Cumprido</option>
-              <option value="Cancelado pelo cliente">Cancelado pelo cliente</option>
-              <option value="Cancelado pelo técnico">Cancelado pelo técnico</option>
+              <option name="status" value="Agendado">Agendado</option>
+              <option name="status" value="Cumprido">Cumprido</option>
+              <option name="status" value="Cancelado pelo cliente">Cancelado pelo cliente</option>
+              <option name="status" value="Cancelado pelo técnico">Cancelado pelo técnico</option>
 
             </select>
 
@@ -174,6 +226,7 @@ $sol = DB::getSolicitacoes();
           </div>
 
         </div>
+        <input type="hidden" id="op" name="op" value="">
       </form>
     </div>
   </div>
@@ -195,9 +248,9 @@ $sol = DB::getSolicitacoes();
 
   </div>
   <footer>
-    <p>Todos os direitos reservados. 2024 <a href="index.html">login</a></p>
+    <p>Todos os direitos reservados. 2024 <a href="index.php">login</a></p>
   </footer>
-  <script src="js/agendamentos_php.js"></script>
+  <script src="js/agendamento_php.js"></script>
 </body>
 
 </html>
