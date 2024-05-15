@@ -1,6 +1,20 @@
 <?php
 session_start();
 
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/criar_tb.php');
+
+if(isset($_POST['nome']))
+  unset($_POST['nome']);
+
+if(isset($_POST['senha']))
+  unset($_POST['senha']);
+
+if(isset($_SESSION['USER']))
+  unset($_SESSION['USER']);
+
+if(isset($_SESSION['PG_ACCESS']))
+  unset($_SESSION['PG_ACCESS']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -21,7 +35,7 @@ session_start();
       <div class="box-login">
         <div class="login-form">
           <h2>Bem vindo à RC System</h2>
-          <form method="post" action="./php/pg/ck_login.php">
+          <form method="post" id="login-form" action="./php/pg/ck_login.php">
             <div>
               <label for="cod_func">Usuário</label>
               <a href="#"><span>Esqueci meu usuário</span></a>
@@ -41,7 +55,7 @@ session_start();
       <p>Todos os direitos reservados. 2024 <a href="clientes.php">clientes</a></p>
     </footer>
 
-  <script src="./js/script.js"></script>
+  <script src="./js/login_php.js"></script>
 
 </body>
 </html>

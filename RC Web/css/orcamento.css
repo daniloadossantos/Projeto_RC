@@ -22,7 +22,7 @@
 }
 
 .tabela_servicos {
-  max-height: 400px;
+  max-height: 300px;
   overflow: auto;
 }
 
@@ -215,8 +215,8 @@ th, td {
 
 @media screen and (max-width: 850px) {
   #cadastro-form-servico {
-      width: 90%;
-      max-width: 90%;
+      width: 70%;
+      max-width: 70%;
       height: auto;
   }
 
@@ -225,11 +225,126 @@ th, td {
   }
 
   .cadastro-form-body input {
-    width: 600px;
+    width: 500px;
   }
 
   .cadastro-form-body select {
-    width: 637px;
+    width: 500px;
   }
 
 }
+
+#botao-imprimir{
+  background-color: #9967f5;
+  background-image: url('../img/printer-print-svgrepo-com.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 45px;
+  height: 40px;
+  background-size: 60%;
+}
+
+@media screen and (min-width:320px) and (max-width:720px){
+
+/*Responsivo mobile*/
+  .grid-template-row{
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 75px auto auto 100px;
+    height: 100vh;
+  }
+  .nav{
+    grid-column-start: 1 ;
+    grid-row-start: 1;
+    width: 100vw;
+  }
+  .sidenav{
+    grid-column-start: 1;
+    grid-row-start: 5;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+  }
+  .btn{
+    grid-column-start: 1;
+    width: fit-content;
+    
+  }
+  .pesquisa{ 
+    grid-row-start: 2;
+    width: 100%;
+    gap: 5px;
+    padding-left: 0px;
+    display: inline;
+    flex-direction: column;
+ }
+ .pesquisa input{
+  height: 26px;
+  width: 140px;
+  padding: 2%;
+}
+.titulo_tabela{
+  display: flex;
+  margin: 30px 0 0 20px;
+}
+.btn{
+  margin-right: 40px;
+  margin-top: -35px;
+}
+  .item:nth-child(4){
+    grid-column-start: 1;
+    width: fit-content;
+  }
+ 
+  .tabela {
+    grid-column-start: 1;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 70px 0px 0px 10px;
+  }
+
+  #tb_servicos{
+    position: relative;
+  }
+
+  th:nth-child(1),
+  td:nth-child(1){
+  position: sticky;
+  left: 0px;
+  z-index: 1;
+  background-color: #e2e1ef;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  position: sticky;
+  left: 22px;
+  z-index: 1;
+  background-color: #e2e1ef;
+}
+
+/*Responsivo formulário cadastro*/
+#cadastro-form-servico {
+  width: 70%;
+  height: 70%;
+  overflow-y: scroll;
+}
+
+.input-group {
+justify-content: center;
+}
+.input-box{
+  width: 70%;
+}
+
+.cadastro-form-body input {
+width: 80%;
+}
+
+.cadastro-form-body select {
+width: 90%;
+}
+
+}
+

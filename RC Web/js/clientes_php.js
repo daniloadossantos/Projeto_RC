@@ -262,12 +262,14 @@ const editCliente = (index) => {
   setOperation('UPDATE')
   setCodigo(index)
   fillFields(index)
+  document.getElementById("numero").disabled =  false;
+  document.getElementById("complemento").disabled = false;
   openForm()
 }
 
 const agendaCliente = (index) => {
   setOperation('SELECT', index)
-  window.location.href = location.protocol + '//' + location.host + "/System/agendamento.html"
+  window.location.href = location.protocol + '//' + location.host + "/Projeto_RC/RC%20Web/agendamento.html"
   // window.location.href = "http://127.0.0.1:5500/agendamento.html"
 }
 
@@ -379,7 +381,7 @@ const submitForm = (page = null) => {
   document.getElementById('form').submit()
 }
 
-const saveCliente = (newCliente) => {
+const saveCliente = () => {
   if(isValidFields()){
     cepFieldsEnable(true);
     submitForm();

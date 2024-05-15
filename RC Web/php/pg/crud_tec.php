@@ -1,9 +1,11 @@
 <?php
 session_start();
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cliente.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/util/log.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/tecnico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/cls/cep.php');
+
 
 setExib(false);
 
@@ -33,22 +35,21 @@ function checkCEP()
     }
 }
 
-function makeCliente()
+function makeTecnico()
 {
     $cod = empty($_POST['cod']) ? 0 :  $_POST['cod'];
-    $nome = empty($_POST['nome_pf']) ? $_POST['nome_pj'] : $_POST['nome_pf'];
-    $cliente = new Cliente(
+    $tecnico = new Tecnico(
         $cod,
-        $nome,
+        $_POST['nome'] ?? "",
         $_POST['email'] ?? "",
-        $_POST['cpf_cnpj'] ?? "",
+        $_POST['cpf'] ?? "",
         $_POST['tel1'] ?? "",
         $_POST['tel2'] ?? "",
         $_POST['cep'] ?? "",
         (int)$_POST['end_nro'] ?? 0,
         $_POST["end_cmplto"] ?? ""
     );
-    return $cliente;
+    return $tecnico;
 }
 
 $CREATE = 'CREATE';
@@ -60,17 +61,15 @@ if(isset($_POST[$CREATE]))
 {
     try
     {
-        $nome = empty($_POST['nome_pf']) ? $_POST['nome_pj'] : $_POST['nome_pf'];
-        echo $nome;
         checkCEP();
-        $cliente = makeCliente();
+        $cliente = makeTecnico();
         $cliente->show();
-        DB::insertCliente($cliente);
-        exib("Cliente criado");
+        DB::insertTecnico($cliente);
+        exib("Tecnico criado");
     }
     catch(Exception $e)
     {
-        echo "Erro no $CREATE cliente" . $e->getMessage();
+        echo "Erro no $CREATE tecnico" . $e->getMessage();
     }
 }
 else if(isset($_POST[$DELETE]))
@@ -79,12 +78,12 @@ else if(isset($_POST[$DELETE]))
     try
     {
         $cod = (int) $_POST['cod'];
-        DB::delCliente($cod);
-        exib("Cliente deletado");
+        DB::delTecnico($cod);
+        exib("Tecnico deletado");
     }
     catch(Exception $e)
     {
-        echo "Erro no $READ cliente" . $e->getMessage();
+        echo "Erro no $READ tecnico" . $e->getMessage();
     }
 }
 else if(isset($_POST[$UPDATE]))
@@ -94,21 +93,20 @@ else if(isset($_POST[$UPDATE]))
     {
         $cod = $_POST['cod'];
         checkCEP();
-        $cliente = makeCliente();
-        DB::updateCliente($cliente);
-        exib("Cliente atualizado");
+        $tecnico = makeTecnico();
+        DB::updateTecnico($tecnico);
+        exib("Tecnico atualizado");
     }
     catch(Exception $e)
     {
-        echo "Erro no $READ cliente" . $e->getMessage();
+        echo "Erro no $READ Tecnico" . $e->getMessage();
     }
 }
 else if(isset($_POST[$READ]))
 {
     echo "Vou procurar";
 }
-exib("<button><a href=\"../../clientes.php\">Clientes</a></button>");
+exib("<button><a href=\"../../tecnicos.php\">Tecnico</a></button>");
 
 setExib(false);
-header('Location: ./../../clientes.php');
-
+header('Location: ./../../tecnicos.php');

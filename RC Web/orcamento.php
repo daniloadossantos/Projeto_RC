@@ -1,0 +1,174 @@
+<?php
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+  
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Projeto_RC/RC Web/php/db/db.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/cliente.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/tecnico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/servico.php');
+require_once($_SERVER['DOCUMENT_ROOT'] .'/Projeto_RC/RC Web/php/cls/solicitacoes.php');
+
+if( !isset($_SESSION['USER']) )
+{
+header('Location: ./index.php');
+}
+
+$cli = DB::getClientes();
+$tec = DB::getTecnicos();
+$sol = DB::getSolicitacoes();
+$serv = DB::getServicos();
+
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Orçamento - RC Ar-condicionado</title>
+	<link rel="stylesheet" href="./css/global.css">
+	<link rel="stylesheet" href="./css/orcamento.css">
+	<link rel="shortcut icon" href="img/winter32.png" type="image/x-icon">
+</head>
+	<body>
+	<div>
+	<section class="grid grid-template-row">
+	  <div class="item nav">
+		<header class="header-nav">
+		  <h1>Bem-vindo, <span class="nome_func">nome</span>!</h1>
+		  <div class="btn_menu">
+			<div class="btn_perfil"><a href=""><img src="./img/user-circle-svgrepo-com.svg" title="Perfil" alt="Perfil"></a></div>
+			<div class="btn_logout"><a href="index.php"><img src="./img/logout-svgrepo-com.svg" title="Encerrar Sessão" alt="Sair"></a></div>
+		  </div>
+		</header>
+	  </div>
+	  <div class="item sidenav menu_lateral">
+		<div class="menu_clientes">
+			<a href="clientes.php" title="Clientes"><img src="./img/users-svgrepo-com.svg" alt="Clientes"></a>
+		</div>
+		<div class="menu_servicos">
+			<a href="orcamento.php" title="Serviços"><img src="./img/tools-svgrepo-com.svg" alt="Serviços"></a>
+		</div>
+		<div class="menu_agendamentos">
+			<a href="agendamento.php" title="Agendamentos"><img src="./img/calendar-svgrepo-com.svg" alt="Agendamentos"></a>
+		</div>
+		<div class="menu_tecnicos">
+			<a href="tecnicos.php" title="Técnicos"><img src="./img/construction-worker-svgrepo-com.svg" alt="Técnicos"></a>
+		</div>
+	  </div>
+
+	  <div class="item pesquisa">
+		<div class="campo_consulta">
+			<input class="campo_pesquisa" type="text" name="consulta" placeholder="Busca por nome">
+			<button id="btn_search" type="submit">Pesquisar</button>
+			<button id="btn_refresh" type="submit"></button>
+		</div>
+    <div class="titulo_tabela"><h2>Serviços</h2></div>
+
+		<div class="item btn">
+			<button id="open-cadastro-form" class=" btn_crud btn_novo" title="Novo Cadastro" onclick="clearModal()"></button>
+			<button id="botao-imprimir" title="Imprimir Relatório"></button>
+		</div>
+	  </div>
+	  <div class="item tabela">
+		<div class="tabela_servicos">
+		  <table id="tb_servicos">
+			<thead>
+			  <tr class="cabecalho_tabela_servicos">
+				<th>🗹</th> 
+				<th>ID</th>
+				<th>Cliente</th>
+				<th>Tipo de Serviço</th>
+				<th>Descrição do Serviço</th>
+				<th>Valor do Serviço</th>
+				<th>Técnico</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+                
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	</section>
+	</div>
+	<div id="cadastro-form-servico" class="modal">
+	<div class="cadastro-form-header">
+		<h2>Cadastro de Serviços</h2>
+		<button id="close-cadastro-form"></button>
+	</div>
+	<div class="cadastro-form-body">
+		<form id = "form" method="POST" action="./php/pg/crud_orc.php">
+		  <div class="input-group">
+			<div class="input-box">
+				<label for="idAgendamento">ID do Agendamento*</label>
+				<select id="idAgendamento" required>
+					<option value="">Selecione o ID do agendamento</option>
+				</select>
+			</div>
+			<div class="input-box" class="readonly">
+				<label for="nome">Nome do Cliente</label>
+				<input type="text" id="nome" name="nome" placeholder="Cliente Solicitante" readonly>
+			</div>
+			<div class="input-box" class="readonly">
+				<label for="nomeTecnico">Nome do Técnico</label>
+				<input type="text" id="nomeTecnico" name="nomeTecnico" placeholder="Técnico Destinado" readonly>
+			</div>
+			<div class="input-box">
+			  <label for="tipo-servico" class="form-field">Tipo de Serviço*</label></td>
+                <select id="tipo-servico" name="tipo-servico" required>
+					<option value="">Selecione o tipo de serviço</option>
+					<option value="Instalação">Instalação</option>
+					<option value="Manutenção">Manutenção</option>
+					<option value="Reparo">Reparo</option>
+					<option value="Limpeza">Limpeza</option>
+					<option value="Outro">Outro</option>
+                </select>
+			</div>
+			<div class="input-box">
+			<label for="quantidade">Quantidade*</label>
+			<select id="quantidade" name="quantidade" required>
+				<option value="">Selecione a quantidade</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			</div>
+			<div class="input-box">
+			  <label for="descricao">Descrição do Serviço</label>
+			  <input type="textarea" id="descricao" rows="4" class="form-field"  placeholder="Descrição do serviço">
+			</div>
+			<div class=" input-box">
+			  <label for="preco">Preço</label>
+			  <input type="money" id="preco" class="form-field" placeholder="Valor do serviço" maxlength="12">
+			</div>
+		  </div>
+		  <p>*preenchimento obrigatório</p>
+		  
+		  <div class="form-button">
+			<button id="cadastrarServico">Salvar</button>
+			<button id="limparForm" type="button">Limpar</button>
+		  </div>
+		</form>
+	</div>
+	</div>
+
+	<footer>
+	  <p>&copy Todos os direitos reservados - 2024</p>
+	</footer>
+
+	<script src="./js/orcamento_php.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/vfs_fonts.js"></script>
+
+	</body>
+</html>
+

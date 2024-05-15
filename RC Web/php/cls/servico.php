@@ -3,21 +3,18 @@
 class Servico 
 {
 	private int $codigo;
-	private string $nome;
 	private string $tipo;
 	private string $descricao;
 	private float $valor;
 	
 	public function __construct(
-		int $codigo, 
-		string $nome, 
+		int $codigo,
 		string $tipo, 
 		string $descricao, 
 		float $valor
 	)
 	{
 		$this->codigo = $codigo;
-		$this->nome = $nome;
 		$this->tipo = $tipo;
 		$this->descricao = $descricao;
 		$this->valor = $valor;
@@ -27,11 +24,7 @@ class Servico
 	{
 		return $this->codigo;
 	}
-	
-	public function getNome(): string
-	{
-		return $this->nome;
-	}
+
 	
 	public function getTipo(): string
 	{
