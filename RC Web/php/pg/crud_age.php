@@ -22,15 +22,16 @@ function makeSolicitacao()
     if(isset($_POST['dia']) && 
         isset($_POST['mes']) &&
         isset($_POST['dia']) &&
-        isset($_POST['hoa'])
+        isset($_POST['hora'])
     )
     {
-        $data_age = $_POST['ano'] . $_POST['mes'] . $_POST['dia'] . " " . $_POST['hora'] . ":00:00";
+        $data_age = $_POST['ano'] . "-". $_POST['mes'] ."-" . $_POST['dia'] . " " . $_POST['hora'] . ":00:00";
+        exib("data " . $data_age);
     }
     $solicitacao = new Solicitacao(
-        $_POST['cod'],
-        $_POST['codCli'],
-        isset($_POST['codTec'])?$_POST['codTec']:0,
+        ((int)$_POST['cod']) ?? 0,
+        (int)$_POST['nomeCliente'],
+        isset($_POST['nomeTecnico'])?$_POST['nomeTecnico']:0,
         isset($_POST['codServ'])? $_POST['codServ']: 0,
         isset($_POST['codAte'])?$_POST['cod']:0,
         isset($_POST['codOrc'])?$_POST['cod']:0,
@@ -39,6 +40,7 @@ function makeSolicitacao()
         "",
         isset($_POST['status'])?$_POST['status']:"",
     );
+    return $solicitacao;
 }
 
 $CREATE = 'CREATE';
@@ -65,8 +67,8 @@ else if(isset($_POST[$DELETE]))
     try
     {
         $cod = (int) $_POST['cod'];
-        DB::deleteSolicitacao($cod);
-        exib("Solicitacao deletado");
+        DB::delSolicitacao($cod);
+        exib("Solicitacao deletada");
     }
     catch(Exception $e)
     {
