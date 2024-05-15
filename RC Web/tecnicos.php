@@ -226,7 +226,7 @@ $ceps = DB::getCEPs();
 
 
     <footer>
-      <p>&copy Todos os direitos reservados - 2024 <a href="index.php">login</a></p>
+      <p>&copy Todos os direitos reservados - 2024</p>
     </footer>
     <script src="./js/tecnico/tecnicos_php.js"></script>
 
