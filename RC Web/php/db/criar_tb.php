@@ -258,6 +258,7 @@ if ($conectar) {
 				dt_confirma		DATETIME 	NULL,
 				dt_executa		DATETIME 	NULL,
 				dt_agendada		DATETIME	NULL,
+				status_agd	 	VARCHAR(30) NULL,
 				CONSTRAINT PK_$tb PRIMARY KEY (cod),
 				CONSTRAINT FK_" . $tb . "_COD_CLIENTE FOREIGN KEY (cod_cliente) REFERENCES CLIENTES (cod),
 				CONSTRAINT FK_" . $tb . "_COD_SERVICO FOREIGN KEY (cod_servico) REFERENCES SERVICOS (cod),
